@@ -1,0 +1,12 @@
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+p,
+body {
+  font-family: "Avenir Next Pro Lt", "Avenir", Arial, Helvetica, sans-serif;
+  margin: 0;
+}
