@@ -2,3 +2,24 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/typography" as *;
+
+.footer {
+  background-color: $light-grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__content {
+    color: $slate;
+    margin: 2.5rem 0;
+    font-size: 0.625rem;
+
+    @include tablet-and-desktop {
+      font-size: 0.75rem;
+    }
+
+    @include desktop {
+      margin: 3rem 0;
+    }
+  }
+}
