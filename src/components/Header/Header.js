@@ -9,14 +9,14 @@ export default function Header() {
         <Link to="/" className="header__link">
           <img className="header__logo" src={instockLogo} alt="instock logo" />
         </Link>
-        <div className="header__nav">
-          <Link to="/" className="header__nav-warehouse">
-            <p>Warehouse</p>
+        <ul className="header__nav">
+          <Link to="/" className="header__nav-item header__nav-item--active">
+            <li>Warehouse</li>
           </Link>
-          <Link to="/inventory" className="header__nav-inventory">
-            <p>Inventory</p>
+          <Link to="/inventory" className="header__nav-item">
+            <li>Inventory</li>
           </Link>
-        </div>
+        </ul>
       </section>
     </header>
   );
