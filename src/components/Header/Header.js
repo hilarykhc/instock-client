@@ -11,7 +11,7 @@ export default function Header() {
         </Link>
         <ul className="header__nav">
           <Link to="/" className="header__nav-item header__nav-item--active">
-            <li>Warehouse</li>
+            <li>Warehouses</li>
           </Link>
           <Link to="/inventory" className="header__nav-item">
             <li>Inventory</li>
