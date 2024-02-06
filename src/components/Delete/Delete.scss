@@ -1,0 +1,16 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
+.delete {
+  margin: 0 1rem;
+  &__title {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: bold;
+  }
+  &__content {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,14 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+.buttonDC {
+  &__container {
+    display: flex;
+  }
+  &__delete,
+  &__cancel {
+    border-radius: 1.25rem;
+    height: 2.25rem;
+  }
+}
