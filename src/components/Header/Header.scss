@@ -1,0 +1,35 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
+.header {
+  background-color: $graphite;
+  @include flex-column;
+  height: 12rem;
+  padding-top: 2rem;
+
+  &__wrapper {
+    padding: 0 1rem;
+  }
+
+  &__link {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__nav {
+    @include flex-row;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+
+  &__nav-warehouse {
+    @include nav-item;
+    background-color: $instock-black;
+  }
+
+  &__nav-inventory {
+    @include nav-item;
+  }
+}
