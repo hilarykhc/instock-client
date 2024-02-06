@@ -1,0 +1,40 @@
+@use "./variables" as *;
+
+@mixin tablet-and-desktop {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin nav-item {
+  text-decoration: none;
+  list-style-type: none;
+  color: $cloud;
+  border-radius: 1.25rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: $pure-white;
+  }
+}

@@ -1,0 +1,47 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
+.header {
+  background-color: $graphite;
+  @include flex-column;
+  height: 12rem;
+  padding-top: 2rem;
+
+  &__wrapper {
+    padding: 0 1rem;
+
+    @include tablet-and-desktop {
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @include desktop {
+      padding: 0 8rem;
+    }
+  }
+
+  &__link {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__nav {
+    @include flex-row;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding: 0;
+  }
+
+  &__nav-item {
+    @include nav-item;
+  }
+
+  &__nav-item--active {
+    background-color: $instock-black;
+    color: $pure-white;
+  }
+}
