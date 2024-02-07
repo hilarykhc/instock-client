@@ -2,8 +2,15 @@ import Divider from '../Divider/Divider';
 import './WarehouseForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
+
+const REACT_APP_SERVER_URL =
+  process.env.REACT_APP_SERVER_URL;
+
 
 const WarehouseForm = () => {
+  console.log(process.env)
+  console.log(REACT_APP_SERVER_URL);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     warehouse_name: '',
@@ -23,8 +30,20 @@ const WarehouseForm = () => {
   const cancelHandler = () => {
     navigate('/warehouse');
   };
-  const formSubmitHandler = (event) => {
+  const formSubmitHandler = async (event) => {
     event.preventDefault();
+    console.log(formData)
+    console.log(REACT_APP_SERVER_URL);
+
+    try {
+        const response = await axios.get(`http://localhost:8080/warehouse`);
+      console.log(response.data)
+      // const response = await axios.post(`${REACT_APP_SERVER_URL}/warehouse`, formData
+      // )
+      
+    } catch (error) {
+      console.log(error)
+    }
   };
   return (
     <form onSubmit={formSubmitHandler} className="warehouse-form">

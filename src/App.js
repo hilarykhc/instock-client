@@ -6,6 +6,8 @@ import WarehousePage from "./pages/WarehousePage/WarehousePage";
 import WarehouseDetail from "./pages/WarehouseDetail/WarehouseDetail";
 import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
 
+
+
 export default function App() {
   return (
     <BrowserRouter>
