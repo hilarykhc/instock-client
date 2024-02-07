@@ -10,3 +10,28 @@ $light-grey: #f7f8f9;
 $cloud: #bdc5d5;
 $slate: #5c667e;
 $pure-white: #ffffff;
+
+//Typography variables
+$font-family: "Titillium Web";
+
+// Mobile font style
+$font-mobile-page-header:  #{1.75rem}/#{2.25rem} $font-family;
+$font-mobile-subheader:  #{1.25rem}/#{1.75rem} $font-family;
+$font-mobile-table-header: #{0.6875rem}/#{1rem} $font-family;
+$font-mobile-body-lg:  #{0.9375rem}/#{1.625rem} $font-family;
+$font-mobile-body-md:  #{0.8125rem}/#{1.25rem} $font-family;
+$font-mobile-body-sm:  #{0.6875rem}/#{1rem} $font-family;
+$font-mobile-link:  #{0.8125rem}/#{1.25rem} $font-family;
+$font-mobile-labels:  #{0.8125rem}/#{1.25rem} $font-family;
+$font-mobile-buttons:  #{0.8125rem}/#{1.25rem} $font-family;
+
+//Tablet & Desktop Font Style
+$font-tablet-page-header:  #{2rem}/#{2.5rem} $font-family;
+$font-tablet-subheader:  #{1.5rem}/#{2rem} $font-family;
+$font-tablet-table-header:  #{0.75rem}/#{1.125rem} $font-family;
+$font-tablet-body-lg:  #{1rem}/#{1.75rem} $font-family;
+$font-tablet-body-md:  #{0.875rem}/#{1.375rem} $font-family;
+$font-tablet-body-sm:  #{0.75rem}/#{1.125rem} $font-family;
+$font-tablet-link:  #{0.875rem}/#{1.375rem} $font-family;
+$font-tablet-labels:  #{0.875rem}/#{1.375rem} $font-family;
+$font-tablet-buttons:  #{0.875rem}/#{1.375rem} $font-family;
