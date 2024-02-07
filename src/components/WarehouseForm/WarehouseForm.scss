@@ -14,10 +14,22 @@
     }
 
      &__btn-container{
-      border-radius:0px, 0px, 3px, 3px;
-      opacity: 0.7;
-      background-color: $cloud;
+      // border-radius:0px, 0px, 3px, 3px;
+      // opacity: 0.7;
+      background-color: $light-grey;
       width: 100%;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.5rem 1rem;
+     }
+
+     &__btn--cancel{
+      @include btn($instock-black , $pure-white,$cloud);
+     }
+
+      &__btn--add{
+      @include btn($pure-white , $instock-indigo,$cloud);
      }
 
      &__group{

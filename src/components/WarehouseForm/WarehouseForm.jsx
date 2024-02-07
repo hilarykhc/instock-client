@@ -50,6 +50,7 @@ const WarehouseForm = () => {
               Country
             </label>
             <input
+              className="warehouse-form__input"
               type="text"
               id="country"
               name="country"
@@ -111,8 +112,8 @@ const WarehouseForm = () => {
           </div>
         </section>
         <div className="warehouse-form__btn-container">
-          <button>Cancel</button>
-          <button>Add Warehouse</button>
+          <button className="warehouse-form__btn--cancel">Cancel</button>
+          <button className="warehouse-form__btn--add">Add Warehouse</button>
         </div>
       </div>
     </form>
