@@ -1,6 +1,7 @@
 import Divider from '../Divider/Divider';
 import './WarehouseForm.scss';
 import { useNavigate } from 'react-router-dom';
+import notificationIcon from '../../assets/Icons/error.svg';
 import { useState } from 'react';
 import axios from 'axios';
 const emailValidator = require('validator');
@@ -20,28 +21,20 @@ const WarehouseForm = () => {
     contact_email: '',
   });
 
-  // const [errors, setErrors] = useState({
-  //   warehouse_name: '',
-  //   address: '',
-  //   city: '',
-  //   country: '',
-  //   contact_name: '',
-  //   contact_phone: '',
-  //   contact_position: '',
-  //   email: '',
-  // });
   const [errors, setErrors] = useState({});
-  const formErrors = {};
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     setErrors({ ...errors, [event.target.name]: '' });
   };
+
   const cancelHandler = () => {
     navigate('/warehouse');
   };
 
   const formValidation = () => {
+    const formErrors = {};
+
     if (formData.warehouse_name.trim() === '') {
       formErrors.warehouse_name = 'Warehouse name is required';
     }
@@ -68,12 +61,7 @@ const WarehouseForm = () => {
     }
     setErrors(formErrors);
 
-    let missingFields = 0;
-    for (let keys in Object.keys(formErrors)) {
-      missingFields += 1;
-    }
-
-    return missingFields === 0;
+    return Object.keys(formErrors).length === 0;
   };
 
   const validateEmail = (email) => {
@@ -87,21 +75,13 @@ const WarehouseForm = () => {
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
-    // check if form is valid
+
     const isFormValid = formValidation();
     const isEmailValid = validateEmail(formData.contact_email);
     const isValidPhoneNumber = validateContactNumber(formData.contact_phone);
+
     if (isFormValid && isEmailValid && isValidPhoneNumber) {
-      const newWarehouse = {
-        warehouse_name: formData.warehouse_name,
-        address: formData.address,
-        city: formData.city,
-        country: formData.country,
-        contact_name: formData.contact_name,
-        contact_phone: formData.contact_phone,
-        contact_position: formData.contact_position,
-        contact_email: formData.contact_email,
-      };
+      const newWarehouse = { ...formData };
 
       try {
         const response = await axios.post(
@@ -116,6 +96,7 @@ const WarehouseForm = () => {
       console.log('Invalid form');
     }
   };
+
   return (
     <form onSubmit={formSubmitHandler} className="warehouse-form">
       <div className="warehouse-form__section-container">
@@ -123,6 +104,7 @@ const WarehouseForm = () => {
           {/* Warehouse Detail Section */}
           <section className="warehouse-form-section section">
             <h2 className="section__heading">Warehouse Details</h2>
+
             <div className="warehouse-form__group">
               <label className="warehouse-form__label" htmlFor="warehouse_name">
                 warehouse name
@@ -138,10 +120,24 @@ const WarehouseForm = () => {
                 name="warehouse_name"
                 placeholder="Warehouse Name"
               />
-              {errors.warehouse_name && (
-                <div className="error-message">{errors.warehouse_name}</div>
-              )}
+              <div
+                className={`error-message ${
+                  errors.warehouse_name ? 'active' : ''
+                }`}
+              >
+                {errors.warehouse_name && (
+                  <>
+                    <img
+                      src={notificationIcon}
+                      alt="Error Icon"
+                      className="error-icon"
+                    />
+                    <span>{errors.warehouse_name}</span>
+                  </>
+                )}
+              </div>
             </div>
+
             <div className="warehouse-form__group">
               <label className="warehouse-form__label" htmlFor="address">
                 street address
@@ -157,11 +153,22 @@ const WarehouseForm = () => {
                 name="address"
                 placeholder="Street Address"
               />
-              {errors.address && (
-                <span className="error-message">{errors.address}</span>
-              )}
+              <div
+                className={`error-message ${errors.address ? 'active' : ''}`}
+              >
+                {errors.address && (
+                  <>
+                    <img
+                      src={notificationIcon}
+                      alt="Error Icon"
+                      className="error-icon"
+                    />
+                    <span>{errors.address}</span>
+                  </>
+                )}
+              </div>
             </div>
-
+            {/* City */}
             <div className="warehouse-form__group">
               <label className="warehouse-form__label" htmlFor="city">
                 city
@@ -177,12 +184,22 @@ const WarehouseForm = () => {
                 name="city"
                 placeholder="City"
               />
-              {errors.city && (
-                <span className="error-message">{errors.city}</span>
-              )}
+              <div className={`error-message ${errors.city ? 'active' : ''}`}>
+                {errors.city && (
+                  <>
+                    <img
+                      src={notificationIcon}
+                      alt="Error Icon"
+                      className="error-icon"
+                    />
+                    <span>{errors.city}</span>
+                  </>
+                )}
+              </div>
             </div>
+            {/* COUNTRY */}
             <div className="warehouse-form__group">
-              <label className="warehouse-form__label" htmlFor="warehouse_name">
+              <label className="warehouse-form__label" htmlFor="country">
                 Country
               </label>
               <input
@@ -196,11 +213,23 @@ const WarehouseForm = () => {
                 name="country"
                 placeholder="Country"
               />
-              {errors.country && (
-                <div className="error-message">{errors.country}</div>
-              )}
+              <div
+                className={`error-message ${errors.country ? 'active' : ''}`}
+              >
+                {errors.country && (
+                  <>
+                    <img
+                      src={notificationIcon}
+                      alt="Error Icon"
+                      className="error-icon"
+                    />
+                    <span>{errors.country}</span>
+                  </>
+                )}
+              </div>
             </div>
           </section>
+
           <Divider />
           {/* Contact section */}
           <section className="warehouse-form-section section">
@@ -220,9 +249,22 @@ const WarehouseForm = () => {
                 name="contact_name"
                 placeholder="Contact Name"
               />
-              {errors.contact_name && (
-                <div className="error-message">{errors.contact_name}</div>
-              )}
+              <div
+                className={`error-message ${
+                  errors.contact_name ? 'active' : ''
+                }`}
+              >
+                {errors.contact_name && (
+                  <>
+                    <img
+                      src={notificationIcon}
+                      alt="Error Icon"
+                      className="error-icon"
+                    />
+                    <span>{errors.contact_name}</span>
+                  </>
+                )}
+              </div>
             </div>
             <div className="warehouse-form__group">
               <label
@@ -242,9 +284,22 @@ const WarehouseForm = () => {
                 name="contact_position"
                 placeholder="Position"
               />
-              {errors.contact_position && (
-                <div className="error-message">{errors.contact_position}</div>
-              )}
+              <div
+                className={`error-message ${
+                  errors.contact_position ? 'active' : ''
+                }`}
+              >
+                {errors.contact_position && (
+                  <>
+                    <img
+                      src={notificationIcon}
+                      alt="Error Icon"
+                      className="error-icon"
+                    />
+                    <span>{errors.contact_position}</span>
+                  </>
+                )}
+              </div>
             </div>
             <div className="warehouse-form__group">
               <label className="warehouse-form__label" htmlFor="contact_phone">
@@ -261,9 +316,22 @@ const WarehouseForm = () => {
                 name="contact_phone"
                 placeholder="Phone Number"
               />
-              {errors.contact_phone && (
-                <div className="error-message">{errors.contact_phone}</div>
-              )}
+              <div
+                className={`error-message ${
+                  errors.contact_phone ? 'active' : ''
+                }`}
+              >
+                {errors.contact_phone && (
+                  <>
+                    <img
+                      src={notificationIcon}
+                      alt="Error Icon"
+                      className="error-icon"
+                    />
+                    <span>{errors.contact_phone}</span>
+                  </>
+                )}
+              </div>
             </div>
             <div className="warehouse-form__group">
               <label className="warehouse-form__label" htmlFor="contact_email">
@@ -280,12 +348,26 @@ const WarehouseForm = () => {
                 name="contact_email"
                 placeholder="Email"
               />
-              {errors.contact_email && (
-                <div className="error-message">{errors.contact_email}</div>
-              )}
+              <div
+                className={`error-message ${
+                  errors.contact_email ? 'active' : ''
+                }`}
+              >
+                {errors.contact_email && (
+                  <>
+                    <img
+                      src={notificationIcon}
+                      alt="Error Icon"
+                      className="error-icon"
+                    />
+                    <span>{errors.contact_email}</span>
+                  </>
+                )}
+              </div>
             </div>
           </section>
         </div>
+        {/* Button Container */}
         <div className="warehouse-form__btn-container">
           <button
             onClick={cancelHandler}
@@ -293,7 +375,9 @@ const WarehouseForm = () => {
           >
             Cancel
           </button>
-          <button className="warehouse-form__btn--add">+Add Warehouse</button>
+          <button type="submit" className="warehouse-form__btn--add">
+            + Add Warehouse
+          </button>
         </div>
       </div>
     </form>

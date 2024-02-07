@@ -89,10 +89,25 @@
     padding-bottom: $padding-mobile-bw-component;
   }
 }
-
-.error-message{
-color: $red;
-}
 .error{
- border: 1px solid $red;
+  border: 1px solid $red;
+}
+
+.error-message {
+    color: $red;
+    font-size: 0.7rem; 
+    display: flex; 
+    gap:0.6rem;
+    align-items: center; 
+    height: 1rem; 
+    overflow: hidden; 
+}
+
+.error-message.active {
+    height: auto; 
+}
+
+.error-icon {
+    width: 1rem; 
+    margin-left: 15px; 
 }
