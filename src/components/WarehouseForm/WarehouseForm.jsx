@@ -19,7 +19,7 @@ const WarehouseForm = () => {
     contact_name: '',
     contact_phone: '',
     contact_position: '',
-    email: '',
+    contact_email: '',
   });
 
   const handleChange = (event) => {
@@ -51,7 +51,7 @@ const WarehouseForm = () => {
     if (formData.contact_position.trim() === '') {
       return false;
     }
-    if (formData.email.trim() === '') {
+    if (formData.contact_email.trim() === '') {
       return false;
     }
     return true;
@@ -70,7 +70,7 @@ const WarehouseForm = () => {
     event.preventDefault();
     // check if form is valid
     const isFormValid = formValidation();
-    const isEmailValid = validateEmail(formData.email);
+    const isEmailValid = validateEmail(formData.contact_email);
     const isValidPhoneNumber = validateContactNumber(formData.contact_phone);
     if (isFormValid && isEmailValid && isValidPhoneNumber) {
       const newWarehouse = {
@@ -81,13 +81,16 @@ const WarehouseForm = () => {
         contact_name: formData.contact_name,
         contact_phone: formData.contact_phone,
         contact_position: formData.contact_position,
-        email: formData.email,
+        contact_email: formData.contact_email,
       };
 
       try {
-        const response = await axios.post(`${REACT_APP_SERVER_URL}/warehouse` , newWarehouse);
+        const response = await axios.post(
+          `${REACT_APP_SERVER_URL}/warehouse`,
+          newWarehouse
+        );
+        console.log(response)
 
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
@@ -210,16 +213,16 @@ const WarehouseForm = () => {
               />
             </div>
             <div className="warehouse-form__group">
-              <label className="warehouse-form__label" htmlFor="email">
+              <label className="warehouse-form__label" htmlFor="contact_email">
                 Email
               </label>
               <input
                 onChange={handleChange}
-                value={formData.email}
+                value={formData.contact_email}
                 className="warehouse-form__input"
                 type="text"
-                id="email"
-                name="email"
+                id="contact_email"
+                name="contact_email"
                 placeholder="Email"
               />
             </div>
