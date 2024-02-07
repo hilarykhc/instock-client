@@ -89,3 +89,10 @@
     padding-bottom: $padding-mobile-bw-component;
   }
 }
+
+.error-message{
+color: $red;
+}
+.error{
+ border: 1px solid $red;
+}

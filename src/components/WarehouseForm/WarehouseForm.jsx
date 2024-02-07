@@ -139,7 +139,7 @@ const WarehouseForm = () => {
                 placeholder="Warehouse Name"
               />
               {errors.warehouse_name && (
-                <span className="error-message">{errors.warehouse_name}</span>
+                <div className="error-message">{errors.warehouse_name}</div>
               )}
             </div>
             <div className="warehouse-form__group">
@@ -197,7 +197,7 @@ const WarehouseForm = () => {
                 placeholder="Country"
               />
               {errors.country && (
-                <span className="error-message">{errors.country}</span>
+                <div className="error-message">{errors.country}</div>
               )}
             </div>
           </section>
@@ -221,7 +221,7 @@ const WarehouseForm = () => {
                 placeholder="Contact Name"
               />
               {errors.contact_name && (
-                <span className="error-message">{errors.contact_name}</span>
+                <div className="error-message">{errors.contact_name}</div>
               )}
             </div>
             <div className="warehouse-form__group">
@@ -243,7 +243,7 @@ const WarehouseForm = () => {
                 placeholder="Position"
               />
               {errors.contact_position && (
-                <span className="error-message">{errors.contact_position}</span>
+                <div className="error-message">{errors.contact_position}</div>
               )}
             </div>
             <div className="warehouse-form__group">
@@ -262,7 +262,7 @@ const WarehouseForm = () => {
                 placeholder="Phone Number"
               />
               {errors.contact_phone && (
-                <span className="error-message">{errors.contact_phone}</span>
+                <div className="error-message">{errors.contact_phone}</div>
               )}
             </div>
             <div className="warehouse-form__group">
@@ -281,7 +281,7 @@ const WarehouseForm = () => {
                 placeholder="Email"
               />
               {errors.contact_email && (
-                <span className="error-message">{errors.contact_email}</span>
+                <div className="error-message">{errors.contact_email}</div>
               )}
             </div>
           </section>
