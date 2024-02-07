@@ -61,6 +61,11 @@ const WarehouseForm = () => {
     return emailValidator.isEmail(email);
   };
 
+  const validateContactNumber = (phoneNum) => {
+    const phoneRegEx = /^\+?(\d{1,3})?\s*\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    return phoneRegEx.test(phoneNum);
+  };
+
   const formSubmitHandler = async (event) => {
     event.preventDefault();
     console.log(formData);
@@ -69,7 +74,9 @@ const WarehouseForm = () => {
     const isFormValid = formValidation();
     const isEmailValid = validateEmail(formData.email);
     console.log(isEmailValid);
-    if (isFormValid && isEmailValid) {
+    const isValidPhoneNumber = validateContactNumber(formData.contact_phone);
+    console.log(isValidPhoneNumber);
+    if (isFormValid && isEmailValid && isValidPhoneNumber) {
       console.log('valid form');
       // try {
       //   const response = await axios.post(`${REACT_APP_SERVER_URL}/warehouse`);
