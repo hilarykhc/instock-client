@@ -136,3 +136,7 @@
     border: 1px solid $instock-indigo;
   }
 }
+
+@mixin divider {
+  border-bottom: 1px solid $cloud;
+}

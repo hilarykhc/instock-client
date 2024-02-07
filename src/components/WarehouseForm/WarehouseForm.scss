@@ -1,0 +1,31 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/resets';
+
+
+.warehouse-form{
+    &-section{
+        padding: $padding-mobile-bw-component;
+    }
+
+     &__contact-section{
+        padding: $padding-mobile-bw-component;
+    }
+
+     &__btn-container{
+      border-radius:0px, 0px, 3px, 3px;
+      opacity: 0.7;
+      background-color: $cloud;
+      width: 100%;
+     }
+}
+
+.section{
+  &__heading{
+    @include font-sub-header;
+    font-weight: 600;
+    color: $instock-black;
+    padding-bottom: $padding-mobile-bw-component;
+  }
+}

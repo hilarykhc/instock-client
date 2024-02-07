@@ -8,9 +8,7 @@
   border:1px solid red;
   background-color: $light-grey;
 
-
   &__wrapper{
-    // border:1px solid red;
     margin: 0px 1rem;
     background-color: #fff;
     border-radius: 4px;
@@ -23,10 +21,12 @@
   &__title-container{
     display: flex;
     align-items: center;
-    // justify-content: center;
     gap:0.3rem;
-    border-bottom: 1px solid red;
-    padding: 1.5rem 1rem;
+    @include divider;
+    padding-top: $padding-mobile-before-headline;
+    padding-bottom: $padding-mobile-after-headline;
+    padding-left: $padding-mobile-bw-component;
+    padding-right: $padding-mobile-bw-component; 
   }
 
   &__title{
@@ -42,28 +42,3 @@
   width: 1.5rem;
 }
 }
-
-
-
-
-// .new-warehouse{
-
-
-
-
-//   &__wrapper{
-//     background-color: #fff;
-//     //  box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
-//   }
-
-//    &__title-container{
-//     display: flex;
-//   }
-
-//   &__title{
-//     @include font-page-header;
-//     text-transform: capitalize;
-//     font-weight: 600;
-//     color:$instock-black;
-//   }
-// }

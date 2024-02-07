@@ -1,13 +1,13 @@
-
+import Divider from '../Divider/Divider';
 import './WarehouseForm.scss';
 
 const WarehouseForm = () => {
   return (
     <form className="warehouse-form">
-      <div>
+      <div className="warehouse-form__section-container">
         {/* Warehouse Detail Section */}
-        <section>
-          <h2>Warehouse Details</h2>
+        <section className="warehouse-form-section section">
+          <h2 className='section__heading'>Warehouse Details</h2>
           <div className="form__group">
             <label htmlFor="warehouse_name">warehouse name</label>
             <input
@@ -41,9 +41,10 @@ const WarehouseForm = () => {
             />
           </div>
         </section>
+        <Divider />
         {/* Contact section */}
-        <section>
-          <h2>Contact Details</h2>
+        <section className="warehouse-form-section section">
+          <h2 className='section__heading'>Contact Details</h2>
           <div className="form__group">
             <label htmlFor="contact_name">Contact Name</label>
             <input
@@ -76,13 +77,13 @@ const WarehouseForm = () => {
             <input type="text" id="email" name="email" placeholder="Email" />
           </div>
         </section>
-        <div>
+        <div className="warehouse-form__btn-container">
           <button>Cancel</button>
           <button>Add Warehouse</button>
         </div>
       </div>
     </form>
   );
-}
+};
 
-export default WarehouseForm
+export default WarehouseForm;
