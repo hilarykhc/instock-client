@@ -52,12 +52,16 @@ const WarehouseForm = () => {
     }
     if (formData.contact_phone.trim() === '') {
       formErrors.contact_phone = 'Contact phone is required';
+    } else if (!validateContactNumber(formData.contact_phone)) {
+      formErrors.contact_phone = 'Invalid phone number';
     }
     if (formData.contact_position.trim() === '') {
       formErrors.contact_position = 'Contact position is required';
     }
     if (formData.contact_email.trim() === '') {
       formErrors.contact_email = 'Contact Email is required';
+    } else if (!validateEmail(formData.contact_email)) {
+      formErrors.contact_email = 'Invalid email address';
     }
     setErrors(formErrors);
 
