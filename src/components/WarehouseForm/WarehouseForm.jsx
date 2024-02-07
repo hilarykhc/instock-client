@@ -1,7 +1,12 @@
 import Divider from '../Divider/Divider';
 import './WarehouseForm.scss';
+import {useNavigate } from 'react-router-dom';
 
 const WarehouseForm = () => {
+  const navigate = useNavigate();
+  const cancelHandler = () => {
+    navigate('/warehouse');
+  }
   return (
     <form className="warehouse-form">
       <div className="warehouse-form__section-container">
@@ -114,7 +119,7 @@ const WarehouseForm = () => {
           </section>
         </div>
         <div className="warehouse-form__btn-container">
-          <button className="warehouse-form__btn--cancel">Cancel</button>
+          <button onClick={cancelHandler } className="warehouse-form__btn--cancel">Cancel</button>
           <button className="warehouse-form__btn--add">+Add Warehouse</button>
         </div>
       </div>
