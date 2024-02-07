@@ -15,8 +15,8 @@ const Delete = (prop) => {
             Delete {prop.name} Washington warehouse?
           </p>
           <p className="delete__content">
-            Please confirm that you'd like to delete the Washington from the
-            list of warehouses. You won't be able to undo this action.
+            Please confirm that you'd like to delete the {prop.name}Washington
+            from the list of warehouses. You won't be able to undo this action.
           </p>
         </div>
         <div className="delete__buttonDC">
