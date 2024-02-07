@@ -1,14 +1,33 @@
 import Divider from '../Divider/Divider';
 import './WarehouseForm.scss';
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const WarehouseForm = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    warehouse_name: '',
+    address: '',
+    city: '',
+    country: '',
+    contact_name: '',
+    contact_phone: '',
+    contact_position: '',
+    email: '',
+  });
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+    console.log(formData);
+  };
   const cancelHandler = () => {
     navigate('/warehouse');
-  }
+  };
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+  };
   return (
-    <form className="warehouse-form">
+    <form onSubmit={formSubmitHandler} className="warehouse-form">
       <div className="warehouse-form__section-container">
         <div className="warehouse-form__wrapper">
           {/* Warehouse Detail Section */}
@@ -19,6 +38,8 @@ const WarehouseForm = () => {
                 warehouse name
               </label>
               <input
+                onChange={handleChange}
+                value={formData.warehouse_name}
                 className="warehouse-form__input"
                 type="text"
                 id="warehouse_name"
@@ -31,6 +52,8 @@ const WarehouseForm = () => {
                 street address
               </label>
               <input
+                onChange={handleChange}
+                value={formData.address}
                 className="warehouse-form__input"
                 type="text"
                 id="address"
@@ -44,6 +67,8 @@ const WarehouseForm = () => {
                 city
               </label>
               <input
+                onChange={handleChange}
+                value={formData.city}
                 className="warehouse-form__input"
                 type="text"
                 id="city"
@@ -56,6 +81,8 @@ const WarehouseForm = () => {
                 Country
               </label>
               <input
+                onChange={handleChange}
+                value={formData.country}
                 className="warehouse-form__input"
                 type="text"
                 id="country"
@@ -73,6 +100,8 @@ const WarehouseForm = () => {
                 Contact Name
               </label>
               <input
+                onChange={handleChange}
+                value={formData.contact_name}
                 className="warehouse-form__input"
                 type="text"
                 id="contact_name"
@@ -81,10 +110,15 @@ const WarehouseForm = () => {
               />
             </div>
             <div className="warehouse-form__group">
-              <label className="warehouse-form__label" htmlFor="contact_name">
+              <label
+                className="warehouse-form__label"
+                htmlFor="contact_position"
+              >
                 Position
               </label>
               <input
+                onChange={handleChange}
+                value={formData.contact_position}
                 className="warehouse-form__input"
                 type="text"
                 id="contact_position"
@@ -97,6 +131,8 @@ const WarehouseForm = () => {
                 Phone Number
               </label>
               <input
+                onChange={handleChange}
+                value={formData.contact_phone}
                 className="warehouse-form__input"
                 type="text"
                 id="contact_phone"
@@ -109,6 +145,8 @@ const WarehouseForm = () => {
                 Email
               </label>
               <input
+                onChange={handleChange}
+                value={formData.email}
                 className="warehouse-form__input"
                 type="text"
                 id="email"
@@ -119,7 +157,12 @@ const WarehouseForm = () => {
           </section>
         </div>
         <div className="warehouse-form__btn-container">
-          <button onClick={cancelHandler } className="warehouse-form__btn--cancel">Cancel</button>
+          <button
+            onClick={cancelHandler}
+            className="warehouse-form__btn--cancel"
+          >
+            Cancel
+          </button>
           <button className="warehouse-form__btn--add">+Add Warehouse</button>
         </div>
       </div>
