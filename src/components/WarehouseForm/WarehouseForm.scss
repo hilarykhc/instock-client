@@ -7,10 +7,24 @@
 .warehouse-form{
     &-section{
         padding: $padding-mobile-bw-component;
+        @include tablet-and-desktop{
+        padding: $padding-tablet-bw-component;
+        width: 50%;
+        // border-bottom: 1px solid $cloud;
+        }
+     
     }
 
      &__contact-section{
         padding: $padding-mobile-bw-component;
+    }
+
+    &__wrapper{
+      @include tablet-and-desktop{
+        display: flex;
+        padding: 1rem;
+        // border:2px solid red;
+      }
     }
 
      &__btn-container{
@@ -21,15 +35,31 @@
       display: flex;
       gap: 1rem;
       align-items: center;
-      padding: 1.5rem 1rem;
+      padding: 2rem 1rem;
+
+      @include tablet-and-desktop{
+        justify-content: flex-end;
+      }
+
+    
      }
 
      &__btn--cancel{
       @include btn($slate , $pure-white,$cloud);
+     
+
+      @include tablet-and-desktop{
+        width: auto;
+      }
      }
 
       &__btn--add{
       @include btn($pure-white , $instock-indigo,$cloud);
+       @include tablet-and-desktop{
+        // width: auto;
+        width: 10rem;
+        margin-right: 2.5rem;       
+      }
      }
 
      &__group{
