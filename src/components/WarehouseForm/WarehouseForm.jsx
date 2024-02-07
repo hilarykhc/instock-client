@@ -3,13 +3,12 @@ import './WarehouseForm.scss';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+const emailValidator = require('validator');
 
-const REACT_APP_SERVER_URL =
-  process.env.REACT_APP_SERVER_URL;
-
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const WarehouseForm = () => {
-  console.log(process.env)
+  console.log(process.env);
   console.log(REACT_APP_SERVER_URL);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -25,24 +24,65 @@ const WarehouseForm = () => {
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
-    console.log(formData);
   };
   const cancelHandler = () => {
     navigate('/warehouse');
   };
+
+  const formValidation = () => {
+    if (formData.warehouse_name.trim() === '') {
+      return false;
+    }
+    if (formData.address.trim() === '') {
+      return false;
+    }
+    if (formData.city.trim() === '') {
+      return false;
+    }
+    if (formData.country.trim() === '') {
+      return false;
+    }
+    if (formData.contact_name.trim() === '') {
+      return false;
+    }
+    if (formData.contact_phone.trim() === '') {
+      return false;
+    }
+    if (formData.contact_position.trim() === '') {
+      return false;
+    }
+    if (formData.email.trim() === '') {
+      return false;
+    }
+    return true;
+  };
+
+  const validateEmail = (email) => {
+    return emailValidator.isEmail(email);
+  };
+
   const formSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log(formData)
+    console.log(formData);
     console.log(REACT_APP_SERVER_URL);
+    // check if form is valid
+    const isFormValid = formValidation();
+    const isEmailValid = validateEmail(formData.email);
+    console.log(isEmailValid);
+    if (isFormValid && isEmailValid) {
+      console.log('valid form');
+      // try {
+      //   const response = await axios.post(`${REACT_APP_SERVER_URL}/warehouse`);
 
-    try {
-        const response = await axios.get(`http://localhost:8080/warehouse`);
-      console.log(response.data)
-      // const response = await axios.post(`${REACT_APP_SERVER_URL}/warehouse`, formData
-      // )
-      
-    } catch (error) {
-      console.log(error)
+      //   // const response = await axios.post(
+      //   //   `${REACT_APP_SERVER_URL}/warehouse`
+      //   // );
+      //   console.log(response);
+      // } catch (error) {
+      //   console.log(error);
+      // }
+    } else {
+      console.log('Invalid form');
     }
   };
   return (
