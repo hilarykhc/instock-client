@@ -8,8 +8,6 @@ const emailValidator = require('validator');
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const WarehouseForm = () => {
-  console.log(process.env);
-  console.log(REACT_APP_SERVER_URL);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     warehouse_name: '',
@@ -22,8 +20,22 @@ const WarehouseForm = () => {
     contact_email: '',
   });
 
+  // const [errors, setErrors] = useState({
+  //   warehouse_name: '',
+  //   address: '',
+  //   city: '',
+  //   country: '',
+  //   contact_name: '',
+  //   contact_phone: '',
+  //   contact_position: '',
+  //   email: '',
+  // });
+  const [errors, setErrors] = useState({});
+  const formErrors = {};
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    setErrors({ ...errors, [event.target.name]: '' });
   };
   const cancelHandler = () => {
     navigate('/warehouse');
@@ -31,30 +43,37 @@ const WarehouseForm = () => {
 
   const formValidation = () => {
     if (formData.warehouse_name.trim() === '') {
-      return false;
+      formErrors.warehouse_name = 'Warehouse name is required';
     }
     if (formData.address.trim() === '') {
-      return false;
+      formErrors.address = 'Address is required';
     }
     if (formData.city.trim() === '') {
-      return false;
+      formErrors.city = 'City is required';
     }
     if (formData.country.trim() === '') {
-      return false;
+      formErrors.country = 'Country is required';
     }
     if (formData.contact_name.trim() === '') {
-      return false;
+      formErrors.contact_name = 'Contact name is required';
     }
     if (formData.contact_phone.trim() === '') {
-      return false;
+      formErrors.contact_phone = 'Contact phone is required';
     }
     if (formData.contact_position.trim() === '') {
-      return false;
+      formErrors.contact_position = 'Contact position is required';
     }
     if (formData.contact_email.trim() === '') {
-      return false;
+      formErrors.contact_email = 'Contact Email is required';
     }
-    return true;
+    setErrors(formErrors);
+
+    let missingFields = 0;
+    for (let keys in Object.keys(formErrors)) {
+      missingFields += 1;
+    }
+
+    return missingFields === 0;
   };
 
   const validateEmail = (email) => {
@@ -89,8 +108,7 @@ const WarehouseForm = () => {
           `${REACT_APP_SERVER_URL}/warehouse`,
           newWarehouse
         );
-        console.log(response)
-
+        console.log(response);
       } catch (error) {
         console.log(error);
       }
@@ -111,13 +129,18 @@ const WarehouseForm = () => {
               </label>
               <input
                 onChange={handleChange}
+                className={`warehouse-form__input ${
+                  errors.warehouse_name ? 'error' : ''
+                }`}
                 value={formData.warehouse_name}
-                className="warehouse-form__input"
                 type="text"
                 id="warehouse_name"
                 name="warehouse_name"
                 placeholder="Warehouse Name"
               />
+              {errors.warehouse_name && (
+                <span className="error-message">{errors.warehouse_name}</span>
+              )}
             </div>
             <div className="warehouse-form__group">
               <label className="warehouse-form__label" htmlFor="address">
@@ -126,12 +149,17 @@ const WarehouseForm = () => {
               <input
                 onChange={handleChange}
                 value={formData.address}
-                className="warehouse-form__input"
+                className={`warehouse-form__input ${
+                  errors.address ? 'error' : ''
+                }`}
                 type="text"
                 id="address"
                 name="address"
                 placeholder="Street Address"
               />
+              {errors.address && (
+                <span className="error-message">{errors.address}</span>
+              )}
             </div>
 
             <div className="warehouse-form__group">
@@ -141,12 +169,17 @@ const WarehouseForm = () => {
               <input
                 onChange={handleChange}
                 value={formData.city}
-                className="warehouse-form__input"
+                className={`warehouse-form__input ${
+                  errors.city ? 'error' : ''
+                }`}
                 type="text"
                 id="city"
                 name="city"
                 placeholder="City"
               />
+              {errors.city && (
+                <span className="error-message">{errors.city}</span>
+              )}
             </div>
             <div className="warehouse-form__group">
               <label className="warehouse-form__label" htmlFor="warehouse_name">
@@ -155,12 +188,17 @@ const WarehouseForm = () => {
               <input
                 onChange={handleChange}
                 value={formData.country}
-                className="warehouse-form__input"
+                className={`warehouse-form__input ${
+                  errors.country ? 'error' : ''
+                }`}
                 type="text"
                 id="country"
                 name="country"
                 placeholder="Country"
               />
+              {errors.country && (
+                <span className="error-message">{errors.country}</span>
+              )}
             </div>
           </section>
           <Divider />
@@ -174,12 +212,17 @@ const WarehouseForm = () => {
               <input
                 onChange={handleChange}
                 value={formData.contact_name}
-                className="warehouse-form__input"
+                className={`warehouse-form__input ${
+                  errors.contact_name ? 'error' : ''
+                }`}
                 type="text"
                 id="contact_name"
                 name="contact_name"
                 placeholder="Contact Name"
               />
+              {errors.contact_name && (
+                <span className="error-message">{errors.contact_name}</span>
+              )}
             </div>
             <div className="warehouse-form__group">
               <label
@@ -191,12 +234,17 @@ const WarehouseForm = () => {
               <input
                 onChange={handleChange}
                 value={formData.contact_position}
-                className="warehouse-form__input"
+                className={`warehouse-form__input ${
+                  errors.contact_position ? 'error' : ''
+                }`}
                 type="text"
                 id="contact_position"
                 name="contact_position"
                 placeholder="Position"
               />
+              {errors.contact_position && (
+                <span className="error-message">{errors.contact_position}</span>
+              )}
             </div>
             <div className="warehouse-form__group">
               <label className="warehouse-form__label" htmlFor="contact_phone">
@@ -205,12 +253,17 @@ const WarehouseForm = () => {
               <input
                 onChange={handleChange}
                 value={formData.contact_phone}
-                className="warehouse-form__input"
+                className={`warehouse-form__input ${
+                  errors.contact_phone ? 'error' : ''
+                }`}
                 type="text"
                 id="contact_phone"
                 name="contact_phone"
                 placeholder="Phone Number"
               />
+              {errors.contact_phone && (
+                <span className="error-message">{errors.contact_phone}</span>
+              )}
             </div>
             <div className="warehouse-form__group">
               <label className="warehouse-form__label" htmlFor="contact_email">
@@ -219,12 +272,17 @@ const WarehouseForm = () => {
               <input
                 onChange={handleChange}
                 value={formData.contact_email}
-                className="warehouse-form__input"
+                className={`warehouse-form__input ${
+                  errors.contact_email ? 'error' : ''
+                }`}
                 type="text"
                 id="contact_email"
                 name="contact_email"
                 placeholder="Email"
               />
+              {errors.contact_email && (
+                <span className="error-message">{errors.contact_email}</span>
+              )}
             </div>
           </section>
         </div>
