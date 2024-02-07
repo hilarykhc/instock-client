@@ -68,26 +68,29 @@ const WarehouseForm = () => {
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log(formData);
-    console.log(REACT_APP_SERVER_URL);
     // check if form is valid
     const isFormValid = formValidation();
     const isEmailValid = validateEmail(formData.email);
-    console.log(isEmailValid);
     const isValidPhoneNumber = validateContactNumber(formData.contact_phone);
-    console.log(isValidPhoneNumber);
     if (isFormValid && isEmailValid && isValidPhoneNumber) {
-      console.log('valid form');
-      // try {
-      //   const response = await axios.post(`${REACT_APP_SERVER_URL}/warehouse`);
+      const newWarehouse = {
+        warehouse_name: formData.warehouse_name,
+        address: formData.address,
+        city: formData.city,
+        country: formData.country,
+        contact_name: formData.contact_name,
+        contact_phone: formData.contact_phone,
+        contact_position: formData.contact_position,
+        email: formData.email,
+      };
 
-      //   // const response = await axios.post(
-      //   //   `${REACT_APP_SERVER_URL}/warehouse`
-      //   // );
-      //   console.log(response);
-      // } catch (error) {
-      //   console.log(error);
-      // }
+      try {
+        const response = await axios.post(`${REACT_APP_SERVER_URL}/warehouse` , newWarehouse);
+
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       console.log('Invalid form');
     }
