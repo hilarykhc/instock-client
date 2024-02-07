@@ -19,6 +19,24 @@
       background-color: $cloud;
       width: 100%;
      }
+
+     &__group{
+      margin-bottom: 0.5rem;
+      display: flex;
+      flex-direction: column;
+     }
+
+     &__label{
+      margin-bottom: 4px;
+      @include font-label;
+      text-transform: capitalize;
+      font-weight: 600;
+      color: $instock-black;
+     }
+
+     &__input{
+      @include field-input-styles;
+     }
 }
 
 .section{
