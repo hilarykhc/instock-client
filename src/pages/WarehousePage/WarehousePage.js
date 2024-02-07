@@ -4,7 +4,7 @@ export default function WarehousePage() {
   return (
     <div>
       <Delete />
-      WarehousePage
+      {/* WarehousePage */}
     </div>
   );
 }
