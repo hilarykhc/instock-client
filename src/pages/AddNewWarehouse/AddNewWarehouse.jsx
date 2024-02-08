@@ -4,12 +4,15 @@ import backArrow from '../../assets/Icons/arrow-back.svg';
 import { useNavigate } from 'react-router-dom';
 
 function AddNewWarehouse(props) {
-    console.log(props);
+  let isEditMode;
     if (props.warehouseData) {
-      console.log('Edit Mode');
+      isEditMode = true
     } else {
+      isEditMode = false;
       console.log('Add mode');
     }
+ 
+  console.log(isEditMode)
   const navigate = useNavigate();
   const cancelHandler = () => {
     props.onCancel()
@@ -24,7 +27,7 @@ function AddNewWarehouse(props) {
             alt="Back Icon"
             className="new-warehouse__icon"
           />
-          <h1 className="new-warehouse__title">add new warehouse</h1>
+          <h1 className="new-warehouse__title">{isEditMode ? "Edit Warehouse" : "Add New Warehouse " }</h1>
         </div>
         <WarehouseForm />
       </div>
