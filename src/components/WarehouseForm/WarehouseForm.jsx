@@ -9,24 +9,28 @@ const emailValidator = require('validator');
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const WarehouseForm = (props) => {
+  console.log('Value from form');
+  console.log(props.warehouseData);
+
+    const initialState = props.warehouseData
+      ? { ...props.warehouseData }
+      : {
+          warehouse_name: '',
+          address: '',
+          city: '',
+          country: '',
+          contact_name: '',
+          contact_phone: '',
+          contact_position: '',
+          contact_email: '',
+        };
+
 
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    warehouse_name: '',
-    address: '',
-    city: '',
-    country: '',
-    contact_name: '',
-    contact_phone: '',
-    contact_position: '',
-    contact_email: '',
-  });
-  // const isEditMode = !wa
+  const [formData, setFormData] = useState(initialState);
 
   const [errors, setErrors] = useState({});
 
-
-  
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     setErrors({ ...errors, [event.target.name]: '' });
