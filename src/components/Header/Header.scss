@@ -9,6 +9,10 @@
   height: 12rem;
   padding-top: 2rem;
 
+  @include tablet-and-desktop {
+    padding-top: 1rem;
+  }
+
   &__wrapper {
     padding: 0 1rem;
 
@@ -38,6 +42,11 @@
 
   &__nav-item {
     @include nav-item;
+    font-size: 0.8125rem;
+
+    @include tablet-and-desktop {
+      font-size: 0.875rem;
+    }
   }
 
   &__nav-item--active {

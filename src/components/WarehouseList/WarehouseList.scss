@@ -126,7 +126,6 @@
     color: $instock-indigo;
     font-size: 0.688rem;
     padding-left: 1rem;
-
     @include tablet-and-desktop {
       padding-left: 3rem;
       font-size: $tablet-body-font-size;

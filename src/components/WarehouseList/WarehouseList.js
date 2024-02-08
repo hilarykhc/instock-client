@@ -6,6 +6,7 @@ import arrowRight from "../../assets/Icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 import sort from "../../assets/Icons/sort-24px.svg";
+import Delete from "../Delete/Delete";
 
 function WarehouseList() {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -22,6 +23,35 @@ function WarehouseList() {
   useEffect(() => {
     getWarehouseList();
   }, []);
+
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleDeleteClick = (itemId) => {
+    setSelectedItemId(itemId);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (selectedItemId === null) return;
+
+    const url = `${REACT_APP_SERVER_URL}/warehouse/${selectedItemId}`;
+    axios
+      .delete(url)
+      .then((response) => {
+        console.log("Deleted successfully", response.data);
+        const updatedLists = lists.filter((list) => list.id !== selectedItemId);
+        setLists(updatedLists);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+
+    // close modal and reset item id
+    setIsDeleteModalOpen(false);
+    setSelectedItemId(null);
+  };
+
   return (
     <>
       <div className="section">
@@ -66,7 +96,7 @@ function WarehouseList() {
             <div className="section__actions">ACTIONS</div>
           </div>
           {lists.map((list) => (
-            <div className="section__allContainer">
+            <div className="section__allContainer" key={list.id}>
               <div className="section__flexContainer">
                 <div className="section__one">
                   <div className="section__subtitle">WAREHOUSE</div>
@@ -84,15 +114,11 @@ function WarehouseList() {
                     <div className="section__address">
                       {list.address}, {list.city}, {list.country}
                     </div>
-                    {/* 
-                    <div className="section__city">{list.city}</div>
-                    <span className="section__country">{list.country}</span> */}
                   </div>
                 </div>
                 <div className="section__two">
                   <div className="section__contactTitle">CONTACT NAME</div>
                   <div className="section__contact">{list.contact_name}</div>
-
                   <div className="section__contactInfoTitle">
                     CONTACT INFORMATION
                   </div>
@@ -109,8 +135,18 @@ function WarehouseList() {
                   src={deleteIcon}
                   alt="delete icon"
                   className="section__delete"
+                  onClick={() => handleDeleteClick(list.id)}
                 ></img>
-
+                {isDeleteModalOpen && (
+                  <Delete
+                    name={
+                      lists.find((list) => list.id === selectedItemId)
+                        ?.warehouse_name || "the selected item"
+                    }
+                    onDeleteConfirm={handleDeleteConfirm}
+                    onClose={() => setIsDeleteModalOpen(false)}
+                  />
+                )}
                 <img
                   src={editIcon}
                   alt="edit icon"

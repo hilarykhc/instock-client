@@ -1,0 +1,147 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
+.warehouse-details {
+  margin: -5rem 1rem 1rem;
+
+  @include tablet-and-desktop {
+    margin: -5rem 2rem 2rem;
+  }
+
+  @include desktop {
+    margin: -5rem 8rem 2rem;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid $cloud;
+
+    @include tablet-and-desktop {
+      padding: 2rem;
+    }
+  }
+
+  &__top-title {
+    font-size: 1.25rem;
+
+    @include tablet-and-desktop {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__top-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__top-back-link {
+    text-decoration: none;
+    margin-top: 0.5rem;
+  }
+
+  &__top-back-icon {
+    width: 75%;
+  }
+
+  &__top-edit-text {
+    display: none;
+    color: $pure-white;
+
+    @include tablet-and-desktop {
+      display: inline;
+      margin: 0.2rem 0;
+      font-size: 0.875rem;
+      padding-left: 0.2rem;
+    }
+  }
+
+  &__top-edit-icon {
+    filter: brightness(0) invert(1);
+    margin-top: 0.3rem;
+    width: 65%;
+
+    @include tablet-and-desktop {
+      width: 40%;
+      margin: 0;
+    }
+  }
+
+  &__top-edit-link {
+    background-color: $instock-indigo;
+    border-radius: 50%;
+    height: 1.75rem;
+    width: 1.75rem;
+    text-align: center;
+    text-decoration: none;
+
+    @include tablet-and-desktop {
+      display: flex;
+      padding: 0.25rem 1rem;
+      height: auto;
+      width: auto;
+      border-radius: 1.5rem;
+    }
+  }
+
+  &__bottom {
+    padding: 1rem;
+    font-size: 0.688rem;
+    border-bottom: 1px solid $cloud;
+
+    @include tablet-and-desktop {
+      padding: 2rem;
+      font-size: 0.875rem;
+      border-bottom: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+
+  &__bottom-contact {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2rem;
+
+    @include tablet-and-desktop {
+      padding-top: 0;
+    }
+  }
+
+  &__bottom-title {
+    margin: 0 0 0.5rem;
+    color: $slate;
+  }
+
+  &__bottom-left {
+    @include tablet-and-desktop {
+      padding: 0 2rem;
+      border-left: 1px solid $cloud;
+    }
+
+    @include desktop {
+      padding: 0 3rem;
+    }
+  }
+
+  &__bottom-right {
+    @include tablet-and-desktop {
+      padding: 0 4rem 0 0;
+    }
+
+    @include desktop {
+      padding: 0 10rem 0 5rem;
+    }
+  }
+}
+
+.div-container1 {
+  background-color: $pure-white;
+  box-shadow: 0 2px 5px rgba(19, 24, 44, 0.1);
+  border-radius: 3px;
+}
