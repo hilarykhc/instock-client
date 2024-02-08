@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './WarehouseList.scss';
 import axios from 'axios';
 import searchIcon from '../../assets/Icons/search-24px.svg';
@@ -8,7 +7,6 @@ import deleteIcon from '../../assets/Icons/delete_outline-24px.svg';
 import editIcon from '../../assets/Icons/edit-24px.svg';
 import sort from '../../assets/Icons/sort-24px.svg';
 import Delete from '../Delete/Delete';
-import WarehouseForm from '../WarehouseForm/WarehouseForm';
 import AddNewWarehouse from '../../pages/AddNewWarehouse/AddNewWarehouse';
 
 function WarehouseList() {
@@ -19,8 +17,6 @@ function WarehouseList() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [displayForm, setDisplayForm] = useState(false);
   const [warehouseData, setWarehouseData] = useState(null);
-
-  const navigate = useNavigate();
 
   const getWarehouseList = async () => {
     try {
@@ -63,19 +59,17 @@ function WarehouseList() {
     setIsEditMode(true);
     setDisplayForm(true);
     setWarehouseData(data);
-    //  navigate('/warehouse/add');
   };
 
   const addWarehouseHandler = () => {
     setIsEditMode(false);
     setDisplayForm(true);
-    //   setIsEditMode(false);
-    //  navigate('/warehouse/edit');
   };
 
   const resetDisplayState = () => {
     setIsEditMode(false);
     setDisplayForm(false);
+    getWarehouseList();
   };
 
   return (
@@ -89,7 +83,7 @@ function WarehouseList() {
       {displayForm && !isEditMode && (
         <AddNewWarehouse onCancel={() => resetDisplayState()} />
       )}
-      {!displayForm &&
+      {!displayForm && (
         <div className="section">
           <div className="section__wrapper">
             <div className="section__firstBox">
@@ -106,7 +100,10 @@ function WarehouseList() {
                     className="section__search"
                   ></img>
                 </div>
-                <button onClick={addWarehouseHandler} className="section__button">
+                <button
+                  onClick={addWarehouseHandler}
+                  className="section__button"
+                >
                   + Add New Warehouse
                 </button>
               </div>
@@ -198,7 +195,8 @@ function WarehouseList() {
             ))}
             <div></div>
           </div>
-        </div>}
+        </div>
+      )}
     </>
   );
 }

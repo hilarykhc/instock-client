@@ -2,7 +2,7 @@ import Divider from '../Divider/Divider';
 import './WarehouseForm.scss';
 import { useNavigate } from 'react-router-dom';
 import notificationIcon from '../../assets/Icons/error.svg';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 const emailValidator = require('validator');
 
@@ -11,19 +11,6 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const WarehouseForm = (props) => {
   console.log('Value from form');
   console.log(props.warehouseData);
-
-  // const initialState = props.warehouseData
-  //   ? { ...props.warehouseData }
-  //   : {
-  //       warehouse_name: '',
-  //       address: '',
-  //       city: '',
-  //       country: '',
-  //       contact_name: '',
-  //       contact_phone: '',
-  //       contact_position: '',
-  //       contact_email: '',
-  //     };
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -36,12 +23,11 @@ const WarehouseForm = (props) => {
     contact_position: '',
     contact_email: '',
   });
-   useEffect(() => {
-     if (props.warehouseData) {
-       setFormData(props.warehouseData);
-     }
-   }, [props.warehouseData]);
-
+  useEffect(() => {
+    if (props.warehouseData) {
+      setFormData(props.warehouseData);
+    }
+  }, [props.warehouseData]);
 
   const [errors, setErrors] = useState({});
 
@@ -51,6 +37,7 @@ const WarehouseForm = (props) => {
   };
 
   const cancelHandler = () => {
+    props.cancelHandler();
     navigate('/warehouse');
   };
 
@@ -101,6 +88,7 @@ const WarehouseForm = (props) => {
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
+    console.log('btn ');
 
     const isFormValid = formValidation();
     const isEmailValid = validateEmail(formData.contact_email);
@@ -110,11 +98,31 @@ const WarehouseForm = (props) => {
       const newWarehouse = { ...formData };
 
       try {
-        const response = await axios.post(
-          `${REACT_APP_SERVER_URL}/warehouses`,
-          newWarehouse
-        );
-        navigate('/warehouse');
+        let response;
+        if (props.warehouseData) {
+          console.log("+++++++++")
+          console.log(newWarehouse)
+          console.log(
+            `${REACT_APP_SERVER_URL}/warehouses/${props.warehouseData.id}`
+          );
+          await axios.put(
+            `${REACT_APP_SERVER_URL}/warehouses/${props.warehouseData.id}`,
+            newWarehouse
+          )
+          console.log(response)
+          console.log('=====');
+          props.cancelHandler();
+          console.log('=====');
+          navigate('/warehouse');
+          console.log('=====');
+        } else {
+          response = await axios.post(
+            `${REACT_APP_SERVER_URL}/warehouses`,
+            newWarehouse
+          );
+          props.cancelHandler();
+          navigate('/warehouse');
+        }
       } catch (error) {
         console.log(error);
       }

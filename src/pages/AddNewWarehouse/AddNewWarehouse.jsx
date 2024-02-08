@@ -29,7 +29,8 @@ function AddNewWarehouse(props) {
           />
           <h1 className="new-warehouse__title">{isEditMode ? "Edit Warehouse" : "Add New Warehouse " }</h1>
         </div>
-        <WarehouseForm warehouseData={props.warehouseData } />
+        <WarehouseForm warehouseData={props.warehouseData}
+        cancelHandler={cancelHandler} />
       </div>
     </main>
   );
