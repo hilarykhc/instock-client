@@ -115,7 +115,7 @@
     }
   }
   &__subtitle {
-    font-size: 0.5rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
@@ -124,9 +124,9 @@
   }
   &__name {
     color: $instock-indigo;
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
-    padding-top: 0.4rem;
+
     @include tablet-and-desktop {
       padding-left: 3rem;
       font-size: $tablet-body-font-size;
@@ -136,7 +136,7 @@
     }
   }
   &__addressTitle {
-    font-size: 0.5rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
@@ -144,12 +144,11 @@
     }
   }
   &__wrapperName {
-    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 0.3rem;
   }
   &__arrow {
-    position: absolute;
-    top: 0.3rem;
-    left: 4rem;
     height: 15px;
     @include tablet-and-desktop {
       position: absolute;
@@ -164,7 +163,7 @@
   }
 
   &__address {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     padding-top: 0.4rem;
     @include tablet-and-desktop {
@@ -177,7 +176,7 @@
     }
   }
   &__city {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
 
     @include tablet-and-desktop {
@@ -185,7 +184,7 @@
     }
   }
   &__country {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
 
     @include tablet-and-desktop {
@@ -194,7 +193,7 @@
   }
 
   &__contactTitle {
-    font-size: 0.5rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     margin-top: 0.5rem;
     padding-top: 0.4rem;
@@ -203,7 +202,7 @@
     }
   }
   &__contact {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     padding-top: 0.4rem;
     @include tablet-and-desktop {
@@ -217,7 +216,7 @@
     }
   }
   &__contactInfoTitle {
-    font-size: 0.5rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
@@ -226,7 +225,7 @@
   }
 
   &__contactNumber {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     padding-top: 0.4rem;
     @include tablet-and-desktop {
@@ -234,7 +233,7 @@
     }
   }
   &__email {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     margin-top: 0.3rem;
     @include tablet-and-desktop {
@@ -243,9 +242,12 @@
   }
   &__flexContainer {
     display: flex;
+    justify-content: flex-start;
+
+    gap: 1.5rem;
   }
   &__one {
-    width: 45%;
+    width: 40%;
     @include tablet-and-desktop {
       display: flex;
       align-items: center;

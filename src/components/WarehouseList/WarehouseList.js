@@ -81,10 +81,12 @@ function WarehouseList() {
 
                   <div className="section__addressTitle">ADDRESS</div>
                   <div className="section__addressBox">
-                    <div className="section__address">{list.address}</div>
-
+                    <div className="section__address">
+                      {list.address}, {list.city}, {list.country}
+                    </div>
+                    {/* 
                     <div className="section__city">{list.city}</div>
-                    <span className="section__country">{list.country}</span>
+                    <span className="section__country">{list.country}</span> */}
                   </div>
                 </div>
                 <div className="section__two">
