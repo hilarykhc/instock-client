@@ -12,10 +12,6 @@ export default function WarehouseDetails() {
   const [selectedWarehouse, setSelectedWarehouse] = useState({});
   const { warehouseId = "" } = useParams();
 
-  //   useEffect(() => {
-  //     console.log("Warehouse ID from URL:", warehouseId);
-  //   }, [warehouseId]);
-
   // warehouseId to find selected warehouse
   const selectedWarehouseFromParams = warehouses.find(
     (warehouse) => warehouse.id === warehouseId
@@ -29,7 +25,6 @@ export default function WarehouseDetails() {
     const getWarehouses = async () => {
       try {
         const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouse`);
-        // console.log(response.data);
         setWarehouses(response.data);
       } catch (error) {
         console.error(error);
@@ -42,12 +37,10 @@ export default function WarehouseDetails() {
     const getSingleWarehouse = async () => {
       try {
         const singleWarehouse = warehouseId;
-        // console.log(singleWarehouse);
         const singleWarehouseRes = await axios.get(
           `${REACT_APP_SERVER_URL}/warehouse/${singleWarehouse}`
         );
 
-        // console.log(singleWarehouseRes.data);
         setSelectedWarehouse(singleWarehouseRes.data);
       } catch (error) {
         console.error(error);
@@ -56,11 +49,6 @@ export default function WarehouseDetails() {
 
     getSingleWarehouse();
   }, [warehouseId]);
-
-  //   useEffect(() => {
-  //     console.log("Selected Warehouse:", selectedWarehouse);
-  //     console.log("Current Selected Warehouse:", currentSelectedWarehouse);
-  //   }, [selectedWarehouse, currentSelectedWarehouse]);
 
   return (
     <main className="warehouse-details">
