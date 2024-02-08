@@ -8,7 +8,8 @@ const emailValidator = require('validator');
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const WarehouseForm = ({warehouse}) => {
+const WarehouseForm = (props) => {
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     warehouse_name: '',
@@ -20,7 +21,7 @@ const WarehouseForm = ({warehouse}) => {
     contact_position: '',
     contact_email: '',
   });
-  const isEditMode = !warehouse;
+  // const isEditMode = !wa
 
   const [errors, setErrors] = useState({});
 
@@ -121,7 +122,7 @@ const WarehouseForm = ({warehouse}) => {
                 className={`warehouse-form__input ${
                   errors.warehouse_name ? 'error' : ''
                 }`}
-                value={isEditMode ? warehouse.warehouse_name : ''}
+                value={formData.warehouse_name}
                 type="text"
                 id="warehouse_name"
                 name="warehouse_name"
