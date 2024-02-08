@@ -92,7 +92,7 @@ const WarehouseForm = () => {
           `${REACT_APP_SERVER_URL}/warehouse`,
           newWarehouse
         );
-        console.log(response);
+        navigate('/warehouse');
       } catch (error) {
         console.log(error);
       }
