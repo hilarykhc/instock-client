@@ -7,7 +7,7 @@ export default function Header() {
     <header className="header">
       <section className="header__wrapper">
         <Link to="/" className="header__link">
-          <img className="header__logo" src={instockLogo} alt="instock logo" />
+          <img className="header__logo" src={instockLogo} alt="Instock Logo" />
         </Link>
         <ul className="header__nav">
           <Link to="/" className="header__nav-item header__nav-item--active">

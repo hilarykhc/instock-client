@@ -1,0 +1,13 @@
+ @use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/resets';
+ 
+ .divider{
+   @include divider;
+   @include tablet-and-desktop{
+    border-left: 1px solid $cloud;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+   }
+ }
