@@ -32,7 +32,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.2);
       z-index: 10;
     }
   }
@@ -46,10 +46,10 @@
     z-index: 1;
     padding-top: 3.5rem;
     @include tablet-and-desktop {
-      width: 42rem; //calc(100vw - 6rem);
+      width: 42rem;
       height: 20vh;
       margin: 0 3rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       border-radius: 4px;
       position: relative;
       padding-top: 2rem;
