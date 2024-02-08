@@ -1,0 +1,103 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/resets';
+
+.warehouse-form {
+  &-section {
+    padding: $padding-mobile-bw-component;
+    @include tablet-and-desktop {
+      padding: $padding-tablet-bw-component;
+      width: 50%;
+    }
+  }
+
+  &__contact-section {
+    padding: $padding-mobile-bw-component;
+  }
+
+  &__wrapper {
+    @include tablet-and-desktop {
+      display: flex;
+      padding: 1rem;
+    }
+  }
+
+  &__btn-container {
+    background-color: $light-grey;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 2rem 1rem;
+
+    @include tablet-and-desktop {
+      justify-content: flex-end;
+    }
+  }
+
+  &__btn--cancel {
+    @include btn($slate, $pure-white, $cloud);
+
+    @include tablet-and-desktop {
+      width: auto;
+    }
+  }
+
+  &__btn--add {
+    @include btn($pure-white, $instock-indigo, $cloud);
+    @include tablet-and-desktop {
+      width: 10rem;
+      margin-right: 2.5rem;
+    }
+  }
+
+  &__group {
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    margin-bottom: 4px;
+    @include font-label;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: $instock-black;
+  }
+
+  &__input {
+    @include field-input-styles;
+  }
+}
+
+.section {
+  &__heading {
+    @include font-sub-header;
+    font-weight: 600;
+    color: $instock-black;
+    padding-bottom: $padding-mobile-bw-component;
+  }
+}
+.error {
+  border: 1px solid $red;
+}
+
+.error-message {
+  color: $red;
+  font-size: 0.7rem;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  height: 1rem;
+  overflow: hidden;
+}
+
+.error-message.active {
+  height: auto;
+}
+
+.error-icon {
+  width: 1rem;
+  margin-left: 15px;
+}
