@@ -8,7 +8,7 @@ const emailValidator = require('validator');
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const WarehouseForm = ({ warehouse }) => {
+const WarehouseForm = ({warehouse}) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     warehouse_name: '',
@@ -20,7 +20,7 @@ const WarehouseForm = ({ warehouse }) => {
     contact_position: '',
     contact_email: '',
   });
-  const isEditMode = !!warehouse;
+  const isEditMode = !warehouse;
 
   const [errors, setErrors] = useState({});
 
