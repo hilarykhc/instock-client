@@ -100,8 +100,6 @@ const WarehouseForm = (props) => {
       try {
         let response;
         if (props.warehouseData) {
-          console.log("+++++++++")
-          console.log(newWarehouse)
           console.log(
             `${REACT_APP_SERVER_URL}/warehouses/${props.warehouseData.id}`
           );
@@ -109,14 +107,10 @@ const WarehouseForm = (props) => {
             `${REACT_APP_SERVER_URL}/warehouses/${props.warehouseData.id}`,
             newWarehouse
           )
-          console.log(response)
-          console.log('=====');
           props.cancelHandler();
-          console.log('=====');
           navigate('/warehouse');
-          console.log('=====');
         } else {
-          response = await axios.post(
+          await axios.post(
             `${REACT_APP_SERVER_URL}/warehouses`,
             newWarehouse
           );
