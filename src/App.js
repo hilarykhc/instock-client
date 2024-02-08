@@ -16,10 +16,10 @@ export default function App() {
         <Route path="/" element={<WarehousePage />} />
         <Route path="/warehouse" element={<WarehousePage />} />
         <Route path="/warehouse/:id" element={<WarehouseDetail />} />
-        <Route path="/warehouse/add" element = {<AddNewWarehouse/>} />
+        <Route path="/warehouse/add" element={<AddNewWarehouse />} />
+        <Route path="/warehouse/edit" element={<AddNewWarehouse />} />
         {/* <Route path="/inventory" element={<InventoryPage />} />
         <Route path="/inventory/:id" element={<InventoryDetail />} /> */}
-
       </Routes>
       <Footer />
     </BrowserRouter>

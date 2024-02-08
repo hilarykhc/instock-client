@@ -8,7 +8,7 @@ const emailValidator = require('validator');
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const WarehouseForm = () => {
+const WarehouseForm = ({ warehouse }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     warehouse_name: '',
@@ -20,9 +20,12 @@ const WarehouseForm = () => {
     contact_position: '',
     contact_email: '',
   });
+  const isEditMode = !!warehouse;
 
   const [errors, setErrors] = useState({});
 
+
+  
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     setErrors({ ...errors, [event.target.name]: '' });
@@ -89,7 +92,7 @@ const WarehouseForm = () => {
 
       try {
         const response = await axios.post(
-          `${REACT_APP_SERVER_URL}/warehouse`,
+          `${REACT_APP_SERVER_URL}/warehouses`,
           newWarehouse
         );
         navigate('/warehouse');
@@ -118,7 +121,7 @@ const WarehouseForm = () => {
                 className={`warehouse-form__input ${
                   errors.warehouse_name ? 'error' : ''
                 }`}
-                value={formData.warehouse_name}
+                value={isEditMode ? warehouse.warehouse_name : ''}
                 type="text"
                 id="warehouse_name"
                 name="warehouse_name"
