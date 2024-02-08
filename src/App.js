@@ -6,6 +6,8 @@ import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsP
 import WarehousePage from "./pages/WarehousePage/WarehousePage";
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
+import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
+
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
           path="/inventory/:inventoryId"
           element={<InventoryDetailsPage />}
         />
+        <Route path="/warehouse/add" element = {<AddNewWarehouse/>} />
+      
       </Routes>
       <Footer />
     </BrowserRouter>
