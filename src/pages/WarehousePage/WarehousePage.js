@@ -1,5 +1,6 @@
 import "./WarehousePage.scss";
+import WarehouseList from "../../components/WarehouseList/WarehouseList";
 
 export default function WarehousePage() {
-  return <div>WarehousePage</div>;
+  return <div><WarehouseList/></div>;
 }
