@@ -1,18 +1,18 @@
-import Button from '../../components/Button/Button';
-import './WarehousePage.scss';
 import {useNavigate } from 'react-router-dom';
+import Button from '../../components/Button/Button';
+import "./WarehousePage.scss";
+import WarehouseList from "../../components/WarehouseList/WarehouseList";
 
-
-const WarehousePage = () => {
-  const navigate = useNavigate()
+export default function WarehousePage() {
+   const navigate = useNavigate()
   const buttonClickHandler = () => {
     navigate('/warehouse/add')
   }
   return (
-    <>
-      <Button onClick={buttonClickHandler } />
-    </>
-  )
+    <div>
+      <WarehouseList />
+    <Button onClick={buttonClickHandler } />
+    </div>
+  );
 }
 
-export default WarehousePage
