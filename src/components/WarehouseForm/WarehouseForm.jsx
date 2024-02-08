@@ -2,7 +2,7 @@ import Divider from '../Divider/Divider';
 import './WarehouseForm.scss';
 import { useNavigate } from 'react-router-dom';
 import notificationIcon from '../../assets/Icons/error.svg';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import axios from 'axios';
 const emailValidator = require('validator');
 
@@ -12,22 +12,36 @@ const WarehouseForm = (props) => {
   console.log('Value from form');
   console.log(props.warehouseData);
 
-    const initialState = props.warehouseData
-      ? { ...props.warehouseData }
-      : {
-          warehouse_name: '',
-          address: '',
-          city: '',
-          country: '',
-          contact_name: '',
-          contact_phone: '',
-          contact_position: '',
-          contact_email: '',
-        };
-
+  // const initialState = props.warehouseData
+  //   ? { ...props.warehouseData }
+  //   : {
+  //       warehouse_name: '',
+  //       address: '',
+  //       city: '',
+  //       country: '',
+  //       contact_name: '',
+  //       contact_phone: '',
+  //       contact_position: '',
+  //       contact_email: '',
+  //     };
 
   const navigate = useNavigate();
-  const [formData, setFormData] = useState(initialState);
+  const [formData, setFormData] = useState({
+    warehouse_name: '',
+    address: '',
+    city: '',
+    country: '',
+    contact_name: '',
+    contact_phone: '',
+    contact_position: '',
+    contact_email: '',
+  });
+   useEffect(() => {
+     if (props.warehouseData) {
+       setFormData(props.warehouseData);
+     }
+   }, [props.warehouseData]);
+
 
   const [errors, setErrors] = useState({});
 
@@ -388,7 +402,7 @@ const WarehouseForm = (props) => {
             Cancel
           </button>
           <button type="submit" className="warehouse-form__btn--add">
-            + Add Warehouse
+            {props.warehouseData ? 'Save' : '+ Add Warehouse'}
           </button>
         </div>
       </div>
