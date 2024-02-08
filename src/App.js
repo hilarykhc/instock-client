@@ -9,10 +9,10 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<WarehousePage />} />
-        {/*  <Route path="/warehouse" element={<WarehousePage />} />
+        {/*   <Route path="/warehouse" element={<WarehousePage />} />
         <Route path="/warehouse/:id" element={<WarehouseDetail />} />
         <Route path="/inventory" element={<InventoryPage />} />
-        <Route path="/inventory/:id" element={<InventoryDetail />} /> */}
+        <Route path="/inventory/:id" element={<InventoryDetail />} />  */}
       </Routes>
       <Footer />
     </BrowserRouter>

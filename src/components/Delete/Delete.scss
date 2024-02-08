@@ -18,7 +18,8 @@
   z-index: 1000;
   @include tablet-and-desktop {
     justify-content: flex-start;
-    height: 28vh;
+    width: 42rem;
+    height: 20vh;
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
