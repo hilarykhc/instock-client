@@ -1,10 +1,10 @@
-import sortIcon from '../../assets/Icons/sort-24px.svg'
-const HeaderItem = ({className , children}) => {
+import sortIcon from '../../assets/Icons/sort-24px.svg';
+const HeaderItem = ({ className, children }) => {
   return (
-    <div className={`header-item ${className}`}>
-      {children} <img className="header-icon" src={sortIcon} alt="sort" />
+    <div className={`header-row__header-item header-row-${className}`}>
+      {children} <img className="header-row__icon" src={sortIcon} alt="Sort Icon" />
     </div>
-  )
-}
+  );
+};
 
-export default HeaderItem
+export default HeaderItem;
