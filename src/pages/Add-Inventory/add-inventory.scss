@@ -1,1 +1,240 @@
 
+// @use "../../Style/Partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
+.addinventory {
+  position: absolute;
+  top: 11rem;
+  margin: 0 1rem;
+  border-radius: 0.25rem;
+  background-color: $pure-white;
+  box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
+  @include tablet-and-desktop {
+    margin: 0 2rem;
+    top: 7.5rem;
+  }
+  @include desktop {
+    margin: 0 8rem;
+  }
+  &__header-wrap {
+    border-bottom: 1px solid $instock-indigo;
+    display: flex;
+    padding: 2rem 0;
+  }
+  &__header-icon {
+    margin-left: 0.5rem;
+  }
+  &__title {
+    @include pageheader_mobile;
+    font-weight: 600;
+    margin: 0;
+    margin-left: 0.5rem;
+    @include tablet-and-desktop {
+      @include table_header_desktop;
+    }
+  }
+  &__detail-form-container {
+    @include tablet-and-desktop {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__detail {
+    padding: 0 1rem;
+  }
+  &__form-detail{
+    position: relative;
+  }
+  &__form-header {
+    @include subheader_mobile;
+  }
+  &__form-name {
+    @include labels_links_buttons_mobile;
+    font-weight: 600;
+    padding-top: 0.7rem;
+  }
+  &__form-radio {
+    @include labels_links_buttons_mobile;
+  }
+  &__form-radio-wrap {
+    display: flex;
+    justify-content: flex-start;
+    gap: 3rem;
+    @include tablet-and-desktop {
+      justify-content: flex-start;
+      gap: 4rem;
+    }
+  }
+  &__form-input {
+    border-radius: 1.25rem;
+    border: 1px solid $cloud;
+    height: 2.25rem;
+    width: 12.4375rem;
+    padding: 0 1rem;
+    // position: relative;
+    @include labels_links_buttons_mobile;
+    @include tablet-and-desktop {
+      width: 18rem;
+    }
+    @include desktop {
+      width: 26.8125rem;
+    }
+    &:focus{
+      border: 1px solid $instock-indigo !important;
+    }
+  }
+  &__form-input-des {
+    border-radius: 1.25rem;
+    border: 1px solid $cloud;
+    height: 7.5rem;
+    width: 12.4375rem;
+    padding: 0 1rem;
+    position: relative;
+    &::placeholder {
+      text-align: left;
+      padding-top: 1rem;
+    }
+    @include tablet-and-desktop {
+      width: 18rem;
+    }
+    @include desktop {
+      width: 26.8125rem;
+    }
+  }
+  &__form-name-quantity {
+    @include desktop {
+      display: none;
+    }
+  }
+  &__form-category-name{
+    position: relative;
+    border-radius: 1.25rem;
+    border: 1px solid $cloud;
+    height: 2.25rem;
+    width: 12.4375rem;
+    padding: 0 1rem;
+    @include tablet-and-desktop {
+      width: 18rem;
+    }
+    @include desktop {
+      width: 26.8125rem;
+    }
+  }
+  &__form-categoryinput-icon{
+    position: absolute;
+    top: 58%;
+    right: 3rem;
+    pointer-events: none;
+    @include tablet-and-desktop {
+      top: 80%;
+      right: 55%;
+    }
+  }
+  &__form-input-icon-quality {
+    position: absolute;
+    top: 87%;
+    right: 3rem;
+    pointer-events: none;
+    @include tablet-and-desktop {
+      top: 63.5%;
+    }
+    @include desktop {
+      top: 49%;
+    }
+  }
+  &__error-message{
+    color: $red;
+    font-size: $labels_links_buttons_mobile;
+    position: absolute;
+    bottom: -1rem; 
+    left: .9rem;
+    margin: 0;
+  }
+  &__error-message-description{
+    color: $red;
+    font-size: $labels_links_buttons_mobile;
+    position: absolute;
+    top: 26.5rem;
+    left: 1.5rem;
+    margin: 0;
+  }
+  &__error-message-category{
+    color: $red;
+    font-size: $labels_links_buttons_mobile;
+    position: absolute;
+    top: 33rem;
+    left: 1.5rem;
+    margin: 0;
+  }
+  &__error-message-quantity{
+    color: $red;
+    font-size: $labels_links_buttons_mobile;
+    position: absolute;
+    top: 20.5rem;
+    left: 24rem;
+    margin: 0;
+  }
+  &__error-message-warehouse{
+    color: $red;
+    font-size: $labels_links_buttons_mobile;
+    position: absolute;
+    top: 25rem;
+    left: 24rem;
+    margin: 0;
+  }
+  &__divider {
+    border-bottom: 1px solid $cloud;
+    margin-top: 2rem;
+    @include tablet-and-desktop {
+      border-left: 1px solid $cloud;
+      border-bottom: none;
+      text-align: center;
+    }
+  }
+  &__btn-wrap {
+    background-color: $light-grey;
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem 0;
+    margin-top: 1.5rem;
+    @include tablet-and-desktop {
+      padding-right: 2rem;
+      justify-content: flex-end;
+    }
+  }
+  &__btn-cancel {
+    background-color: $pure-white;
+    border-radius: 1.25rem;
+    border:1px solid $cloud;
+    text-align: center;
+    height: 2.25rem;
+    width: 7.6875rem;
+    @include tablet-and-desktop {
+      width: 4.5rem;
+      height: 2.375rem;
+    }
+    &:hover{
+      border:1px solid $instock-indigo;
+      color: $instock-indigo;
+    }
+  }
+  &__btn-addItem {
+    background-color: $instock-indigo;
+    text-align: center;
+    height: 2.25rem;
+    width: 7.6875rem;
+    border-radius: 1.25rem;
+    border: none;
+    color: $pure-white;
+    @include tablet-and-desktop {
+      width: 6rem;
+      height: 2.375rem;
+      margin-left: 1rem;
+    }
+    &:hover{
+      background-color: $instock-black;
+    }
+  }
+}
