@@ -1,0 +1,142 @@
+@import '../../styles/partials/mixins';
+@import '../../styles/partials/typography';
+@import '../../styles/partials/variables';
+@import '../../styles/partials/resets';
+
+
+.inventory-row {
+  text-align: left;
+  border-bottom: 0.0625rem solid $cloud;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  @include tablet-and-desktop {
+    padding: 1rem 2rem;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+
+  &:first-child {
+    border-top: 0.0625rem solid $cloud;
+
+    @include tablet-and-desktop {
+      border-top: none;
+    }
+  }
+
+  &__category {
+    display: block;
+  }
+
+  &__col {
+    width: 50%;
+    flex: 0 1 45%;
+
+    @include tablet-and-desktop {
+      flex: 0;
+      min-width: 17%;
+    }
+
+    &--name {
+      order: -2;
+    }
+
+    &--status {
+      order: -1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      @include font-label;
+      width: 4.0625rem;
+      margin-top: 0.1875rem;
+
+      @include tablet-and-desktop{
+        order: 0;
+        min-width: 17%;
+      }
+
+      &--green {
+        @include tag($red);
+        width: 5rem;
+        text-align: center;
+      }
+      &--red {
+     
+        @include tag($green);
+        width: 7rem;
+        text-align: center;
+      }
+    }
+
+    &--actions {
+      text-align: right;
+      flex: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      @include tablet-and-desktop {
+        flex: none;
+        gap: 1rem;
+        justify-content: flex-start;
+        max-width: 10%;
+        min-width: 10%;
+      }
+    }
+  }
+
+  &__icon-button {
+    text-align: left;
+    width: 50%;
+
+    @include tablet-and-desktop {
+      width: 20%;
+    }
+
+    &--edit {
+      text-align: right;
+    }
+  }
+
+  &__cell-header {
+    @include font-table-header;
+
+    @include tablet-and-desktop {
+      display: none;
+    }
+  }
+
+  &__link {
+    font-weight: 600;
+    color: $instock-indigo;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      .inventory-row__icon {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  &__contact-item {
+    color: unset;
+    text-decoration: none;
+  }
+
+  &__icon {
+    vertical-align: middle;
+    transition: transform 0.4s ease;
+  }
+
+  &__icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+}
