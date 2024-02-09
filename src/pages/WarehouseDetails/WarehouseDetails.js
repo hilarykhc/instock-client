@@ -1,71 +1,55 @@
+
+
+
+import React, { useState, useEffect } from "react";
 import "../../pages/WarehouseDetails/WarehouseDetails.scss";
 import arrowBack from "../../assets/Icons/arrow_back-24px.svg";
 import editOutline from "../../assets/Icons/edit-24px.svg";
 import chevronRight from "../../assets/Icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
-// import { DeleteInventoryFromWarehouse } from "../Delete/DeleteInventory";
-
-// import { EditButton } from "../Buttons/Buttons";
-
-import React from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
-import { Link, Route } from "react-router-dom";
+function WarehouseDetails() {
+  const [currentWarehouse, setCurrentWarehouse] = useState({});
+  const [currentWarehouseContact, setCurrentWarehouseContact] = useState({});
+  const [currentWarehouseInventory, setCurrentWarehouseInventory] = useState([]);
 
-class WarehouseDetails extends React.Component {
-  state = {
-    currentWarehouse: {},
-    currentWarehouseContact: {},
-    currentWarehouseInventory: [],
-  };
+  const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+  console.log(REACT_APP_SERVER_URL);
 
-  getCurrentWarehouse = (id) => {
-    axios
-      .get(`http://localhost:8080/warehouse/${id}`)
-      .then((response) => {
-        this.setState({
-          currentWarehouse: response.data.foundWarehouse,
-          currentWarehouseContact: response.data.foundWarehouse.contact,
-          currentWarehouseInventory: response.data.foundInventory,
-        });
-      })
-      .catch((error) => console.log(error));
-  };
-
-  componentDidMount() {
-    this.getCurrentWarehouse("2922c286-16cd-4d43-ab98-c79f698aeab0");
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { id } = this.props.match.params;
-
-    if (id) {
-      if (prevState.currentWarehouse !== id) {
-        this.getCurrentWarehouse(id);
-      }
-    } else if (!id) {
-      this.getCurrentWarehouse("2922c286-16cd-4d43-ab98-c79f698aeab0");
-    }
-  }
-
-  stockStatus = (status) => {
-    if (status === "In Stock") {
-      return "warehouse-details__body warehouse-details__body--stock-status-true";
-    } else if (status === "Out of Stock") {
-      return "warehouse-details__body warehouse-details__body--stock-status-false";
+  const getWarehouseDetails = async () => {
+    try {
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouse`);
+      console.log(response.data);
+      setCurrentWarehouse(response.data.currentWarehouse);
+      setCurrentWarehouseContact(response.data.currentWarehouseContact);
+      setCurrentWarehouseInventory(response.data.currentWarehouseInventory);
+    } catch (error) {
+      console.log(error);
     }
   };
+  useEffect(() => {
+    getWarehouseDetails();
+  }, []);
 
-  render() {
-    return (
-      <section className="warehouse-details">
-        <article className="warehouse-details__container">
+  // Function to determine stock status
+  const stockStatus = (status) => {
+    // Implement your logic for determining stock status here
+    // Return appropriate className based on the status
+  };
+
+  return (
+    <section className="warehouse-details">
+      {/* Rest of your component code */}
+      <section className="warehouse-deatils">
+      <article className="warehouse-details__container">
           <div className="warehouse-details__header">
             <div className="warehouse-details__name-container">
-              <Link to={`/warehouse`} className="warehouse-details__back-arrow">
+              {/* <Link to={`/warehouse`} className="warehouse-details__back-arrow">
                 <img src={arrowBack} alt="back arrow" />
-              </Link>
-              <h1>{this.state.currentWarehouse.name}</h1>
+              </Link> */}
+              <h1>123</h1>
             </div>
             <div className="warehouse-details__warehouse-edit">
               {/* <Link
@@ -79,29 +63,28 @@ class WarehouseDetails extends React.Component {
             <div className="warehouse-details__warehouse-address">
               <p className="warehouse-details__heading">WAREHOUSE ADDRESS:</p>
               <p className="warehouse-details__body">
-                {this.state.currentWarehouse.address},
+              address
               </p>
               <p className="warehouse-details__body">
-                {this.state.currentWarehouse.city},{" "}
-                {this.state.currentWarehouse.country}
+              city,country
               </p>
             </div>
             <div className="warehouse-details__contact-name">
               <p className="warehouse-details__heading">CONTACT NAME:</p>
               <p className="warehouse-details__body">
-                {this.state.currentWarehouseContact.name}
+              name
               </p>
               <p className="warehouse-details__body">
-                {this.state.currentWarehouseContact.position}
+               position
               </p>
             </div>
             <div className="warehouse-details__contact-info">
               <p className="warehouse-details__heading">CONTACT INFORMATION:</p>
               <p className="warehouse-details__body">
-                {this.state.currentWarehouseContact.phone}
+              phone
               </p>
               <p className="warehouse-details__body">
-                {this.state.currentWarehouseContact.email}
+                email
               </p>
             </div>
           </div>
@@ -131,105 +114,76 @@ class WarehouseDetails extends React.Component {
             </div>
           </div>
           <ul className="warehouse-details__ul-items">
-            {this.state.currentWarehouseInventory.map((item) => {
-              return (
-                <li key={item.id} className="warehouse-details__li-item">
+
+                <li  className="warehouse-details__li-item">
                   <div className="warehouse-details__inventory-item">
                     <p className="warehouse-details__mobile-heading">
                       INVENTORY ITEM
                     </p>
-                    <Link
-                      to={`/inventory/${item.id}`}
+                    {/* <Link
+                      to={`/inventory/${}`}
                       className="warehouse-details__more-details"
                     >
                       <p className="warehouse-details__body warehouse-details__body--blue-link">
-                        {item.itemName}
+                      123
                       </p>
                       <img src={chevronRight} alt="click to see item" />{" "}
-                    </Link>
+                    </Link> */}
                   </div>
                   <div className="warehouse-details__status">
                     <p className="warehouse-details__mobile-heading">STATUS</p>
-                    <p className={this.stockStatus(item.status)}>
-                      {item.status}
+                    <p className="stocksttus">
+                     status
                     </p>
                   </div>
                   <div className="warehouse-details__category">
                     <p className="warehouse-details__mobile-heading">
                       CATEGORY
                     </p>
-                    <p className="warehouse-details__body">{item.category}</p>
+                    <p className="warehouse-details__body">category</p>
                   </div>
                   <div className="warehouse-details__quantity">
                     <p className="warehouse-details__mobile-heading">QTY</p>
-                    <p className="warehouse-details__body">{item.quantity}</p>
+                    <p className="warehouse-details__body">quantity</p>
                   </div>
                   <div className="warehouse-details__actions-container">
                     <div className="warehouse-details__delete">
                       {/* <Route
                         path="/warehouse"
                         render={(routerProps) => (
-                          <DeleteInventoryFromWarehouse
-                            id={item.id}
-                            item={item.itemName}
-                            warehouseid={item.warehouseID}
-                            deleteInventoryItemFromWarehouse={
-                              this.props.deleteInventoryItemFromWarehouse
-                            }
-                            {...routerProps}
-                          />
+                          // <DeleteInventoryFromWarehouse
+                          //   id={item.id}
+                          //   item={item.itemName}
+                          //   warehouseid={item.warehouseID}
+                          //   deleteInventoryItemFromWarehouse={
+                          //     this.props.deleteInventoryItemFromWarehouse
+                          //   }
+                          //   {...routerProps}
+                          // />
                         )}
                       /> */}
                     </div>
 
-                    <Link to={`/inventory/${item.id}/edit-item`}>
+                    {/* <Link to={`/inventory/${item.id}/edit-item`}>
                       <div className="warehouse-details__edit">
                         <img src={editOutline} alt="select to edit" />
                       </div>
-                    </Link>
+                    </Link> */}
                   </div>
                 </li>
-              );
-            })}
+            
           </ul>
         </article>
       </section>
-    );
-  }
+     
+    </section>
+  );
 }
 
 export default WarehouseDetails;
 
-// import React from 'react';
 
-// const WarehouseDetails = ({ items }) => {
-//   return (
-//     <div className="inventory-list">
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>Item Name</th>
-//             <th>Category</th>
-//             <th>Status</th>
-//             <th>Quantity</th>
-//             <th>Actions</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {items?.map((item) => (
-//             <tr key={item.id} className="inventory-item">
-//               <td>{item.name}</td>
-//               <td>{item.category}</td>
-//               <td>{item.status}</td>
-//               <td>{item.quantity}</td>
-//               <td>{/* Action buttons or links */}</td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
 
-// export default WarehouseDetails;
+
+
 

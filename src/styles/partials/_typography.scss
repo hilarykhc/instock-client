@@ -11,3 +11,18 @@
   font-weight: 600;
   font-style: bold;
 }
+@mixin regular-style($size, $height, $color: $instock-black) {
+  font-family: $titillium-web;
+  font-weight: $regular;
+  font-size: $size;
+  line-height: $height;
+  color: $color;
+}
+
+@mixin bold-style($size, $height, $color: $instock-black) {
+  font-family: $titillium-web;
+  font-weight: $semi-bold;
+  font-size: $size;
+  line-height: $height;
+  color: $color;
+}

@@ -38,6 +38,7 @@
     color: $pure-white;
   }
 }
+
 @mixin pageheader_desktop{
   font-size:32px;
   line-height: 40px;
@@ -101,5 +102,8 @@
 @mixin body_small_mobile{
   font-size: 11px;
   line-height: 16px;
+}
+@function pxToRem($px) {
+  @return $px / 16 + rem;
 }
 

@@ -26,13 +26,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WarehouseDetails from "./pages/WarehouseDetails/WarehouseDetails";
+import AddInventory from './pages/Add-Inventory/add-inventory';
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/warehouse/:id" element={<WarehouseDetails />} />
+        <Route path="/warehouse/id" element={<WarehouseDetails />} />
+        <Route path="/add-inventory" element={<AddInventory/>} />
         {/* Add other routes as needed */}
       </Routes>
       <Footer />
