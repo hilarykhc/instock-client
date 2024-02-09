@@ -1,23 +1,23 @@
-import "./WarehouseDetails.scss";
-import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
-import editIcon from "../../assets/Icons/edit-24px.svg";
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import './WarehouseDetails.scss';
+import arrowBackIcon from '../../assets/Icons/arrow_back-24px.svg';
+import editIcon from '../../assets/Icons/edit-24px.svg';
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function WarehouseDetails() {
   const [warehouses, setWarehouses] = useState([]);
   const [selectedWarehouse, setSelectedWarehouse] = useState({});
-  const { warehouseId = "" } = useParams();
+  const { warehouseId = '' } = useParams();
+  console.log(warehouseId);
 
   // warehouseId to find selected warehouse
   const selectedWarehouseFromParams = warehouses.find(
     (warehouse) => warehouse.id === warehouseId
   );
 
-  // if videoId not found
   const currentSelectedWarehouse =
     selectedWarehouseFromParams || selectedWarehouse;
 

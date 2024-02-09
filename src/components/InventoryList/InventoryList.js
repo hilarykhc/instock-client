@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./WarehouseList.scss";
 import axios from "axios";
 import searchIcon from "../../assets/Icons/search-24px.svg";
 import arrowRight from "../../assets/Icons/chevron_right-24px.svg";
@@ -7,27 +6,26 @@ import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 import sort from "../../assets/Icons/sort-24px.svg";
 import Delete from "../Delete/Delete";
-import AddNewWarehouse from "../../pages/AddNewWarehouse/AddNewWarehouse";
 
-function WarehouseList() {
+function InventoryList() {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [lists, setLists] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(false);
-  const [displayForm, setDisplayForm] = useState(false);
-  const [warehouseData, setWarehouseData] = useState(null);
 
-  const getWarehouseList = async () => {
+  const [displayForm, setDisplayForm] = useState(false);
+  const [inventoryData, setInventoryData] = useState(null);
+
+  const getInventoryList = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses`);
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`);
       setLists(response.data);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    getWarehouseList();
+    getInventoryList();
   }, []);
 
   const handleDeleteClick = (itemId) => {
@@ -37,8 +35,7 @@ function WarehouseList() {
 
   const handleDeleteConfirm = () => {
     if (selectedItemId === null) return;
-
-    const url = `${REACT_APP_SERVER_URL}/warehouses/${selectedItemId}`;
+    const url = `${REACT_APP_SERVER_URL}/inventories/${selectedItemId}`;
     axios
       .delete(url)
       .then((response) => {
@@ -55,34 +52,8 @@ function WarehouseList() {
     setSelectedItemId(null);
   };
 
-  const handleEditWarehouseClick = (data) => {
-    setIsEditMode(true);
-    setDisplayForm(true);
-    setWarehouseData(data);
-  };
-
-  const addWarehouseHandler = () => {
-    setIsEditMode(false);
-    setDisplayForm(true);
-  };
-
-  const resetDisplayState = () => {
-    setIsEditMode(false);
-    setDisplayForm(false);
-    getWarehouseList();
-  };
-
   return (
     <>
-      {displayForm && isEditMode && (
-        <AddNewWarehouse
-          warehouseData={warehouseData}
-          onCancel={() => resetDisplayState()}
-        />
-      )}
-      {displayForm && !isEditMode && (
-        <AddNewWarehouse onCancel={() => resetDisplayState()} />
-      )}
       {!displayForm && (
         <div className="section">
           <div className="section__wrapper">
@@ -100,32 +71,25 @@ function WarehouseList() {
                     className="section__search"
                   ></img>
                 </div>
-                <button
-                  onClick={addWarehouseHandler}
-                  className="section__button"
-                >
-                  + Add New Warehouse
-                </button>
+                <button className="section__button">+ Add New Warehouse</button>
               </div>
             </div>
 
             <div className="section__titleContainerNew">
               <div className="section__namesortbox">
-                <div className="section__subtitleNew">WAREHOUSE</div>
+                <div className="section__subtitleNew">INVENTORY</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
               <div className="section__namesortbox">
-                <div className="section__addressTitleNew">ADDRESS</div>
+                <div className="section__addressTitleNew">CATEGORY</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
               <div className="section__namesortbox">
-                <div className="section__contactTitleNew">CONTACT NAME</div>
+                <div className="section__contactTitleNew">STATUS</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
               <div className="section__namesortbox">
-                <div className="section__contactInfoTitleNew">
-                  CONTACT INFORMATION
-                </div>
+                <div className="section__contactInfoTitleNew">QTY</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
               <div className="section__actions">ACTIONS</div>
@@ -134,31 +98,29 @@ function WarehouseList() {
               <div className="section__allContainer" key={list.id}>
                 <div className="section__flexContainer">
                   <div className="section__one">
-                    <div className="section__subtitle">WAREHOUSE</div>
+                    <div className="section__subtitle">INVENTORY</div>
                     <div className="section__wrapperName">
-                      <div className="section__name">{list.warehouse_name}</div>
+                      <div className="section__name">{list.item_name}</div>
                       <img
                         src={arrowRight}
                         alt="front arrow"
                         className="section__arrow"
                       ></img>
                     </div>
-                    <div className="section__addressTitle">ADDRESS</div>
+                    <div className="section__addressTitle">CATEGORY</div>
                     <div className="section__addressBox">
-                      <div className="section__address">{list.address}</div>
-                      <div className="section__city">{list.city}</div>
-                      <span className="section__country">{list.country}</span>
+                      <div className="section__address">{list.category}</div>
+                      {/* <div className="section__city">{list.city}</div>
+                      <span className="section__country">{list.country}</span> */}
                     </div>
                   </div>
                   <div className="section__two">
-                    <div className="section__contactTitle">CONTACT NAME</div>
-                    <div className="section__contact">{list.contact_name}</div>
-                    <div className="section__contactInfoTitle">
-                      CONTACT INFORMATION
-                    </div>
+                    <div className="section__contactTitle">STATUS</div>
+                    <div className="section__contact">{list.status}</div>
+                    <div className="section__contactInfoTitle">QTY</div>
                     <div className="section__contactWrapper">
                       <div className="section__contactNumber">
-                        {list.contact_phone}
+                        {list.quantity}
                       </div>
                       <div className="section__email">{list.contact_email}</div>
                     </div>
@@ -173,18 +135,17 @@ function WarehouseList() {
                   ></img>
                   {isDeleteModalOpen && (
                     <Delete
-                      style="warehouse"
-                      list="the list of warehouses"
+                      style="inventory"
+                      list="the inventory list"
                       name={
                         lists.find((list) => list.id === selectedItemId)
-                          ?.warehouse_name || "the selected item"
+                          ?.item_name || "the selected item"
                       }
                       onDeleteConfirm={handleDeleteConfirm}
                       onClose={() => setIsDeleteModalOpen(false)}
                     />
                   )}
                   <img
-                    onClick={() => handleEditWarehouseClick(list)}
                     src={editIcon}
                     alt="edit icon"
                     className="section__edit"
@@ -199,4 +160,4 @@ function WarehouseList() {
   );
 }
 
-export default WarehouseList;
+export default InventoryList;

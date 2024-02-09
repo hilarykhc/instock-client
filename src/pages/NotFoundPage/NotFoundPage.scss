@@ -1,0 +1,38 @@
+@use '../../styles/partials/mixins'as *;
+@use '../../styles/partials/variables' as *;
+
+.not-found{
+  max-width: 1140px;
+  margin: auto;
+  &__image{
+    width: 100%;
+  }
+  &__button{
+  margin-top:2rem;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 4px;
+  border: none;
+  text-transform: uppercase;
+  color: $pure-white;
+  background-color: $instock-indigo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  letter-spacing: 0.1rem;
+  @include font-button;
+  font-size: 0.85rem;
+
+   @include tablet-and-desktop {
+    max-width: 12rem;
+    padding-left: 1rem;
+    margin: 2rem auto;
+  }
+
+  &:hover {
+    background-color: $instock-indigo; 
+    color: white; 
+  }
+  }
+}
