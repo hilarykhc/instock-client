@@ -1,12 +1,26 @@
-import React from 'react';
-import chevronImage from '../../assets/Icons/chevron_right-24px.svg';
-import deleteIcon from '../../assets/Icons/delete_outline-24px.svg';
-import editIcon from '../../assets/Icons/edit-24px.svg';
-import { Link } from 'react-router-dom';
-import './InventoryListItem.scss';
+import React, { useState } from "react";
+import chevronImage from "../../assets/Icons/chevron_right-24px.svg";
+import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
+import editIcon from "../../assets/Icons/edit-24px.svg";
+import { Link } from "react-router-dom";
+import Delete from "../Delete/Delete";
+import "./InventoryListItem.scss";
 const InventoryListItem = (props) => {
   const { category, id, item_name, quantity, status, warehouse_name } =
     props.inventoryItem;
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const handleDeleteClick = (itemId) => {
+    setSelectedItemId(itemId);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (selectedItemId === null) return;
+    props.onDelete(selectedItemId);
+    setIsDeleteModalOpen(false);
+    setSelectedItemId(null);
+  };
   return (
     <div className="inventory-row">
       <div className="inventory-row__col inventory-row__col--name">
@@ -29,7 +43,7 @@ const InventoryListItem = (props) => {
 
         <div
           className={`inventory-row__col--status--${
-            status === 'IN STOCK' ? 'green' : 'red'
+            status === "IN STOCK" ? "green" : "red"
           }`}
         >
           {status}
@@ -51,9 +65,21 @@ const InventoryListItem = (props) => {
       </div>
       {/* Edit & Delete Button */}
       <div className=" inventory-row__col--actions">
-        <button className="inventory-row__icon-button">
+        <button
+          className="inventory-row__icon-button"
+          onClick={() => handleDeleteClick(id)}
+        >
           <img className="inventory-row__icon" src={deleteIcon} alt="delete" />
         </button>
+        {isDeleteModalOpen && (
+          <Delete
+            style="inventory"
+            list="the inventory list"
+            name={item_name}
+            onDeleteConfirm={handleDeleteConfirm}
+            onClose={() => setIsDeleteModalOpen(false)}
+          />
+        )}
         <Link
           to="#"
           className="inventory-row__icon-button inventory-row__icon-button--edit"

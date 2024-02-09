@@ -8,28 +8,43 @@ const InventoryPage = () => {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   const [inventories, setInventories] = useState([]);
-  
-  const fetchAllInventories = async() => {
+
+  const fetchAllInventories = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`)
-      setInventories(response.data)
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`);
+      setInventories(response.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchAllInventories()
-  },[])
+    fetchAllInventories();
+  }, []);
 
+  const deleteInventoryItem = (itemId) => {
+    axios
+      .delete(`${REACT_APP_SERVER_URL}/inventories/${itemId}`)
+      .then(() => {
+        const updatedInventories = inventories.filter(
+          (item) => item.id !== itemId
+        );
+        setInventories(updatedInventories);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
-      <main>
-        <InventoryPageHeader />
-        <InventoryListHeader />
-        {inventories.map((inventory) => (
-          <InventoryListItem key={inventory.id} inventoryItem={inventory} />
-        ))}
-      </main>
+    <main>
+      <InventoryPageHeader />
+      <InventoryListHeader />
+      {inventories.map((inventory) => (
+        <InventoryListItem
+          key={inventory.id}
+          inventoryItem={inventory}
+          onDelete={deleteInventoryItem}
+        />
+      ))}
+    </main>
   );
 };
 
