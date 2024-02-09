@@ -17,7 +17,7 @@ export default function WarehouseDetails() {
     (warehouse) => warehouse.id === warehouseId
   );
 
-  // if videoId not found
+  // if warehouseId not found
   const currentSelectedWarehouse =
     selectedWarehouseFromParams || selectedWarehouse;
 

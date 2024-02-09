@@ -90,7 +90,7 @@
 
   &__bottom {
     padding: 1rem;
-    font-size: 0.688rem;
+    font-size: 0.75rem;
     border-bottom: 1px solid $cloud;
   }
 
@@ -114,8 +114,8 @@
     padding-right: 4rem;
   }
 
-  &__stock-status {
-    @include instock;
+  &__status-tag {
+    @include inStock;
   }
 
   &__last-text {
