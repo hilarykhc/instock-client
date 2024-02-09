@@ -24,7 +24,7 @@ export default function WarehouseDetails() {
   useEffect(() => {
     const getWarehouses = async () => {
       try {
-        const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouse`);
+        const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses`);
         setWarehouses(response.data);
       } catch (error) {
         console.error(error);
@@ -38,7 +38,7 @@ export default function WarehouseDetails() {
       try {
         const singleWarehouse = warehouseId;
         const singleWarehouseRes = await axios.get(
-          `${REACT_APP_SERVER_URL}/warehouse/${singleWarehouse}`
+          `${REACT_APP_SERVER_URL}/warehouses/${singleWarehouse}`
         );
 
         setSelectedWarehouse(singleWarehouseRes.data);

@@ -14,7 +14,7 @@ function WarehouseList() {
   const [lists, setLists] = useState([]);
   const getWarehouseList = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouse`);
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses`);
       setLists(response.data);
     } catch (error) {
       console.log(error);
@@ -35,7 +35,7 @@ function WarehouseList() {
   const handleDeleteConfirm = () => {
     if (selectedItemId === null) return;
 
-    const url = `${REACT_APP_SERVER_URL}/warehouse/${selectedItemId}`;
+    const url = `${REACT_APP_SERVER_URL}/warehouses/${selectedItemId}`;
     axios
       .delete(url)
       .then((response) => {
@@ -144,6 +144,7 @@ function WarehouseList() {
                       lists.find((list) => list.id === selectedItemId)
                         ?.warehouse_name || "the selected item"
                     }
+                    style="warehouse"
                     onDeleteConfirm={handleDeleteConfirm}
                     onClose={() => setIsDeleteModalOpen(false)}
                   />
