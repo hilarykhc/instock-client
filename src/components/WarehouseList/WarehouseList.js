@@ -109,90 +109,88 @@ function WarehouseList() {
               </div>
             </div>
 
-            <div className="section__titleContainerNew">
-              <div className="section__namesortbox">
-                <div className="section__subtitleNew">WAREHOUSE</div>
-                <img src={sort} alt="sort icon" className="section__sort"></img>
-              </div>
-              <div className="section__namesortbox">
-                <div className="section__addressTitleNew">ADDRESS</div>
-                <img src={sort} alt="sort icon" className="section__sort"></img>
-              </div>
-              <div className="section__namesortbox">
-                <div className="section__contactTitleNew">CONTACT NAME</div>
-                <img src={sort} alt="sort icon" className="section__sort"></img>
-              </div>
-              <div className="section__namesortbox">
-                <div className="section__contactInfoTitleNew">
-                  CONTACT INFORMATION
-                </div>
-                <img src={sort} alt="sort icon" className="section__sort"></img>
-              </div>
-              <div className="section__actions">ACTIONS</div>
+          <div className="section__titleContainerNew">
+            <div className="section__namesortbox">
+              <div className="section__subtitleNew">WAREHOUSE</div>
+              <img src={sort} alt="sort icon" className="section__sort"></img>
             </div>
-            {lists.map((list) => (
-              <div className="section__allContainer" key={list.id}>
-                <div className="section__flexContainer">
-                  <div className="section__one">
-                    <div className="section__subtitle">WAREHOUSE</div>
-                    <div className="section__wrapperName">
-                      <div className="section__name">{list.warehouse_name}</div>
-                      <img
-                        src={arrowRight}
-                        alt="front arrow"
-                        className="section__arrow"
-                      ></img>
-                    </div>
-                    <div className="section__addressTitle">ADDRESS</div>
-                    <div className="section__addressBox">
-                      <div className="section__address">{list.address}</div>
-                      <div className="section__city">{list.city}</div>
-                      <span className="section__country">{list.country}</span>
-                    </div>
+            <div className="section__namesortbox">
+              <div className="section__addressTitleNew">ADDRESS</div>
+              <img src={sort} alt="sort icon" className="section__sort"></img>
+            </div>
+            <div className="section__namesortbox">
+              <div className="section__contactTitleNew">CONTACT NAME</div>
+              <img src={sort} alt="sort icon" className="section__sort"></img>
+            </div>
+            <div className="section__namesortbox">
+              <div className="section__contactInfoTitleNew">
+                CONTACT INFORMATION
+              </div>
+              <img src={sort} alt="sort icon" className="section__sort"></img>
+            </div>
+            <div className="section__actions">ACTIONS</div>
+          </div>
+          {lists.map((list) => (
+            <div className="section__allContainer" key={list.id}>
+              <div className="section__flexContainer">
+                <div className="section__one">
+                  <div className="section__subtitle">WAREHOUSE</div>
+                  <div className="section__wrapperName">
+                    <div className="section__name">{list.warehouse_name}</div>
+                    <img
+                      src={arrowRight}
+                      alt="front arrow"
+                      className="section__arrow"
+                    ></img>
                   </div>
-                  <div className="section__two">
-                    <div className="section__contactTitle">CONTACT NAME</div>
-                    <div className="section__contact">{list.contact_name}</div>
-                    <div className="section__contactInfoTitle">
-                      CONTACT INFORMATION
+
+                  <div className="section__addressTitle">ADDRESS</div>
+                  <div className="section__addressBox">
+                  <div className="section__address">
+                      {list.address}, {list.city}, {list.country}
                     </div>
-                    <div className="section__contactWrapper">
-                      <div className="section__contactNumber">
-                        {list.contact_phone}
-                      </div>
-                      <div className="section__email">{list.contact_email}</div>
-                    </div>
-                  </div>
                 </div>
-                <div className="section__iconsBox">
-                  <img
-                    src={deleteIcon}
-                    alt="delete icon"
-                    className="section__delete"
-                    onClick={() => handleDeleteClick(list.id)}
-                  ></img>
-                  {isDeleteModalOpen && (
-                    <Delete
-                      style="warehouse"
-                      list="the list of warehouses"
-                      name={
-                        lists.find((list) => list.id === selectedItemId)
-                          ?.warehouse_name || "the selected item"
-                      }
-                      onDeleteConfirm={handleDeleteConfirm}
-                      onClose={() => setIsDeleteModalOpen(false)}
-                    />
-                  )}
-                  <img
-                    onClick={() => handleEditWarehouseClick(list)}
-                    src={editIcon}
-                    alt="edit icon"
-                    className="section__edit"
-                  ></img>
+                <div className="section__two">
+                  <div className="section__contactTitle">CONTACT NAME</div>
+                  <div className="section__contact">{list.contact_name}</div>
+
+                  <div className="section__contactInfoTitle">
+                    CONTACT INFORMATION
+                  </div>
+                  <div className="section__contactWrapper">
+                    <div className="section__contactNumber">
+                      {list.contact_phone}
+                    </div>
+                    <div className="section__email">{list.contact_email}</div>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+              <div className="section__iconsBox">
+                <img
+                  src={deleteIcon}
+                  alt="delete icon"
+                  className="section__delete"
+                  onClick={() => handleDeleteClick(list.id)}
+                ></img>
+                {isDeleteModalOpen && (
+                  <Delete
+                    name={
+                      lists.find((list) => list.id === selectedItemId)
+                        ?.warehouse_name || "the selected item"
+                    }
+                    onDeleteConfirm={handleDeleteConfirm}
+                    onClose={() => setIsDeleteModalOpen(false)}
+                  />
+                )}
+                <img
+                  src={editIcon}
+                  alt="edit icon"
+                  className="section__edit"
+                ></img>
+              </div>
+            </div>
+          ))}
+          <div></div>
         </div>
       )}
     </>

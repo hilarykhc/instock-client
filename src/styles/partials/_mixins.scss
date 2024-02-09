@@ -96,12 +96,11 @@
   }
 }
 
-@mixin font-link{
-   font: $font-mobile-link;
+@mixin font-link {
+  font: $font-mobile-link;
   @include tablet-and-desktop {
     font: $font-tablet-link;
   }
-
 }
 
 @mixin tag($backgroundColor) {
@@ -112,8 +111,8 @@
   height: 1.5rem;
   background-color: rgba($backgroundColor, 0.7);
 
-  @include tablet-and-desktop(){
-   height: 1.625rem; 
+  @include tablet-and-desktop() {
+    height: 1.625rem;
   }
 }
 
@@ -126,9 +125,9 @@
   outline: none;
   border: 1px solid $cloud;
   color: $instock-black;
-  background-color:  $pure-white;
+  background-color: $pure-white;
   @include font-label;
-  @include tablet-and-desktop{
+  @include tablet-and-desktop {
     height: 2.375rem;
   }
 
@@ -141,22 +140,22 @@
   border-bottom: 1px solid $cloud;
 }
 
-@mixin btn($color,$background-color,$border-color) {
- @include font-button;
- height: 2.25rem;
- width: 100%;
- border-radius: 1.25rem;
+@mixin btn($color, $background-color, $border-color) {
+  @include font-button;
+  height: 2.25rem;
+  width: 100%;
+  border-radius: 1.25rem;
   text-transform: capitalize;
   text-align: center;
-  cursor: pointer; 
+  cursor: pointer;
   color: $color;
   background-color: $background-color;
   border: 1px solid $border-color;
   font-weight: 600;
 
- @include tablet-and-desktop{
-  height: 2.375rem;
-  padding-left : 1rem;
-  padding-right : 1rem;
- } 
+  @include tablet-and-desktop {
+    height: 2.375rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

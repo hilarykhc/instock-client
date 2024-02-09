@@ -10,11 +10,11 @@ import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsP
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 
-
 export default function App() {
   return (
     <BrowserRouter>
       <Header />
+
       <Routes>
         <Route path="/" element={<WarehousePage />} />
         <Route path="/warehouse" element={<WarehousePage />} />
@@ -31,6 +31,8 @@ export default function App() {
           path="/inventory/:inventoryId"
           element={<InventoryDetailsPage />}
         />        
+        />
+        <Route path="/warehouse/add" element={<AddNewWarehouse />} />
       </Routes>
       <Footer />
     </BrowserRouter>
