@@ -1,6 +1,6 @@
 import WarehouseForm from '../../components/WarehouseForm/WarehouseForm';
 import './AddNewWarehouse.scss';
-import backArrow from '../../assets/Icons/arrow-back.svg';
+import backArrow from '../../assets/Icons/arrow_back-24px.svg';
 import { useNavigate } from 'react-router-dom';
 
 function AddNewWarehouse(props) {

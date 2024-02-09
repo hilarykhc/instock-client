@@ -18,7 +18,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<WarehousePage />} />
         <Route path="/warehouse" element={<WarehousePage />} />
-        <Route path="/warehouse/:id" element={<WarehouseDetail />} />
+        {/* <Route path="/warehouse/:id" element={<WarehouseDetail />} /> */}
         <Route path="/warehouse/add" element={<AddNewWarehouse />} />
         <Route path="/warehouse/edit" element={<AddNewWarehouse />} />
         <Route path="*" element={<NotFoundPage />} />    
@@ -31,8 +31,8 @@ export default function App() {
           path="/inventory/:inventoryId"
           element={<InventoryDetailsPage />}
         />        
-      <Routes/>
+      </Routes>
       <Footer />
-    <BrowserRouter/>
+    </BrowserRouter>
   );
 }
