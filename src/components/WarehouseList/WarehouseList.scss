@@ -48,11 +48,11 @@
   }
   &__input {
     height: 5vh;
-    width: 73vw;
+    width: 79vw;
     border-radius: 1.25rem;
     border-color: $cloud;
     padding-left: 1rem;
-    padding-top: 0.5rem;
+    padding-top: 0.2rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
       width: 20vw;
@@ -78,8 +78,8 @@
   }
   &__search {
     position: absolute;
-    top: 1.5rem;
-    right: 2.2rem;
+    top: 1.2rem;
+    right: 3rem;
     height: 15px;
     @include tablet-and-desktop {
       height: 20px;
@@ -93,7 +93,7 @@
 
   &__button {
     margin-top: 0.5rem;
-    height: 7vh;
+    height: 5.5vh;
     width: 79vw;
     border-radius: 1.25rem;
     background-color: $instock-indigo;
@@ -115,7 +115,7 @@
     }
   }
   &__subtitle {
-    font-size: 0.688rem;
+    font-size: 0.6rem;
     padding-left: 1rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
@@ -127,7 +127,8 @@
     font-size: 0.688rem;
     padding-left: 1rem;
     @include tablet-and-desktop {
-      padding-left: 3rem;
+      width: 13vw;
+
       font-size: $tablet-body-font-size;
     }
     @include desktop {
@@ -135,7 +136,7 @@
     }
   }
   &__addressTitle {
-    font-size: 0.688rem;
+    font-size: 0.6rem;
     padding-left: 1rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
@@ -144,15 +145,13 @@
   }
   &__wrapperName {
     display: flex;
+    flex-direction: row;
     align-items: center;
     padding-top: 0.3rem;
   }
   &__arrow {
     height: 15px;
     @include tablet-and-desktop {
-      position: absolute;
-      top: 0.3rem;
-      left: 7.2rem;
       height: 18px;
     }
     @include desktop {
@@ -167,6 +166,8 @@
     padding-top: 0.4rem;
     @include tablet-and-desktop {
       font-size: $tablet-body-font-size;
+      //  width: 18vw;
+      //  padding-left: 2rem
     }
   }
   &__addressBox {
@@ -192,7 +193,7 @@
   }
 
   &__contactTitle {
-    font-size: 0.688rem;
+    font-size: 0.6rem;
     padding-left: 1rem;
     margin-top: 0.5rem;
     padding-top: 0.4rem;
@@ -206,16 +207,17 @@
     padding-top: 0.4rem;
     @include tablet-and-desktop {
       font-size: $tablet-body-font-size;
-      width: 11vw;
+      width: 18vw;
     }
   }
   &__contactWrapper {
     @include tablet-and-desktop {
-      padding-left: 2.4rem;
+      // padding-left: 2.4rem;
+      width: 18vw;
     }
   }
   &__contactInfoTitle {
-    font-size: 0.688rem;
+    font-size: 0.6rem;
     padding-left: 1rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
@@ -242,17 +244,20 @@
   &__flexContainer {
     display: flex;
     justify-content: flex-start;
-
     gap: 1.5rem;
+    @include tablet-and-desktop {
+      display: flex;
+    }
   }
   &__one {
     width: 40%;
     @include tablet-and-desktop {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      margin-left: 1.8rem;
+      // gap: 2rem;
       flex-direction: row;
-      width: 55%;
+      // width: 55%;
     }
   }
   &__two {
@@ -284,6 +289,7 @@
     border-bottom: 1.2px solid $cloud;
     @include tablet-and-desktop {
       display: flex;
+
       justify-content: space-between;
       align-items: center;
       flex-direction: row;
