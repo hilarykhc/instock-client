@@ -20,7 +20,7 @@ function WarehouseDetails() {
 
   const getWarehouseDetails = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouse`);
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses/{id}`);
       console.log(response.data);
       setCurrentWarehouse(response.data.currentWarehouse);
       setCurrentWarehouseContact(response.data.currentWarehouseContact);
