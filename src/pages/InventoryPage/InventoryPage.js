@@ -1,5 +1,9 @@
-import './InventoryPage.scss';
+import InventoryListHeader from "../../components/InventoryListHeader/InventoryListHeader";
 
-export default function InventoryPage() {
-  return <div>InventoryPage</div>;
-}
+const InventoryPage = () => {
+  return (
+    <InventoryListHeader/>
+  )
+};
+
+export default InventoryPage;
