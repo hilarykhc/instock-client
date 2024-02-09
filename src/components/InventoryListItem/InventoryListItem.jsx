@@ -5,7 +5,6 @@ import editIcon from '../../assets/Icons/edit-24px.svg';
 const InventoryListItem = (props) => {
   const {
     category,
-    description,
     id,
     item_name,
     quantity,

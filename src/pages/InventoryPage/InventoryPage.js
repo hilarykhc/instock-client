@@ -23,13 +23,13 @@ const InventoryPage = () => {
   },[])
 
   return (
-      <div>
+      <main>
         <InventoryPageHeader />
         <InventoryListHeader />
         {inventories.map((inventory) => (
           <InventoryListItem key={inventory.id} inventoryItem={inventory} />
         ))}
-      </div>
+      </main>
   );
 };
 
