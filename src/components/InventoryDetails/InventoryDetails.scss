@@ -21,8 +21,8 @@
     padding: 1rem;
     border-bottom: 1px solid $cloud;
 
-    @include tablet-and-desktop {
-      padding: 2rem;
+    @include desktop {
+      padding: 1rem 2.5rem;
     }
   }
 
@@ -30,7 +30,8 @@
     font-size: 1.25rem;
 
     @include tablet-and-desktop {
-      font-size: 1.5rem;
+      font-size: 1.875rem;
+      margin: 1rem;
     }
   }
 
@@ -91,7 +92,16 @@
   &__bottom {
     padding: 1rem;
     font-size: 0.75rem;
-    border-bottom: 1px solid $cloud;
+    // border-bottom: 1px solid $cloud;
+
+    @include tablet-and-desktop {
+      display: flex;
+      font-size: 0.875rem;
+    }
+
+    @include desktop {
+      padding: 1rem 2.5rem;
+    }
   }
 
   &__bottom-title {
@@ -103,6 +113,21 @@
     padding-bottom: 1rem;
   }
 
+  &__bottom-1 {
+    @include tablet-and-desktop {
+      flex: 1 1;
+      padding-right: 2rem;
+    }
+  }
+
+  &__bottom-2 {
+    @include tablet-and-desktop {
+      border-left: 1px solid $cloud;
+      flex: 1 1;
+      padding-left: 2rem;
+    }
+  }
+
   &__bottom-2-wrapper {
     display: flex;
     justify-content: space-between;
@@ -112,14 +137,26 @@
 
   &__quantity {
     padding-right: 4rem;
+
+    @include desktop {
+      padding-right: 8rem;
+    }
   }
 
-  &__status-tag {
-    @include inStock;
-  }
+  // &__status-tag {
+  //   @include inStock;
+  // }
 
   &__last-text {
     padding: 0;
+  }
+
+  &__status.outOfStock {
+    @include outOfStock;
+  }
+
+  &__status.inStock {
+    @include inStock;
   }
 }
 

@@ -12,17 +12,6 @@ export default function InventoryDetails() {
   const [selectedInventory, setSelectedInventory] = useState({});
   const { inventoryId = "" } = useParams();
 
-  //   // inventoryId to find selected warehouse
-  //   const selectedInventoryFromParams = inventories.find(
-  //     (inventory) => inventory.id === inventoryId
-  //   );
-
-  //   // if inventoryId not found
-  //   const currentSelectedInventory =
-  //     selectedInventoryFromParams || selectedInventory || {};
-
-  //   console.log("Current Selected Inventory:", currentSelectedInventory);
-
   useEffect(() => {
     const getInventories = async () => {
       try {
@@ -41,9 +30,7 @@ export default function InventoryDetails() {
     console.log("Inventory ID:", inventoryId);
     const getSingleInventory = async () => {
       try {
-        // const singleInventory = inventoryId;
         const singleInventoryRes = await axios.get(
-          //   `${REACT_APP_SERVER_URL}/inventories/${singleInventory}`
           `${REACT_APP_SERVER_URL}/inventories/${inventoryId}`
         );
         console.log(singleInventoryRes.data);
@@ -56,8 +43,6 @@ export default function InventoryDetails() {
           status,
           quantity,
         } = singleInventoryRes.data;
-
-        console.log("Item Name:", selectedInventory.item_name);
 
         // setSelectedInventory(singleInventoryRes.data);
         setSelectedInventory({
@@ -130,7 +115,13 @@ export default function InventoryDetails() {
               <div className="inventory-details__bottom-2-wrapper">
                 <div className="inventory-details__status">
                   <h4 className="inventory-details__bottom-title">STATUS:</h4>
-                  <p className="inventory-details__bottom-text inventory-details__status-tag">
+                  <p
+                    className={`inventory-details__status ${
+                      selectedInventory.status == "In Stock"
+                        ? "inStock"
+                        : "outOfStock"
+                    }`}
+                  >
                     {selectedInventory.status}
                   </p>
                 </div>

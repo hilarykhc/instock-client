@@ -47,7 +47,7 @@
     padding-top: 3.5rem;
     @include tablet-and-desktop {
       width: 42rem;
-      height: 20vh;
+      height: 30vh;
       margin: 0 3rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       border-radius: 4px;
@@ -87,7 +87,7 @@
     line-height: 1.375rem;
     @include tablet-and-desktop {
       margin: 0 4rem;
-      font-size: 1rem;
+      font-size: 1.1rem;
       line-height: 1.875rem;
     }
   }

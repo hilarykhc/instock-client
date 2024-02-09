@@ -11,13 +11,13 @@ export default function WarehouseDetails() {
   const [warehouses, setWarehouses] = useState([]);
   const [selectedWarehouse, setSelectedWarehouse] = useState({});
   const { warehouseId = "" } = useParams();
+  console.log(warehouseId);
 
   // warehouseId to find selected warehouse
   const selectedWarehouseFromParams = warehouses.find(
     (warehouse) => warehouse.id === warehouseId
   );
 
-  // if warehouseId not found
   const currentSelectedWarehouse =
     selectedWarehouseFromParams || selectedWarehouse;
 
@@ -86,7 +86,8 @@ export default function WarehouseDetails() {
                 {currentSelectedWarehouse.address},
               </p>
               <p className="warehouse-details__bottom-text">
-                {currentSelectedWarehouse.city}, {currentSelectedWarehouse.city}
+                {currentSelectedWarehouse.city},{" "}
+                {currentSelectedWarehouse.country}
               </p>
             </div>
             <div className="warehouse-details__bottom-contact">
@@ -103,7 +104,7 @@ export default function WarehouseDetails() {
               </div>
               <div className="warehouse-details__bottom-right">
                 <h4 className="warehouse-details__bottom-title">
-                  CONACT INFORMATION:
+                  CONTACT INFORMATION:
                 </h4>
                 <p className="warehouse-details__bottom-text">
                   {currentSelectedWarehouse.contact_phone}

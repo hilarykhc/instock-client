@@ -1,0 +1,60 @@
+@import "../../styles/partials/mixins";
+@import "../../styles/partials/typography";
+@import "../../styles/partials/variables";
+@import "../../styles/partials/resets";
+
+.inventory-list {
+  @include font-body-lg;
+  text-align: left;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-row {
+  color: $slate;
+  background-color: $light-grey;
+  @include font-table-header;
+  padding: 0.5rem 2rem;
+  width: 100%;
+  display: none;
+
+  @include tablet-and-desktop {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__header-item {
+    @include font-table-header;
+    white-space: nowrap;
+    text-transform: uppercase;
+
+    @include tablet-and-desktop {
+      display: flex;
+      width: 17%;
+    }
+
+    &:last-child {
+      text-align: right;
+
+      @include tablet-and-desktop {
+        width: 10%;
+      }
+    }
+
+    &--status {
+      @include tablet-and-desktop {
+        width: 28%;
+      }
+    }
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__icon {
+    vertical-align: middle;
+  }
+}
