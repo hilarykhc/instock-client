@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import WarehouseDetails from "./pages/WarehouseDetails/WarehouseDetails";
+import WarehouseDetails from "./components/InventoryList/InventoryList";
 import AddInventory from './pages/Add-Inventory/add-inventory';
 import './App.scss';
 import WarehousePage from './pages/WarehousePage/WarehousePage';
@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/warehouse/id" element={<WarehouseDetails />} />
+        <Route path="/warehouse/warehouse_id" element={<WarehouseDetails />} />
         <Route path="/add-inventory" element={<AddInventory/>} />
         {/* Add other routes as needed */}
 
@@ -37,6 +37,7 @@ function App() {
           path="/inventory/:inventoryId"
           element={<InventoryDetailsPage />}
         />        
+
       </Routes>
       <Footer />
     </BrowserRouter>

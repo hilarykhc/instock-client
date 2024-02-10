@@ -1,26 +1,27 @@
 
-
-
 import React, { useState, useEffect } from "react";
-import "../../pages/WarehouseDetails/WarehouseDetails.scss";
+import "./InventoryList.scss";
 import arrowBack from "../../assets/Icons/arrow_back-24px.svg";
 import editOutline from "../../assets/Icons/edit-24px.svg";
 import chevronRight from "../../assets/Icons/chevron_right-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-function WarehouseDetails() {
+
+function InventoryList() {
+  const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+  const { warehouseId } = useParams(); 
+  console.log(warehouseId);
   const [currentWarehouse, setCurrentWarehouse] = useState({});
   const [currentWarehouseContact, setCurrentWarehouseContact] = useState({});
   const [currentWarehouseInventory, setCurrentWarehouseInventory] = useState([]);
-
-  const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
   console.log(REACT_APP_SERVER_URL);
 
-  const getWarehouseDetails = async () => {
+  const getWarehouseDetails = async (id) => {
     try {
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses/{id}`);
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses`);
       console.log(response.data);
       setCurrentWarehouse(response.data.currentWarehouse);
       setCurrentWarehouseContact(response.data.currentWarehouseContact);
@@ -33,10 +34,9 @@ function WarehouseDetails() {
     getWarehouseDetails();
   }, []);
 
-  // Function to determine stock status
+
   const stockStatus = (status) => {
-    // Implement your logic for determining stock status here
-    // Return appropriate className based on the status
+    
   };
 
   return (
@@ -180,7 +180,7 @@ function WarehouseDetails() {
   );
 }
 
-export default WarehouseDetails;
+export default InventoryList;
 
 
 
