@@ -8,6 +8,7 @@ import editIcon from "../../assets/Icons/edit-24px.svg";
 import sort from "../../assets/Icons/sort-24px.svg";
 import Delete from "../Delete/Delete";
 import AddNewWarehouse from "../../pages/AddNewWarehouse/AddNewWarehouse";
+import WarehousePageHeader from "../WarehousePageHeader/WarehousePageHeader";
 
 function WarehouseList() {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -84,31 +85,34 @@ function WarehouseList() {
         <AddNewWarehouse onCancel={() => resetDisplayState()} />
       )}
       {!displayForm && (
-        <div className="section">
-          <div className="section__wrapper">
-            <div className="section__firstBox">
-              <h1 className="section__header">Warehouses</h1>
-              <div className="section__inputButtonWrapper">
-                <div className="section__inputWrapper">
-                  <textarea
-                    className="section__input"
-                    placeholder="Search..."
-                  ></textarea>
-                  <img
-                    src={searchIcon}
-                    alt="search icon"
-                    className="section__search"
-                  ></img>
-                </div>
-                <button
-                  onClick={addWarehouseHandler}
-                  className="section__button"
-                >
-                  + Add New Warehouse
-                </button>
-              </div>
-            </div>
+        <main className="div-container-main">
+          <div className="div-container">
+            <WarehousePageHeader />
 
+            {/* // <div className="section">
+        //   <div className="section__wrapper">
+        //     <div className="section__firstBox">
+        //       <h1 className="section__header">Warehouses</h1>
+        //       <div className="section__inputButtonWrapper">
+        //         <div className="section__inputWrapper">
+        //           <textarea */}
+            {/* //             className="section__input"
+        //             placeholder="Search..."
+        //           ></textarea> */}
+            {/* //           <img
+        //             src={searchIcon} */}
+            {/* //             alt="search icon"
+        //             className="section__search"
+        //           ></img> */}
+            {/* //         </div> */}
+            {/* //         <button */}
+            {/* //           onClick={addWarehouseHandler}
+        //           className="section__button"
+        //         >
+        //           + Add New Warehouse
+        //         </button> */}
+            {/* //       </div> */}
+            {/* //     </div> */}
             <div className="section__titleContainerNew">
               <div className="section__namesortbox">
                 <div className="section__subtitleNew">WAREHOUSE</div>
@@ -193,7 +197,7 @@ function WarehouseList() {
               </div>
             ))}
           </div>
-        </div>
+        </main>
       )}
     </>
   );

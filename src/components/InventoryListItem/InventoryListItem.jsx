@@ -24,7 +24,9 @@ const InventoryListItem = (props) => {
   return (
     <div className="inventory-row">
       <div className="inventory-row__col inventory-row__col--name">
-        <h4 className="inventory-row__cell-header">INVENTORY ITEM</h4>
+        <h4 className="inventory-row__cell-header inventory-row__cell-header-top">
+          INVENTORY ITEM
+        </h4>
         <Link className="inventory-row__link" to={`/inventory/${id}`}>
           {item_name}
           <img
@@ -39,7 +41,9 @@ const InventoryListItem = (props) => {
         {category}
       </div>
       <div className="inventory-row__col inventory-row__col--status">
-        <h4 className="inventory-row__cell-header">STATUS</h4>
+        <h4 className="inventory-row__cell-header inventory-row__cell-header-top">
+          STATUS
+        </h4>
 
         <div
           className={`inventory-row__col--status--${
@@ -51,16 +55,18 @@ const InventoryListItem = (props) => {
       </div>
 
       <div className="inventory-row__col inventory-row__col--quantity">
-        <h4 className="inventory-row__cell-header">QUANTITY</h4>
+        <h4 className="inventory-row__cell-header">QTY</h4>
         <div className="inventory-row__contact-info">
           <p className="inventory-row__quantity">{quantity}</p>
         </div>
       </div>
 
-      <div className="inventory-row__col inventory-row__col--warehouse">
-        <h4 className="inventory-row__cell-header">WAREHOUSE</h4>
-        <div className="inventory-row__contact-info">
-          <p className="inventory-row__quantity">{warehouse_name}</p>
+      <div className="warehouse__container">
+        <div className="inventory-row__col inventory-row__col--warehouse">
+          <h4 className="inventory-row__cell-header">WAREHOUSE</h4>
+          <div className="inventory-row__contact-info">
+            <p className="inventory-row__quantity">{warehouse_name}</p>
+          </div>
         </div>
       </div>
       {/* Edit & Delete Button */}
