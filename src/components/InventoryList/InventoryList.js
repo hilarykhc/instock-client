@@ -44,50 +44,6 @@ function InventoryList() {
       {/* Rest of your component code */}
       <section className="warehouse-deatils">
       <article className="warehouse-details__container">
-          <div className="warehouse-details__header">
-            <div className="warehouse-details__name-container">
-              {/* <Link to={`/warehouse`} className="warehouse-details__back-arrow">
-                <img src={arrowBack} alt="back arrow" />
-              </Link> */}
-              <h1>123</h1>
-            </div>
-            <div className="warehouse-details__warehouse-edit">
-              {/* <Link
-                to={`/warehouse/${this.state.currentWarehouse.id}/edit-warehouse`}
-              >
-                <EditButton />
-              </Link> */}
-            </div>
-          </div>
-          <div className="warehouse-details__details-container">
-            <div className="warehouse-details__warehouse-address">
-              <p className="warehouse-details__heading">WAREHOUSE ADDRESS:</p>
-              <p className="warehouse-details__body">
-              address
-              </p>
-              <p className="warehouse-details__body">
-              city,country
-              </p>
-            </div>
-            <div className="warehouse-details__contact-name">
-              <p className="warehouse-details__heading">CONTACT NAME:</p>
-              <p className="warehouse-details__body">
-              name
-              </p>
-              <p className="warehouse-details__body">
-               position
-              </p>
-            </div>
-            <div className="warehouse-details__contact-info">
-              <p className="warehouse-details__heading">CONTACT INFORMATION:</p>
-              <p className="warehouse-details__body">
-              phone
-              </p>
-              <p className="warehouse-details__body">
-                email
-              </p>
-            </div>
-          </div>
           <div className="warehouse-details__tablet-header-container">
             <div className="warehouse-details__tablet-header warehouse-details__tablet-header--inventory">
               <p>INVENTORY ITEM</p>
@@ -121,7 +77,7 @@ function InventoryList() {
                       INVENTORY ITEM
                     </p>
                     {/* <Link
-                      to={`/inventory/${}`}
+                      to={`/inventory/${id}`}
                       className="warehouse-details__more-details"
                     >
                       <p className="warehouse-details__body warehouse-details__body--blue-link">
@@ -151,19 +107,18 @@ function InventoryList() {
                       {/* <Route
                         path="/warehouse"
                         render={(routerProps) => (
-                          // <DeleteInventoryFromWarehouse
-                          //   id={item.id}
-                          //   item={item.itemName}
-                          //   warehouseid={item.warehouseID}
-                          //   deleteInventoryItemFromWarehouse={
-                          //     this.props.deleteInventoryItemFromWarehouse
-                          //   }
-                          //   {...routerProps}
-                          // />
-                        )}
+                          <DeleteInventoryFromWarehouse
+                            id={item.id}
+                            item={item.itemName}
+                            warehouseid={item.warehouseID}
+                            deleteInventoryItemFromWarehouse={
+                              this.props.deleteInventoryItemFromWarehouse
+                            }
+                            {...routerProps}
+                          /> */}
+                        {/* )}
                       /> */}
                     </div>
-
                     {/* <Link to={`/inventory/${item.id}/edit-item`}>
                       <div className="warehouse-details__edit">
                         <img src={editOutline} alt="select to edit" />
@@ -171,7 +126,6 @@ function InventoryList() {
                     </Link> */}
                   </div>
                 </li>
-            
           </ul>
         </article>
       </section>
