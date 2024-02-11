@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./WarehouseList.scss";
 import axios from "axios";
 import searchIcon from "../../assets/Icons/search-24px.svg";
@@ -89,30 +90,6 @@ function WarehouseList() {
           <div className="div-container">
             <WarehousePageHeader addWarehouseHandler={addWarehouseHandler} />
 
-            {/* // <div className="section">
-        //   <div className="section__wrapper">
-        //     <div className="section__firstBox">
-        //       <h1 className="section__header">Warehouses</h1>
-        //       <div className="section__inputButtonWrapper">
-        //         <div className="section__inputWrapper">
-        //           <textarea */}
-            {/* //             className="section__input"
-        //             placeholder="Search..."
-        //           ></textarea> */}
-            {/* //           <img
-        //             src={searchIcon} */}
-            {/* //             alt="search icon"
-        //             className="section__search"
-        //           ></img> */}
-            {/* //         </div> */}
-            {/* //         <button */}
-            {/* //           onClick={addWarehouseHandler}
-        //           className="section__button"
-        //         >
-        //           + Add New Warehouse
-        //         </button> */}
-            {/* //       </div> */}
-            {/* //     </div> */}
             <div className="section__titleContainerNew">
               <div className="section__namesortbox">
                 <div className="section__subtitleNew">WAREHOUSE</div>
@@ -140,7 +117,14 @@ function WarehouseList() {
                   <div className="section__one">
                     <div className="section__subtitle">WAREHOUSE</div>
                     <div className="section__wrapperName">
-                      <div className="section__name">{list.warehouse_name}</div>
+                      <Link
+                        to={`/warehouse/${list.id}`}
+                        className="section__link"
+                      >
+                        <div className="section__name">
+                          {list.warehouse_name}
+                        </div>
+                      </Link>
                       <img
                         src={arrowRight}
                         alt="front arrow"
@@ -204,4 +188,3 @@ function WarehouseList() {
 }
 
 export default WarehouseList;
-
