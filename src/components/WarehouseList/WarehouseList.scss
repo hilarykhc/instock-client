@@ -61,7 +61,6 @@
       width: 25vw;
       height: 4vh;
       padding-top: -0.4rem;
-
       border-radius: 2rem;
     }
   }
@@ -128,7 +127,6 @@
     padding-left: 1rem;
     @include tablet-and-desktop {
       width: 13vw;
-
       font-size: $tablet-body-font-size;
     }
     @include desktop {
@@ -243,14 +241,17 @@
   }
   &__flexContainer {
     display: flex;
-    justify-content: flex-start;
-    gap: 1.5rem;
+    
+
     @include tablet-and-desktop {
       display: flex;
+      justify-content: flex-start;
+      gap: 1.5rem;
     }
   }
   &__one {
     width: 40%;
+border:2px solid red;
     @include tablet-and-desktop {
       display: flex;
       align-items: center;
@@ -261,6 +262,8 @@
     }
   }
   &__two {
+ 
+    border: 2px solid red;
     @include tablet-and-desktop {
       display: flex;
       align-items: center;
@@ -289,7 +292,6 @@
     border-bottom: 1.2px solid $cloud;
     @include tablet-and-desktop {
       display: flex;
-
       justify-content: space-between;
       align-items: center;
       flex-direction: row;

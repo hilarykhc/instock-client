@@ -81,7 +81,7 @@ const InventoryListItem = (props) => {
           />
         )}
         <Link
-          to="#"
+          to={`/inventory/edit/?id=${id}`}
           className="inventory-row__icon-button inventory-row__icon-button--edit"
         >
           <img className="inventory-row__icon" src={editIcon} alt="edit" />

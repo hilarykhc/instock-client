@@ -1,10 +1,6 @@
 import WarehouseForm from "../../components/WarehouseForm/WarehouseForm";
 import "./AddNewWarehouse.scss";
-import WarehouseForm from "../../components/WarehouseForm/WarehouseForm";
-import "./AddNewWarehouse.scss";
 // import backIcon from '../../assets/Icons'
-import backArrow from "../../assets/Icons/arrow_back-24px.svg";
-import { useNavigate } from "react-router-dom";
 import backArrow from "../../assets/Icons/arrow_back-24px.svg";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +17,6 @@ function AddNewWarehouse(props) {
   const navigate = useNavigate();
   const cancelHandler = () => {
     props.onCancel();
-
     navigate("/warehouse");
   };
   return (

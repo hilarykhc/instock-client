@@ -9,7 +9,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage";
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
-
+import InventoryForm from "./components/InventoryForm/InventoryForm"
 export default function App() {
   return (
     <BrowserRouter>
@@ -30,7 +30,11 @@ export default function App() {
         <Route
           path="/inventory/:inventoryId"
           element={<InventoryDetailsPage />}
-        />        
+        />     
+        <Route
+          path="/inventory/edit"
+          element={<InventoryForm />}
+        />   
         />
         <Route path="/warehouse/add" element={<AddNewWarehouse />} />
       </Routes>
