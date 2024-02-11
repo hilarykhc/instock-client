@@ -4,9 +4,11 @@ import editIcon from "../../assets/Icons/edit-24px.svg";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 import InventoryHeader from "../../components/InventoryHeader/InventoryHeader";
 import InventoryListItem from "../../components/InventoryListItem/InventoryListItem";
 import InventoryPageHeader from "../../components/InventoryPageHeader/InventoryPageHeader";
+
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -124,7 +126,8 @@ Chao Meng
                 {currentSelectedWarehouse.address},
               </p>
               <p className="warehouse-details__bottom-text">
-                {currentSelectedWarehouse.city}, {currentSelectedWarehouse.city}
+                {currentSelectedWarehouse.city},{" "}
+                {currentSelectedWarehouse.country}
               </p>
             </div>
             <div className="warehouse-details__bottom-contact">
@@ -141,7 +144,7 @@ Chao Meng
               </div>
               <div className="warehouse-details__bottom-right">
                 <h4 className="warehouse-details__bottom-title">
-                  CONACT INFORMATION:
+                  CONTACT INFORMATION:
                 </h4>
                 <p className="warehouse-details__bottom-text">
                   {currentSelectedWarehouse.contact_phone}

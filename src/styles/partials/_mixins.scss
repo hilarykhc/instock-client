@@ -159,3 +159,33 @@
     padding-right: 1rem;
   }
 }
+
+
+@mixin inStock {
+  text-transform: uppercase;
+  background-color: rgba(21, 132, 99, 0.07);
+  color: $green;
+  width: 4rem;
+  text-align: center;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  height: 1.6rem;
+  padding: 0.2rem;
+  font-family: "Titillium Regular";
+}
+
+@mixin outOfStock {
+  text-transform: uppercase;
+  background-color: rgba(201, 69, 21, 0.07);
+  color: $red;
+  width: 6rem;
+  text-align: center;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  height: 1.6rem;
+  padding: 0.2rem;
+  font-family: "Titillium Regular";
+}
+

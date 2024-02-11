@@ -1,5 +1,8 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { createContext, useState } from "react";
+
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import WarehousePage from "./pages/WarehousePage/WarehousePage";
@@ -30,9 +33,16 @@ export default function App() {
         <Route
           path="/inventory/:inventoryId"
           element={<InventoryDetailsPage />}
+
+
+        
+
+//         />        
+
         />
 
         <Route path="/warehouse/add" element={<AddNewWarehouse />} />
+
       </Routes>
       <Footer />
     </BrowserRouter>

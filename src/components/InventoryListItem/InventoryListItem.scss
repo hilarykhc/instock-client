@@ -9,10 +9,11 @@
   padding: 1rem 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
+  // justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: 1rem;
+  line-height: 1rem;
+  font-size: 0.75rem;
 
   @include tablet-and-desktop {
     padding: 1rem 2rem;
@@ -32,6 +33,10 @@
     display: block;
   }
 
+  &__quantity {
+    margin: 0;
+  }
+
   &__col {
     width: 50%;
     flex: 0 1 45%;
@@ -45,6 +50,15 @@
       order: -2;
     }
 
+    &--warehouse {
+      padding-left: 4.85rem;
+
+      @include tablet-and-desktop {
+        padding-right: 2.5rem;
+        padding-left: 0;
+      }
+    }
+
     &--status {
       order: -1;
       display: flex;
@@ -52,27 +66,36 @@
       justify-content: flex-start;
       @include font-label;
       width: 4.0625rem;
-      margin-top: 0.1875rem;
+      // margin-top: 0.1875rem;
 
       @include tablet-and-desktop {
         order: 0;
         min-width: 17%;
       }
 
-      &--green {
-        @include tag($red);
-        width: 5rem;
-        text-align: center;
-      }
       &--red {
-        @include tag($green);
-        width: 7rem;
-        text-align: center;
+        @include outOfStock;
       }
+
+      &--green {
+        @include inStock;
+      }
+
+      // &--green {
+      //   @include tag($red);
+      //   width: 5rem;
+      //   text-align: center;
+      // }
+      // &--red {
+      //   @include tag($green);
+      //   width: 7rem;
+      //   text-align: center;
+      // }
     }
 
     &--actions {
       // text-align: right;
+      padding-top: 1rem;
       flex: 100%;
       display: flex;
       justify-content: space-between;
@@ -101,11 +124,16 @@
   }
 
   &__cell-header {
+    margin: 1.25rem 0 0.25rem 0;
     @include font-table-header;
 
     @include tablet-and-desktop {
       display: none;
     }
+  }
+
+  &__cell-header-top {
+    margin-top: 0rem;
   }
 
   &__link {
