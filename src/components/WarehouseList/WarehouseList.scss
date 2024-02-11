@@ -122,6 +122,9 @@
       display: none;
     }
   }
+  &__link {
+    text-decoration: none;
+  }
   &__name {
     color: $instock-indigo;
     font-size: 0.688rem;

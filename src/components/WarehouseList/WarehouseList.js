@@ -137,7 +137,10 @@ function WarehouseList() {
                   <div className="section__one">
                     <div className="section__subtitle">WAREHOUSE</div>
                     <div className="section__wrapperName">
-                      <Link to={`/warehouse/${list.id}`}>
+                      <Link
+                        to={`/warehouse/${list.id}`}
+                        className="section__link"
+                      >
                         <div className="section__name">
                           {list.warehouse_name}
                         </div>
@@ -193,6 +196,7 @@ function WarehouseList() {
                     )}
                     <img
                       src={editIcon}
+                      onClick={() => handleEditWarehouseClick(list)}
                       alt="edit icon"
                       className="section__edit"
                     ></img>
