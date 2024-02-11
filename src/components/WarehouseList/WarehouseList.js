@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import "./WarehouseList.scss";
 import axios from "axios";
@@ -13,6 +14,8 @@ import WarehousePageHeader from "../WarehousePageHeader/WarehousePageHeader";
 function WarehouseList() {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [lists, setLists] = useState([]);
+  const [sortBy, setSortBy] = useState(null);
+  const [sortOrder, setSortOrder] = useState('asc');
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -21,7 +24,12 @@ function WarehouseList() {
 
   const getWarehouseList = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses`);
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses`, {
+        params: {
+          sort_by: sortBy,
+          order_by: sortOrder,
+        },
+      });
       setLists(response.data);
     } catch (error) {
       console.log(error);
@@ -29,7 +37,7 @@ function WarehouseList() {
   };
   useEffect(() => {
     getWarehouseList();
-  }, []);
+  }, [sortBy, sortOrder]);
 
   const handleDeleteClick = (itemId) => {
     setSelectedItemId(itemId);
@@ -43,12 +51,12 @@ function WarehouseList() {
     axios
       .delete(url)
       .then((response) => {
-        console.log("Deleted successfully", response.data);
+        console.log('Deleted successfully', response.data);
         const updatedLists = lists.filter((list) => list.id !== selectedItemId);
         setLists(updatedLists);
       })
       .catch((error) => {
-        console.error("There was an error!", error);
+        console.error('There was an error!', error);
       });
 
     // close modal and reset item id
@@ -73,6 +81,16 @@ function WarehouseList() {
     getWarehouseList();
   };
 
+    const handleSort = (value) => {
+      if (sortBy === value) {
+        setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+      } else {
+        setSortBy(value);
+        setSortOrder('asc'); 
+      }
+    };
+
+
   return (
     <>
       {displayForm && isEditMode && (
@@ -89,44 +107,20 @@ function WarehouseList() {
           <div className="div-container">
             <WarehousePageHeader addWarehouseHandler={addWarehouseHandler} />
 
-            {/* // <div className="section">
-        //   <div className="section__wrapper">
-        //     <div className="section__firstBox">
-        //       <h1 className="section__header">Warehouses</h1>
-        //       <div className="section__inputButtonWrapper">
-        //         <div className="section__inputWrapper">
-        //           <textarea */}
-            {/* //             className="section__input"
-        //             placeholder="Search..."
-        //           ></textarea> */}
-            {/* //           <img
-        //             src={searchIcon} */}
-            {/* //             alt="search icon"
-        //             className="section__search"
-        //           ></img> */}
-            {/* //         </div> */}
-            {/* //         <button */}
-            {/* //           onClick={addWarehouseHandler}
-        //           className="section__button"
-        //         >
-        //           + Add New Warehouse
-        //         </button> */}
-            {/* //       </div> */}
-            {/* //     </div> */}
             <div className="section__titleContainerNew">
-              <div className="section__namesortbox">
+              <div className="section__namesortbox" onClick={() => handleSort('warehouse_name')}>
                 <div className="section__subtitleNew">WAREHOUSE</div>
-                <img src={sort} alt="sort icon" className="section__sort"></img>
+                <img src={sort} alt="sort icon" className="section__sort" ></img>
               </div>
-              <div className="section__namesortbox">
+              <div className="section__namesortbox" onClick={() => handleSort('address')}>
                 <div className="section__addressTitleNew">ADDRESS</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
-              <div className="section__namesortbox">
+              <div className="section__namesortbox" onClick={() => handleSort('contact_name')}>
                 <div className="section__contactTitleNew">CONTACT NAME</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
-              <div className="section__namesortbox">
+              <div className="section__namesortbox" onClick={() => handleSort('contact_email')}>
                 <div className="section__contactInfoTitleNew">
                   CONTACT INFORMATION
                 </div>
@@ -147,9 +141,11 @@ function WarehouseList() {
                         className="section__arrow"
                       ></img>
                     </div>
+
                     <div className="section__addressTitle">ADDRESS</div>
                     <div className="section__addressBox">
                       <div className="section__address">{list.address}</div>
+
                       <div className="section__city">{list.city}</div>
                       <span className="section__country">{list.country}</span>
                     </div>
