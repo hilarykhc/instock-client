@@ -11,6 +11,8 @@ export default function WarehousePage() {
   return (
     <div>
       <WarehouseList />
+      <Button onClick={buttonClickHandler} />
+
     </div>
   );
 }
