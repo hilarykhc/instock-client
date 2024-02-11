@@ -122,6 +122,7 @@ function EditInventory() {
               src={backarrow}
               alt="back arrow icon"
               className="addinventory__header-icon"
+              onClick={onClose}
             />
           </div>
           <div className="addinventory__title-wrap">
@@ -224,6 +225,7 @@ function EditInventory() {
                   </div>
                 </div>
                 {formData.status === "In Stock" && (
+                     <div className="addinventory__quantityParent">
                   <div className="addinventory__form-name-quantity">
                     <p className="addinventory__form-name">Quantity</p>
                     <input
@@ -241,9 +243,10 @@ function EditInventory() {
                       </span>
                     )}
                   </div>
+                  </div>
                 )}
 
-                <div className="wareHouseParent">
+                <div className="addinventory__wareHouseParent">
                   <p className="addinventory__form-name">Warehouse</p>
                   <select
                     className="addinventory__form-category-name"
