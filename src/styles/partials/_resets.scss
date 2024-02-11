@@ -2,9 +2,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  color: unset;
 }
 
 h1,
@@ -14,10 +11,3 @@ body {
   font-family: "Titillium Regular", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
-
-// img,
-// input,
-// label,
-// button {
-//   display: block;
-// }

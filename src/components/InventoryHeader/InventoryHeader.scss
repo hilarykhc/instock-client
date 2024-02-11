@@ -1,7 +1,7 @@
-@import "../../styles/partials/mixins";
-@import "../../styles/partials/typography";
-@import "../../styles/partials/variables";
-@import "../../styles/partials/resets";
+@import '../../styles/partials/mixins';
+@import '../../styles/partials/typography';
+@import '../../styles/partials/variables';
+@import '../../styles/partials/resets';
 
 .inventory-list {
   @include font-body-lg;
@@ -26,10 +26,9 @@
   }
 
   &__header-item {
-    @include font-table-header;
+  @include font-table-header;
     white-space: nowrap;
-    text-transform: uppercase;
-
+   text-transform: uppercase;
     @include tablet-and-desktop {
       display: flex;
       width: 17%;
@@ -49,13 +48,13 @@
       }
     }
   }
-  &__body {
+    &__body {
     display: flex;
     flex-direction: column;
   }
 
   &__icon {
     vertical-align: middle;
-    width: 1rem;
   }
 }
+

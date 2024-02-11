@@ -3,6 +3,7 @@ import InventoryListHeader from "../../components/InventoryListHeader/InventoryL
 import axios from "axios";
 import InventoryListItem from "../../components/InventoryListItem/InventoryListItem";
 import InventoryPageHeader from "../../components/InventoryPageHeader/InventoryPageHeader";
+import "./InventoryPage.scss";
 
 const InventoryPage = () => {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -51,16 +52,20 @@ const InventoryPage = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <main>
-      <InventoryPageHeader />
-      <InventoryListHeader onSort={handleSortClick} />
-      {inventories.map((inventory) => (
-        <InventoryListItem
-          key={inventory.id}
-          inventoryItem={inventory}
-          onDelete={deleteInventoryItem}
-        />
-      ))}
+
+
+    <main className="div-container-main">
+      <div className="div-container">
+        <InventoryPageHeader />
+              <InventoryListHeader onSort={handleSortClick} />
+        {inventories.map((inventory) => (
+          <InventoryListItem
+            key={inventory.id}
+            inventoryItem={inventory}
+            onDelete={deleteInventoryItem}
+          />
+        ))}
+      </div>
     </main>
   );
 };
