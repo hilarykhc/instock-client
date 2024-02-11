@@ -1,7 +1,7 @@
 import React from "react";
 import "./WarehousePageHeader.scss";
 
-const WarehousePageHeader = () => {
+const WarehousePageHeader = ({ addWarehouseHandler }) => {
   return (
     <div className="warehouse-header">
       <section className="warehouse-header__wrapper">
@@ -15,7 +15,12 @@ const WarehousePageHeader = () => {
             />
           </form>
 
-          <button className="warehouse-header__btn">+ Add New Item</button>
+          <button
+            onClick={addWarehouseHandler}
+            className="warehouse-header__btn"
+          >
+            + Add New Item
+          </button>
         </div>
       </section>
     </div>
