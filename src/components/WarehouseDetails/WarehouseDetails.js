@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import InventoryHeader from "../../components/InventoryHeader/InventoryHeader";
-import InventoryListItem from "../../components/InventoryListItem/InventoryListItem";
+import InventoryList from "../../components/InventoryList/InventoryList";
 import InventoryPageHeader from "../../components/InventoryPageHeader/InventoryPageHeader";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
@@ -160,7 +160,7 @@ Chao Meng
       <InventoryPageHeader />
       <InventoryHeader />
       {inventories.map((inventory) => (
-        <InventoryListItem
+        <InventoryList
           key={inventory.id}
           inventoryItem={inventory}
           onDelete={deleteInventoryItem}

@@ -1,0 +1,41 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/resets';
+
+.new-warehouse{
+  background-color: $light-grey;
+
+  &__wrapper{
+    margin: 0px 1rem;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
+    position: relative;
+    top: -3.2rem;
+
+  }
+
+  &__title-container{
+    display: flex;
+    align-items: center;
+    gap:0.3rem;
+    @include divider;
+    padding-top: $padding-mobile-before-headline;
+    padding-bottom: $padding-mobile-after-headline;
+    padding-left: $padding-mobile-bw-component;
+    padding-right: $padding-mobile-bw-component; 
+  }
+
+  &__title{
+    @include font-page-header;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: $instock-black;
+  }
+
+&__icon{
+  height: 1.5rem;
+  width: 1.5rem;
+}
+}
