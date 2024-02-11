@@ -41,7 +41,7 @@ function InventoryList() {
 
   return (
     <section className="warehouse-details">
-      {/* Rest of your component code */}
+     
       <section className="warehouse-deatils">
       <article className="warehouse-details__container">
           <div className="warehouse-details__tablet-header-container">
