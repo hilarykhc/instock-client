@@ -5,6 +5,11 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import InventoryHeader from "../../components/InventoryHeader/InventoryHeader";
+import InventoryListItem from "../../components/InventoryListItem/InventoryListItem";
+import InventoryPageHeader from "../../components/InventoryPageHeader/InventoryPageHeader";
+
+
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function WarehouseDetails() {
@@ -50,6 +55,41 @@ export default function WarehouseDetails() {
     getSingleWarehouse();
   }, [warehouseId]);
 
+  /*add the inventory list for warehouse details
+get the inventory for selected warehouse name
+Chao Meng
+2024-02-10*/
+  const [inventories, setInventories] = useState([]);
+
+  const fetchAllInventories = async () => {
+    try {
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`);
+      console.log(response.data);
+      const filteredInventories = response.data.filter(
+        (inventory) =>
+          inventory.warehouse_name === currentSelectedWarehouse.warehouse_name
+      );
+      setInventories(filteredInventories);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (currentSelectedWarehouse.warehouse_name) {
+      fetchAllInventories();
+    }
+  }, [currentSelectedWarehouse]);
+  const deleteInventoryItem = (itemId) => {
+    axios
+      .delete(`${REACT_APP_SERVER_URL}/inventories/${itemId}`)
+      .then(() => {
+        const updatedInventories = inventories.filter(
+          (item) => item.id !== itemId
+        );
+        setInventories(updatedInventories);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <main className="warehouse-details">
       <div className="div-container1">
@@ -117,6 +157,18 @@ export default function WarehouseDetails() {
           </section>
         </div>
       </div>
+      {/* add the inventory list for warehouse details
+      Chao Meng
+      2024-02-10*/}
+      <InventoryPageHeader />
+      <InventoryHeader />
+      {inventories.map((inventory) => (
+        <InventoryListItem
+          key={inventory.id}
+          inventoryItem={inventory}
+          onDelete={deleteInventoryItem}
+        />
+      ))}
     </main>
   );
 }
