@@ -1,27 +1,27 @@
-import Divider from '../Divider/Divider';
-import './WarehouseForm.scss';
-import { useNavigate } from 'react-router-dom';
-import notificationIcon from '../../assets/Icons/error.svg';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-const emailValidator = require('validator');
+import Divider from "../Divider/Divider";
+import "./WarehouseForm.scss";
+import { useNavigate } from "react-router-dom";
+import notificationIcon from "../../assets/Icons/error.svg";
+import { useState, useEffect } from "react";
+import axios from "axios";
+const emailValidator = require("validator");
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const WarehouseForm = (props) => {
-  console.log('Value from form');
+  console.log("Value from form");
   console.log(props.warehouseData);
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    warehouse_name: '',
-    address: '',
-    city: '',
-    country: '',
-    contact_name: '',
-    contact_phone: '',
-    contact_position: '',
-    contact_email: '',
+    warehouse_name: "",
+    address: "",
+    city: "",
+    country: "",
+    contact_name: "",
+    contact_phone: "",
+    contact_position: "",
+    contact_email: "",
   });
   useEffect(() => {
     if (props.warehouseData) {
@@ -33,44 +33,44 @@ const WarehouseForm = (props) => {
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
-    setErrors({ ...errors, [event.target.name]: '' });
+    setErrors({ ...errors, [event.target.name]: "" });
   };
 
   const cancelHandler = () => {
     props.cancelHandler();
-    navigate('/warehouse');
+    navigate("/warehouse");
   };
 
   const formValidation = () => {
     const formErrors = {};
 
-    if (formData.warehouse_name.trim() === '') {
-      formErrors.warehouse_name = 'Warehouse name is required';
+    if (formData.warehouse_name.trim() === "") {
+      formErrors.warehouse_name = "Warehouse name is required";
     }
-    if (formData.address.trim() === '') {
-      formErrors.address = 'Address is required';
+    if (formData.address.trim() === "") {
+      formErrors.address = "Address is required";
     }
-    if (formData.city.trim() === '') {
-      formErrors.city = 'City is required';
+    if (formData.city.trim() === "") {
+      formErrors.city = "City is required";
     }
-    if (formData.country.trim() === '') {
-      formErrors.country = 'Country is required';
+    if (formData.country.trim() === "") {
+      formErrors.country = "Country is required";
     }
-    if (formData.contact_name.trim() === '') {
-      formErrors.contact_name = 'Contact name is required';
+    if (formData.contact_name.trim() === "") {
+      formErrors.contact_name = "Contact name is required";
     }
-    if (formData.contact_phone.trim() === '') {
-      formErrors.contact_phone = 'Contact phone is required';
+    if (formData.contact_phone.trim() === "") {
+      formErrors.contact_phone = "Contact phone is required";
     } else if (!validateContactNumber(formData.contact_phone)) {
-      formErrors.contact_phone = 'Invalid phone number';
+      formErrors.contact_phone = "Invalid phone number";
     }
-    if (formData.contact_position.trim() === '') {
-      formErrors.contact_position = 'Contact position is required';
+    if (formData.contact_position.trim() === "") {
+      formErrors.contact_position = "Contact position is required";
     }
-    if (formData.contact_email.trim() === '') {
-      formErrors.contact_email = 'Contact Email is required';
+    if (formData.contact_email.trim() === "") {
+      formErrors.contact_email = "Contact Email is required";
     } else if (!validateEmail(formData.contact_email)) {
-      formErrors.contact_email = 'Invalid email address';
+      formErrors.contact_email = "Invalid email address";
     }
     setErrors(formErrors);
 
@@ -88,7 +88,7 @@ const WarehouseForm = (props) => {
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log('btn ');
+    console.log("btn ");
 
     const isFormValid = formValidation();
     const isEmailValid = validateEmail(formData.contact_email);
@@ -106,22 +106,19 @@ const WarehouseForm = (props) => {
           await axios.put(
             `${REACT_APP_SERVER_URL}/warehouses/${props.warehouseData.id}`,
             newWarehouse
-          )
-          props.cancelHandler();
-          navigate('/warehouse');
-        } else {
-          await axios.post(
-            `${REACT_APP_SERVER_URL}/warehouses`,
-            newWarehouse
           );
           props.cancelHandler();
-          navigate('/warehouse');
+          navigate("/warehouse");
+        } else {
+          await axios.post(`${REACT_APP_SERVER_URL}/warehouses`, newWarehouse);
+          props.cancelHandler();
+          navigate("/warehouse");
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-      console.log('Invalid form');
+      console.log("Invalid form");
     }
   };
 
@@ -140,7 +137,7 @@ const WarehouseForm = (props) => {
               <input
                 onChange={handleChange}
                 className={`warehouse-form__input ${
-                  errors.warehouse_name ? 'error' : ''
+                  errors.warehouse_name ? "error" : ""
                 }`}
                 value={formData.warehouse_name}
                 type="text"
@@ -150,7 +147,7 @@ const WarehouseForm = (props) => {
               />
               <div
                 className={`error-message ${
-                  errors.warehouse_name ? 'active' : ''
+                  errors.warehouse_name ? "active" : ""
                 }`}
               >
                 {errors.warehouse_name && (
@@ -174,7 +171,7 @@ const WarehouseForm = (props) => {
                 onChange={handleChange}
                 value={formData.address}
                 className={`warehouse-form__input ${
-                  errors.address ? 'error' : ''
+                  errors.address ? "error" : ""
                 }`}
                 type="text"
                 id="address"
@@ -182,7 +179,7 @@ const WarehouseForm = (props) => {
                 placeholder="Street Address"
               />
               <div
-                className={`error-message ${errors.address ? 'active' : ''}`}
+                className={`error-message ${errors.address ? "active" : ""}`}
               >
                 {errors.address && (
                   <>
@@ -205,14 +202,14 @@ const WarehouseForm = (props) => {
                 onChange={handleChange}
                 value={formData.city}
                 className={`warehouse-form__input ${
-                  errors.city ? 'error' : ''
+                  errors.city ? "error" : ""
                 }`}
                 type="text"
                 id="city"
                 name="city"
                 placeholder="City"
               />
-              <div className={`error-message ${errors.city ? 'active' : ''}`}>
+              <div className={`error-message ${errors.city ? "active" : ""}`}>
                 {errors.city && (
                   <>
                     <img
@@ -234,7 +231,7 @@ const WarehouseForm = (props) => {
                 onChange={handleChange}
                 value={formData.country}
                 className={`warehouse-form__input ${
-                  errors.country ? 'error' : ''
+                  errors.country ? "error" : ""
                 }`}
                 type="text"
                 id="country"
@@ -242,7 +239,7 @@ const WarehouseForm = (props) => {
                 placeholder="Country"
               />
               <div
-                className={`error-message ${errors.country ? 'active' : ''}`}
+                className={`error-message ${errors.country ? "active" : ""}`}
               >
                 {errors.country && (
                   <>
@@ -270,7 +267,7 @@ const WarehouseForm = (props) => {
                 onChange={handleChange}
                 value={formData.contact_name}
                 className={`warehouse-form__input ${
-                  errors.contact_name ? 'error' : ''
+                  errors.contact_name ? "error" : ""
                 }`}
                 type="text"
                 id="contact_name"
@@ -279,7 +276,7 @@ const WarehouseForm = (props) => {
               />
               <div
                 className={`error-message ${
-                  errors.contact_name ? 'active' : ''
+                  errors.contact_name ? "active" : ""
                 }`}
               >
                 {errors.contact_name && (
@@ -305,7 +302,7 @@ const WarehouseForm = (props) => {
                 onChange={handleChange}
                 value={formData.contact_position}
                 className={`warehouse-form__input ${
-                  errors.contact_position ? 'error' : ''
+                  errors.contact_position ? "error" : ""
                 }`}
                 type="text"
                 id="contact_position"
@@ -314,7 +311,7 @@ const WarehouseForm = (props) => {
               />
               <div
                 className={`error-message ${
-                  errors.contact_position ? 'active' : ''
+                  errors.contact_position ? "active" : ""
                 }`}
               >
                 {errors.contact_position && (
@@ -337,7 +334,7 @@ const WarehouseForm = (props) => {
                 onChange={handleChange}
                 value={formData.contact_phone}
                 className={`warehouse-form__input ${
-                  errors.contact_phone ? 'error' : ''
+                  errors.contact_phone ? "error" : ""
                 }`}
                 type="text"
                 id="contact_phone"
@@ -346,7 +343,7 @@ const WarehouseForm = (props) => {
               />
               <div
                 className={`error-message ${
-                  errors.contact_phone ? 'active' : ''
+                  errors.contact_phone ? "active" : ""
                 }`}
               >
                 {errors.contact_phone && (
@@ -369,7 +366,7 @@ const WarehouseForm = (props) => {
                 onChange={handleChange}
                 value={formData.contact_email}
                 className={`warehouse-form__input ${
-                  errors.contact_email ? 'error' : ''
+                  errors.contact_email ? "error" : ""
                 }`}
                 type="text"
                 id="contact_email"
@@ -378,7 +375,7 @@ const WarehouseForm = (props) => {
               />
               <div
                 className={`error-message ${
-                  errors.contact_email ? 'active' : ''
+                  errors.contact_email ? "active" : ""
                 }`}
               >
                 {errors.contact_email && (
@@ -404,7 +401,7 @@ const WarehouseForm = (props) => {
             Cancel
           </button>
           <button type="submit" className="warehouse-form__btn--add">
-            {props.warehouseData ? 'Save' : '+ Add Warehouse'}
+            {props.warehouseData ? "Save" : "+ Add Warehouse"}
           </button>
         </div>
       </div>
