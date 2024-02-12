@@ -1,16 +1,21 @@
-import './WarehouseDetails.scss';
-import arrowBackIcon from '../../assets/Icons/arrow_back-24px.svg';
-import editIcon from '../../assets/Icons/edit-24px.svg';
-import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import "./WarehouseDetails.scss";
+import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
+import editIcon from "../../assets/Icons/edit-24px.svg";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+import InventoryHeader from "../../components/InventoryHeader/InventoryHeader";
+import InventoryListItem from "../../components/InventoryListItem/InventoryListItem";
+import InventoryPageHeader from "../../components/InventoryPageHeader/InventoryPageHeader";
+
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function WarehouseDetails() {
   const [warehouses, setWarehouses] = useState([]);
   const [selectedWarehouse, setSelectedWarehouse] = useState({});
-  const { warehouseId = '' } = useParams();
+  const { warehouseId = "" } = useParams();
   console.log(warehouseId);
 
   // warehouseId to find selected warehouse
@@ -50,6 +55,41 @@ export default function WarehouseDetails() {
     getSingleWarehouse();
   }, [warehouseId]);
 
+  /*add the inventory list for warehouse details
+get the inventory for selected warehouse name
+Chao Meng
+2024-02-10*/
+  const [inventories, setInventories] = useState([]);
+
+  const fetchAllInventories = async () => {
+    try {
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`);
+      console.log(response.data);
+      const filteredInventories = response.data.filter(
+        (inventory) =>
+          inventory.warehouse_name === currentSelectedWarehouse.warehouse_name
+      );
+      setInventories(filteredInventories);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (currentSelectedWarehouse.warehouse_name) {
+      fetchAllInventories();
+    }
+  }, [currentSelectedWarehouse]);
+  const deleteInventoryItem = (itemId) => {
+    axios
+      .delete(`${REACT_APP_SERVER_URL}/inventories/${itemId}`)
+      .then(() => {
+        const updatedInventories = inventories.filter(
+          (item) => item.id !== itemId
+        );
+        setInventories(updatedInventories);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <main className="warehouse-details">
       <div className="div-container1">
@@ -86,7 +126,8 @@ export default function WarehouseDetails() {
                 {currentSelectedWarehouse.address},
               </p>
               <p className="warehouse-details__bottom-text">
-                {currentSelectedWarehouse.city}, {currentSelectedWarehouse.city}
+                {currentSelectedWarehouse.city},{" "}
+                {currentSelectedWarehouse.country}
               </p>
             </div>
             <div className="warehouse-details__bottom-contact">
@@ -103,7 +144,7 @@ export default function WarehouseDetails() {
               </div>
               <div className="warehouse-details__bottom-right">
                 <h4 className="warehouse-details__bottom-title">
-                  CONACT INFORMATION:
+                  CONTACT INFORMATION:
                 </h4>
                 <p className="warehouse-details__bottom-text">
                   {currentSelectedWarehouse.contact_phone}
@@ -116,6 +157,18 @@ export default function WarehouseDetails() {
           </section>
         </div>
       </div>
+      {/* add the inventory list for warehouse details
+      Chao Meng
+      2024-02-10*/}
+      <InventoryPageHeader />
+      <InventoryHeader />
+      {inventories.map((inventory) => (
+        <InventoryListItem
+          key={inventory.id}
+          inventoryItem={inventory}
+          onDelete={deleteInventoryItem}
+        />
+      ))}
     </main>
   );
 }

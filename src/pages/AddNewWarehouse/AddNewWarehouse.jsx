@@ -1,22 +1,23 @@
-import WarehouseForm from '../../components/WarehouseForm/WarehouseForm';
-import './AddNewWarehouse.scss';
-import backArrow from '../../assets/Icons/arrow_back-24px.svg';
-import { useNavigate } from 'react-router-dom';
+import WarehouseForm from "../../components/WarehouseForm/WarehouseForm";
+import "./AddNewWarehouse.scss";
+import backArrow from "../../assets/Icons/arrow_back-24px.svg";
+import { useNavigate } from "react-router-dom";
 
 function AddNewWarehouse(props) {
   let isEditMode;
-    if (props.warehouseData) {
-      isEditMode = true
-    } else {
-      isEditMode = false;
-      console.log('Add mode');
-    }
- 
-  console.log(isEditMode)
+  if (props.warehouseData) {
+    isEditMode = true;
+  } else {
+    isEditMode = false;
+    console.log("Add mode");
+  }
+
+  console.log(isEditMode);
   const navigate = useNavigate();
   const cancelHandler = () => {
-    props.onCancel()
-    navigate('/warehouse');
+    props.onCancel();
+
+    navigate("/warehouse");
   };
   return (
     <main className="new-warehouse">
@@ -27,10 +28,14 @@ function AddNewWarehouse(props) {
             alt="Back Icon"
             className="new-warehouse__icon"
           />
-          <h1 className="new-warehouse__title">{isEditMode ? "Edit Warehouse" : "Add New Warehouse " }</h1>
+          <h1 className="new-warehouse__title">
+            {isEditMode ? "Edit Warehouse" : "Add New Warehouse "}
+          </h1>
         </div>
-        <WarehouseForm warehouseData={props.warehouseData}
-        cancelHandler={cancelHandler} />
+        <WarehouseForm
+          warehouseData={props.warehouseData}
+          cancelHandler={cancelHandler}
+        />
       </div>
     </main>
   );

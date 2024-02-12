@@ -11,7 +11,6 @@ $light-grey: #f7f8f9;
 $cloud: #bdc5d5;
 $slate: #5c667e;
 $pure-white: #ffffff;
-$labels_links_buttons_mobile:13px;
 $mobile-heading-font-size: 1.75rem;
 $mobile-heading-line-height: 2.25rem;
 $mobile-subheading-font-size: 1.25rem;
@@ -19,49 +18,44 @@ $mobile-subheading-line-height: 1.75rem;
 
 $tablet-heading-font-size: 2rem;
 $tablet-subheading-font-size: 1.25rem;
+
 $tablet-body-font-size: 0.875rem;
 
 //Typography variables
-$font-family: "Titillium Web";
+$font-family: "Titillium Regular";
 
 // Mobile font style
-$font-mobile-page-header:  #{1.75rem}/#{2.25rem} $font-family;
-$font-mobile-subheader:  #{1.25rem}/#{1.75rem} $font-family;
+$font-mobile-page-header: #{1.75rem}/#{2.25rem} $font-family;
+$font-mobile-subheader: #{1.25rem}/#{1.75rem} $font-family;
 $font-mobile-table-header: #{0.6875rem}/#{1rem} $font-family;
-$font-mobile-body-lg:  #{0.9375rem}/#{1.625rem} $font-family;
-$font-mobile-body-md:  #{0.8125rem}/#{1.25rem} $font-family;
-$font-mobile-body-sm:  #{0.6875rem}/#{1rem} $font-family;
-$font-mobile-link:  #{0.8125rem}/#{1.25rem} $font-family;
-$font-mobile-labels:  #{0.8125rem}/#{1.25rem} $font-family;
-$font-mobile-buttons:  #{0.8125rem}/#{1.25rem} $font-family;
+$font-mobile-body-lg: #{0.9375rem}/#{1.625rem} $font-family;
+$font-mobile-body-md: #{0.8125rem}/#{1.25rem} $font-family;
+$font-mobile-body-sm: #{0.6875rem}/#{1rem} $font-family;
+$font-mobile-link: #{0.8125rem}/#{1.25rem} $font-family;
+$font-mobile-labels: #{0.8125rem}/#{1.25rem} $font-family;
+$font-mobile-buttons: #{0.8125rem}/#{1.25rem} $font-family;
 
 //Tablet & Desktop Font Style
-$font-tablet-page-header:  #{2rem}/#{2.5rem} $font-family;
-$font-tablet-subheader:  #{1.5rem}/#{2rem} $font-family;
-$font-tablet-table-header:  #{0.75rem}/#{1.125rem} $font-family;
-$font-tablet-body-lg:  #{1rem}/#{1.75rem} $font-family;
-$font-tablet-body-md:  #{0.875rem}/#{1.375rem} $font-family;
-$font-tablet-body-sm:  #{0.75rem}/#{1.125rem} $font-family;
-$font-tablet-link:  #{0.875rem}/#{1.375rem} $font-family;
-$font-tablet-labels:  #{0.875rem}/#{1.375rem} $font-family;
-$font-tablet-buttons:  #{0.875rem}/#{1.375rem} $font-family;
+$font-tablet-page-header: #{2rem}/#{2.5rem} $font-family;
+$font-tablet-subheader: #{1.5rem}/#{2rem} $font-family;
+$font-tablet-table-header: #{0.75rem}/#{1.125rem} $font-family;
+$font-tablet-body-lg: #{1rem}/#{1.75rem} $font-family;
+$font-tablet-body-md: #{0.875rem}/#{1.375rem} $font-family;
+$font-tablet-body-sm: #{0.75rem}/#{1.125rem} $font-family;
+$font-tablet-link: #{0.875rem}/#{1.375rem} $font-family;
+$font-tablet-labels: #{0.875rem}/#{1.375rem} $font-family;
+$font-tablet-buttons: #{0.875rem}/#{1.375rem} $font-family;
 
 //Padding
-$padding-mobile-before-headline : 1.5rem;
-$padding-mobile-after-headline:1rem;
-$padding-mobile-bw-component:1rem;
-$padding-tablet-before-headline : 2.25rem;
+$padding-mobile-before-headline: 1.5rem;
+$padding-mobile-after-headline: 1rem;
+$padding-mobile-bw-component: 1rem;
+$padding-tablet-before-headline: 2.25rem;
 $padding-tablet-after-headline: 1.5rem;
-$padding-tablet-bw-component:1.5rem;
-
-//form fields
-
-$form-height-mobile:36px;
-
-
-$form-label-spacing:4px;
+$padding-tablet-bw-component: 1.5rem;
+$form-label-spacing:2px;
 $semibold-txt:600;
-$form-padding:16px;
-$form-border-radius:20px;
-$form-border-default:1px;
-$font-body-sm:14px;
+$form-height-mobile:2.25rem;
+$form-padding:1rem;
+$form-border-radius:1.25rem;
+$font-body-sm:0.875rem;

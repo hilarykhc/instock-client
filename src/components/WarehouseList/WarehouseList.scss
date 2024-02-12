@@ -2,11 +2,139 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/typography" as *;
+
+.div-container-main {
+  margin: -3rem 1rem 1rem;
+
+  @include tablet-and-desktop {
+    margin: -5rem 2rem 2rem;
+  }
+
+  @include desktop {
+    margin: -5rem 8rem 2rem;
+  }
+}
+
+.div-container {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(19, 24, 44, 0.1);
+  border-radius: 3px;
+}
+
+.warehouse-header {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  // margin-left: 1rem;
+  // margin-right: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $cloud;
+
+  @include tablet-and-desktop {
+    border-bottom: none;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 1rem;
+
+    @include tablet-and-desktop {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+
+    @include desktop {
+      padding: 0 2.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    line-height: 1rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    @include tablet-and-desktop {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  &__search {
+    &-img {
+      display: flex;
+      position: relative;
+      left: 16.125rem;
+      top: 2rem;
+      @include tablet-and-desktop {
+        position: relative;
+        z-index: 1;
+      }
+    }
+    &-input {
+      border-radius: 1.25rem;
+      width: 100%;
+      height: 2.25rem;
+      padding-left: 1rem;
+      background-image: url("../../assets/Icons/search-24px.svg");
+      background-repeat: no-repeat;
+      background-position: 95% center;
+      border: 1px solid $cloud;
+
+      &::placeholder {
+        font-family: "Titillium Regular";
+      }
+
+      @include tablet-and-desktop {
+        width: 11.5625rem;
+        height: 2.375rem;
+        // position: relative;
+        left: 6.25rem;
+        margin-right: 1rem;
+      }
+
+      @include desktop {
+        width: 16.5625rem;
+      }
+    }
+  }
+  &__btn {
+    @include btn($pure-white, $instock-indigo, $light-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.25rem;
+    width: 100%;
+    height: 2.25rem;
+    padding-left: 1rem;
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+
+    @include tablet-and-desktop {
+      height: 2.375rem;
+      margin-top: 0;
+      font-weight: 600;
+    }
+  }
+}
+
+.div-container-header {
+  @include tablet-and-desktop {
+    display: flex;
+  }
+}
+
 .section {
   margin: 1rem;
 
   &__wrapper {
-    margin-top: -6rem;
+    margin-top: -4rem;
     background-color: $pure-white;
     border-radius: 2px;
     @include tablet-and-desktop {
@@ -48,11 +176,11 @@
   }
   &__input {
     height: 5vh;
-    width: 73vw;
+    width: 79vw;
     border-radius: 1.25rem;
     border-color: $cloud;
     padding-left: 1rem;
-    padding-top: 0.5rem;
+    padding-top: 0.2rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
       width: 20vw;
@@ -78,8 +206,8 @@
   }
   &__search {
     position: absolute;
-    top: 1.5rem;
-    right: 2.2rem;
+    top: 1.2rem;
+    right: 3rem;
     height: 15px;
     @include tablet-and-desktop {
       height: 20px;
@@ -93,7 +221,7 @@
 
   &__button {
     margin-top: 0.5rem;
-    height: 7vh;
+    height: 5.5vh;
     width: 79vw;
     border-radius: 1.25rem;
     background-color: $instock-indigo;
@@ -115,20 +243,23 @@
     }
   }
   &__subtitle {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     padding-left: 1rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
       display: none;
     }
   }
+  &__link {
+    text-decoration: none;
+  }
   &__name {
     color: $instock-indigo;
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
-    padding-top: 0.4rem;
     @include tablet-and-desktop {
-      padding-left: 3rem;
+      width: 13vw;
+
       font-size: $tablet-body-font-size;
     }
     @include desktop {
@@ -136,7 +267,7 @@
     }
   }
   &__addressTitle {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     padding-left: 1rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
@@ -144,17 +275,14 @@
     }
   }
   &__wrapperName {
-    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 0.3rem;
   }
   &__arrow {
-    position: absolute;
-    top: 0.3rem;
-    left: 4rem;
     height: 15px;
     @include tablet-and-desktop {
-      position: absolute;
-      top: 0.3rem;
-      left: 7.2rem;
       height: 18px;
     }
     @include desktop {
@@ -164,11 +292,13 @@
   }
 
   &__address {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     padding-top: 0.4rem;
     @include tablet-and-desktop {
       font-size: $tablet-body-font-size;
+      //  width: 18vw;
+      //  padding-left: 2rem
     }
   }
   &__addressBox {
@@ -177,7 +307,7 @@
     }
   }
   &__city {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
 
     @include tablet-and-desktop {
@@ -185,7 +315,7 @@
     }
   }
   &__country {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
 
     @include tablet-and-desktop {
@@ -194,7 +324,7 @@
   }
 
   &__contactTitle {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     padding-left: 1rem;
     margin-top: 0.5rem;
     padding-top: 0.4rem;
@@ -203,21 +333,22 @@
     }
   }
   &__contact {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     padding-top: 0.4rem;
     @include tablet-and-desktop {
       font-size: $tablet-body-font-size;
-      width: 11vw;
+      width: 18vw;
     }
   }
   &__contactWrapper {
     @include tablet-and-desktop {
-      padding-left: 2.4rem;
+      // padding-left: 2.4rem;
+      width: 18vw;
     }
   }
   &__contactInfoTitle {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     padding-left: 1rem;
     margin-top: 1rem;
     @include tablet-and-desktop {
@@ -226,7 +357,7 @@
   }
 
   &__contactNumber {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     padding-top: 0.4rem;
     @include tablet-and-desktop {
@@ -234,7 +365,7 @@
     }
   }
   &__email {
-    font-size: 0.6rem;
+    font-size: 0.688rem;
     padding-left: 1rem;
     margin-top: 0.3rem;
     @include tablet-and-desktop {
@@ -243,15 +374,21 @@
   }
   &__flexContainer {
     display: flex;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    @include tablet-and-desktop {
+      display: flex;
+    }
   }
   &__one {
-    width: 45%;
+    width: 40%;
     @include tablet-and-desktop {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      margin-left: 1.8rem;
+      // gap: 2rem;
       flex-direction: row;
-      width: 55%;
+      // width: 55%;
     }
   }
   &__two {
