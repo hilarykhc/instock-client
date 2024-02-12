@@ -61,15 +61,12 @@ const InventoryListItem = (props) => {
         </div>
       </div>
 
-      <div className="warehouse__container">
         <div className="inventory-row__col inventory-row__col--warehouse">
           <h4 className="inventory-row__cell-header">WAREHOUSE</h4>
           <div className="inventory-row__contact-info">
             <p className="inventory-row__quantity">{warehouse_name}</p>
           </div>
         </div>
-      </div>
-      {/* Edit & Delete Button */}
       <div className=" inventory-row__col--actions">
         <button
           className="inventory-row__icon-button"
