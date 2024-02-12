@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import './WarehouseList.scss';
-import axios from 'axios';
-import searchIcon from '../../assets/Icons/search-24px.svg';
-import arrowRight from '../../assets/Icons/chevron_right-24px.svg';
-import deleteIcon from '../../assets/Icons/delete_outline-24px.svg';
-import editIcon from '../../assets/Icons/edit-24px.svg';
-import sort from '../../assets/Icons/sort-24px.svg';
-import Delete from '../Delete/Delete';
-import AddNewWarehouse from '../../pages/AddNewWarehouse/AddNewWarehouse';
-import WarehousePageHeader from '../WarehousePageHeader/WarehousePageHeader';
+
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./WarehouseList.scss";
+import axios from "axios";
+import searchIcon from "../../assets/Icons/search-24px.svg";
+import arrowRight from "../../assets/Icons/chevron_right-24px.svg";
+import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
+import editIcon from "../../assets/Icons/edit-24px.svg";
+import sort from "../../assets/Icons/sort-24px.svg";
+import Delete from "../Delete/Delete";
+import AddNewWarehouse from "../../pages/AddNewWarehouse/AddNewWarehouse";
+import WarehousePageHeader from "../WarehousePageHeader/WarehousePageHeader";
 
 function WarehouseList() {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [lists, setLists] = useState([]);
-  const [sortBy, setSortBy] = useState(null);
-  const [sortOrder, setSortOrder] = useState('asc');
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -52,12 +52,12 @@ function WarehouseList() {
     axios
       .delete(url)
       .then((response) => {
-        console.log('Deleted successfully', response.data);
+        console.log("Deleted successfully", response.data);
         const updatedLists = lists.filter((list) => list.id !== selectedItemId);
         setLists(updatedLists);
       })
       .catch((error) => {
-        console.error('There was an error!', error);
+        console.error("There was an error!", error);
       });
 
     // close modal and reset item id
@@ -93,7 +93,6 @@ function WarehouseList() {
   const handleSearchChange = (event) => {
     setWarehouseSearchTerm(event.target.value);
   };
-
   return (
     <>
       {displayForm && isEditMode && (
@@ -153,18 +152,23 @@ function WarehouseList() {
                   <div className="section__one">
                     <div className="section__subtitle">WAREHOUSE</div>
                     <div className="section__wrapperName">
-                      <div className="section__name">{list.warehouse_name}</div>
+                      <Link
+                        to={`/warehouse/${list.id}`}
+                        className="section__link"
+                      >
+                        <div className="section__name">
+                          {list.warehouse_name}
+                        </div>
+                      </Link>
                       <img
                         src={arrowRight}
                         alt="front arrow"
                         className="section__arrow"
                       ></img>
                     </div>
-
                     <div className="section__addressTitle">ADDRESS</div>
                     <div className="section__addressBox">
                       <div className="section__address">{list.address}</div>
-
                       <div className="section__city">{list.city}</div>
                       <span className="section__country">{list.country}</span>
                     </div>
