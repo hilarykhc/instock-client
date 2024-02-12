@@ -9,8 +9,6 @@ const emailValidator = require('validator');
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const WarehouseForm = (props) => {
-  console.log('Value from form');
-  console.log(props.warehouseData);
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -88,8 +86,6 @@ const WarehouseForm = (props) => {
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log('btn ');
-
     const isFormValid = formValidation();
     const isEmailValid = validateEmail(formData.contact_email);
     const isValidPhoneNumber = validateContactNumber(formData.contact_phone);
@@ -98,11 +94,7 @@ const WarehouseForm = (props) => {
       const newWarehouse = { ...formData };
 
       try {
-        let response;
         if (props.warehouseData) {
-          console.log(
-            `${REACT_APP_SERVER_URL}/warehouses/${props.warehouseData.id}`
-          );
           await axios.put(
             `${REACT_APP_SERVER_URL}/warehouses/${props.warehouseData.id}`,
             newWarehouse
@@ -120,9 +112,7 @@ const WarehouseForm = (props) => {
       } catch (error) {
         console.log(error);
       }
-    } else {
-      console.log('Invalid form');
-    }
+    } 
   };
 
   return (

@@ -18,9 +18,6 @@ export default function WarehouseDetails() {
   const [displayForm, setDisplayForm] = useState(false);
   const [warehouseData, setWarehouseData] = useState(null);
 
-  console.log(warehouseId);
-
-  // warehouseId to find selected warehouse
   const selectedWarehouseFromParams = warehouses.find(
     (warehouse) => warehouse.id === warehouseId
   );
@@ -57,16 +54,11 @@ export default function WarehouseDetails() {
     getSingleWarehouse();
   }, [warehouseId]);
 
-  /*add the inventory list for warehouse details
-get the inventory for selected warehouse name
-Chao Meng
-2024-02-10*/
   const [inventories, setInventories] = useState([]);
 
   const fetchAllInventories = async () => {
     try {
       const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`);
-      console.log(response.data);
       const filteredInventories = response.data.filter(
         (inventory) =>
           inventory.warehouse_name === currentSelectedWarehouse.warehouse_name

@@ -1,7 +1,7 @@
-@import "../../styles/partials/mixins";
-@import "../../styles/partials/typography";
-@import "../../styles/partials/variables";
-@import "../../styles/partials/resets";
+@import '../../styles/partials/mixins';
+@import '../../styles/partials/typography';
+@import '../../styles/partials/variables';
+@import '../../styles/partials/resets';
 .inventory-row {
   text-align: left;
   border-bottom: 0.0625rem solid $cloud;
@@ -28,10 +28,7 @@
   }
 
   &:hover {
-    background-color: adjust-color(
-      $color: $instock-indigo,
-      $alpha: -0.93
-    );
+    background-color: adjust-color($color: $instock-indigo, $alpha: -0.93);
   }
 
   &__category {
@@ -51,22 +48,20 @@
       order: -2;
     }
     &--warehouse {
-    width: 100%;
-    flex: 0 1 100%;
-    text-align: right;
-    margin-right: 3rem;
-
+      width: 100%;
+      flex: 0 1 100%;
+      text-align: right;
+      margin-right: 3rem;
 
       @include tablet-and-desktop {
-  width: 50%;
-    flex: 0 1 45%;
-    margin-right: 0rem;
-    flex: 0;
-    min-width: 17%;
-    text-align: left;
+        width: 50%;
+        flex: 0 1 45%;
+        margin-right: 0rem;
+        flex: 0;
+        min-width: 17%;
+        text-align: left;
       }
     }
-
 
     &--status {
       order: -1;
@@ -78,27 +73,20 @@
       margin-top: 0.1875rem;
 
       @include tablet-and-desktop {
-      
         order: 0;
         min-width: 17%;
       }
 
       &--green {
         color: $green;
-        background-color: adjust-color(
-          $color: $green,
-          $alpha: -0.9
-        );
+        background-color: adjust-color($color: $green, $alpha: -0.9);
         @include tag;
         width: 5rem;
         text-align: center;
       }
       &--red {
         color: $red;
-        background-color: adjust-color(
-          $color: $red,
-          $alpha: -0.9
-        );
+        background-color: adjust-color($color: $red, $alpha: -0.9);
         @include tag;
         width: 7rem;
         text-align: center;
@@ -115,6 +103,8 @@
         flex: none;
         max-width: 10%;
         min-width: 10%;
+        justify-content: flex-start;
+        gap: 2rem;
       }
     }
   }
@@ -133,7 +123,6 @@
   }
 
   &__cell-header {
-
     @include tablet-and-desktop {
       display: none;
     }
@@ -168,4 +157,10 @@
     cursor: pointer;
     padding: 0;
   }
+}
+.delete__title {
+  text-align: left;
+}
+.delete__content {
+  text-align: left;
 }

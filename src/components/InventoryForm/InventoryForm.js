@@ -10,7 +10,6 @@ function EditInventory() {
   const queryString = useLocation().search;
   const queryParams = new URLSearchParams(queryString);
   const id = queryParams.get("id");
-  console.log(id);
 
   useEffect(() => {
     const getCat = async () => {
@@ -34,7 +33,6 @@ function EditInventory() {
       const response = await axios.get(
         `http://localhost:8080/inventories/${id}`
       );
-      console.log(response);
       setFormData({
         item_name: response.data.item_name,
         description: response.data.description,
@@ -49,7 +47,6 @@ function EditInventory() {
 
   const [formErrors, setFormErrors] = useState({});
   const handleInputChange = (field, value) => {
-    console.log(field, value);
     setFormData({ ...formData, [field]: value });
     setFormErrors({ ...formErrors, [field]: "" });
   };
@@ -80,15 +77,12 @@ function EditInventory() {
       setFormErrors(validationErrors);
       return;
     }
-    console.log(formData);
 
     try {
       const response = await axios.put(
         `http://localhost:8080/inventories/${id}`,
         formData
       );
-
-      console.log("Item edited successfully:", response.data);
       if (response.status === 200) {
         navigate("/inventory");
       }
