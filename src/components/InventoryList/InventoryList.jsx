@@ -5,6 +5,7 @@ import editIcon from "../../assets/Icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 import Delete from "../Delete/Delete";
 import "./InventoryList.scss";
+
 const InventoryListItem = (props) => {
   const { category, id, item_name, quantity, status, warehouse_name } =
     props.inventoryItem;
@@ -57,13 +58,6 @@ const InventoryListItem = (props) => {
         </div>
       </div>
 
-      {/* <div className="inventory-row__col inventory-row__col--warehouse">
-        <h4 className="inventory-row__cell-header">WAREHOUSE</h4>
-        <div className="inventory-row__contact-info">
-          <p className="inventory-row__quantity">{warehouse_name}</p>
-        </div>
-      </div> */}
-      {/* Edit & Delete Button */}
       <div className=" inventory-row__col--actions">
         <button
           className="inventory-row__icon-button"

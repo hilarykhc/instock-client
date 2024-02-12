@@ -8,8 +8,7 @@
   flex-direction: column;
   justify-self: center;
   align-items: center;
-  // margin-left: 1rem;
-  // margin-right: 1rem;
+
   padding-bottom: 1rem;
   border-bottom: 1px solid $cloud;
 
@@ -75,7 +74,7 @@
       @include tablet-and-desktop {
         width: 11.5625rem;
         height: 2.375rem;
-        // position: relative;
+
         left: 6.25rem;
         margin-right: 1rem;
       }

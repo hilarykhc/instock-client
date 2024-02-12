@@ -26,8 +26,7 @@
   flex-direction: column;
   justify-self: center;
   align-items: center;
-  // margin-left: 1rem;
-  // margin-right: 1rem;
+
   padding-bottom: 1rem;
   border-bottom: 1px solid $cloud;
 
@@ -93,7 +92,7 @@
       @include tablet-and-desktop {
         width: 11.5625rem;
         height: 2.375rem;
-        // position: relative;
+
         left: 6.25rem;
         margin-right: 1rem;
       }
@@ -296,8 +295,6 @@
     padding-top: 0.4rem;
     @include tablet-and-desktop {
       font-size: $tablet-body-font-size;
-      //  width: 18vw;
-      //  padding-left: 2rem
     }
   }
   &__addressBox {
@@ -363,10 +360,9 @@
     @include tablet-and-desktop {
       font-size: $tablet-body-font-size;
     }
-    @include desktop
-    {
-margin-left: -3rem;
-padding-right: 0;
+    @include desktop {
+      margin-left: -3rem;
+      padding-right: 0;
     }
   }
   &__email {
@@ -376,9 +372,8 @@ padding-right: 0;
     @include tablet-and-desktop {
       font-size: $tablet-body-font-size;
     }
-    @include desktop
-    {
-margin-left: -3rem;
+    @include desktop {
+      margin-left: -3rem;
     }
   }
   &__flexContainer {
@@ -398,9 +393,8 @@ margin-left: -3rem;
       display: flex;
       align-items: center;
       margin-left: 1.8rem;
-      // gap: 2rem;
+
       flex-direction: row;
-      // width: 55%;
     }
   }
   &__two {
