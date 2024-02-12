@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./WarehouseList.scss";
 import axios from "axios";
-import searchIcon from "../../assets/Icons/search-24px.svg";
 import arrowRight from "../../assets/Icons/chevron_right-24px.svg";
 import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
@@ -14,15 +13,24 @@ import WarehousePageHeader from "../WarehousePageHeader/WarehousePageHeader";
 function WarehouseList() {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [lists, setLists] = useState([]);
+  const [sortBy, setSortBy] = useState(null);
+  const [sortOrder, setSortOrder] = useState("asc");
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [displayForm, setDisplayForm] = useState(false);
   const [warehouseData, setWarehouseData] = useState(null);
+  const [warehouseSearchTerm, setWarehouseSearchTerm] = useState("");
 
   const getWarehouseList = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses`);
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses`, {
+        params: {
+          sort_by: sortBy,
+          order_by: sortOrder,
+          warehouseSearchTerm: warehouseSearchTerm,
+        },
+      });
       setLists(response.data);
     } catch (error) {
       console.log(error);
@@ -30,7 +38,7 @@ function WarehouseList() {
   };
   useEffect(() => {
     getWarehouseList();
-  }, []);
+  }, [sortBy, sortOrder, warehouseSearchTerm]);
 
   const handleDeleteClick = (itemId) => {
     setSelectedItemId(itemId);
@@ -74,6 +82,17 @@ function WarehouseList() {
     getWarehouseList();
   };
 
+  const handleSort = (value) => {
+    if (sortBy === value) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(value);
+      setSortOrder("asc");
+    }
+  };
+  const handleSearchChange = (event) => {
+    setWarehouseSearchTerm(event.target.value);
+  };
   return (
     <>
       {displayForm && isEditMode && (
@@ -88,22 +107,38 @@ function WarehouseList() {
       {!displayForm && (
         <main className="div-container-main">
           <div className="div-container">
-            <WarehousePageHeader addWarehouseHandler={addWarehouseHandler} />
+            <WarehousePageHeader
+              addWarehouseHandler={addWarehouseHandler}
+              warehouseSearchTerm={warehouseSearchTerm}
+              onSearchChange={handleSearchChange}
+            />
 
             <div className="section__titleContainerNew">
-              <div className="section__namesortbox">
+              <div
+                className="section__namesortbox"
+                onClick={() => handleSort("warehouse_name")}
+              >
                 <div className="section__subtitleNew">WAREHOUSE</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
-              <div className="section__namesortbox">
+              <div
+                className="section__namesortbox"
+                onClick={() => handleSort("address")}
+              >
                 <div className="section__addressTitleNew">ADDRESS</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
-              <div className="section__namesortbox">
+              <div
+                className="section__namesortbox"
+                onClick={() => handleSort("contact_name")}
+              >
                 <div className="section__contactTitleNew">CONTACT NAME</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
-              <div className="section__namesortbox">
+              <div
+                className="section__namesortbox"
+                onClick={() => handleSort("contact_email")}
+              >
                 <div className="section__contactInfoTitleNew">
                   CONTACT INFORMATION
                 </div>
@@ -161,7 +196,7 @@ function WarehouseList() {
                   ></img>
                   {isDeleteModalOpen && (
                     <Delete
-                      style="warehouse"
+                      styleName="warehouse"
                       list="the list of warehouses"
                       name={
                         lists.find((list) => list.id === selectedItemId)

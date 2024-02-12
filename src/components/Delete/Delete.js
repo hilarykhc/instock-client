@@ -2,7 +2,7 @@ import ButtonDC from "../ButtonDC/ButtonDC";
 import Close from "../../assets/Icons/close-24px.svg";
 import "./Delete.scss";
 
-const Delete = ({ name, style, list, onDeleteConfirm, onClose }) => {
+const Delete = ({ name, styleName, list, onDeleteConfirm, onClose }) => {
   const handleDelete = () => {
     onDeleteConfirm(name);
   };
@@ -18,11 +18,11 @@ const Delete = ({ name, style, list, onDeleteConfirm, onClose }) => {
             <img className="delete__img" src={Close} alt="close"></img>
           </button>
           <p className="delete__title">
-            Delete {name} {style}?
+            Delete {name} {styleName}?
           </p>
           <p className="delete__content">
             Please confirm that you'd like to delete{" "}
-            {style === "warehouse" ? "the " + name : name} from {list}. You
+            {styleName === "warehouse" ? "the " + name : name} from {list}. You
             won't be able to undo this action.
           </p>
         </div>

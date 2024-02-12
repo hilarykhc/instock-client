@@ -1,18 +1,27 @@
-import { useEffect, useState } from "react";
-import InventoryListHeader from "../../components/InventoryListHeader/InventoryListHeader";
-import axios from "axios";
-import InventoryListItem from "../../components/InventoryListItem/InventoryListItem";
-import InventoryPageHeader from "../../components/InventoryPageHeader/InventoryPageHeader";
-import "./InventoryPage.scss";
+import { useEffect, useState } from 'react';
+import InventoryListHeader from '../../components/InventoryListHeader/InventoryListHeader';
+import axios from 'axios';
+import InventoryListItem from '../../components/InventoryListItem/InventoryListItem';
+import InventoryPageHeader from '../../components/InventoryPageHeader/InventoryPageHeader';
+import './InventoryPage.scss';
 
 const InventoryPage = () => {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   const [inventories, setInventories] = useState([]);
+  const [sortBy, setSortBy] = useState(null);
+  const [sortingOrder, setSortingOrder] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const fetchAllInventories = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`);
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`, {
+        params: {
+          sort_by: sortBy,
+          order_by: sortingOrder,
+          s: searchTerm,
+        },
+      });
       setInventories(response.data);
     } catch (error) {
       console.log(error);
@@ -21,7 +30,20 @@ const InventoryPage = () => {
 
   useEffect(() => {
     fetchAllInventories();
-  }, []);
+  }, [sortBy, sortingOrder,searchTerm]);
+
+  const handleSortClick = (value) => {
+    if (sortBy === value) {
+      setSortingOrder(sortingOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(value);
+      setSortingOrder('asc');
+    }
+  };
+
+    const handleSearch = (value) => {
+      setSearchTerm(value);
+    };
 
   const deleteInventoryItem = (itemId) => {
     axios
@@ -37,8 +59,8 @@ const InventoryPage = () => {
   return (
     <main className="div-container-main">
       <div className="div-container">
-        <InventoryPageHeader />
-        <InventoryListHeader />
+        <InventoryPageHeader onSearch={handleSearch} />
+        <InventoryListHeader onSort={handleSortClick} />
         {inventories.map((inventory) => (
           <InventoryListItem
             key={inventory.id}

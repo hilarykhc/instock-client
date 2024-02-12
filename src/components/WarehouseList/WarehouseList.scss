@@ -189,7 +189,6 @@
       width: 25vw;
       height: 4vh;
       padding-top: -0.4rem;
-
       border-radius: 2rem;
     }
   }
@@ -378,10 +377,13 @@
     gap: 4rem;
     @include tablet-and-desktop {
       display: flex;
+      justify-content: flex-start;
+      gap: 1.5rem;
     }
   }
   &__one {
     width: 40%;
+
     @include tablet-and-desktop {
       display: flex;
       align-items: center;
