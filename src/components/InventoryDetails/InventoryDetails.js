@@ -84,7 +84,10 @@ export default function InventoryDetails() {
                 {selectedInventory.item_name}
               </h2>
             </div>
-            <Link to="#" className="inventory-details__top-edit-link">
+            <Link
+              to="/inventory/edit"
+              className="inventory-details__top-edit-link"
+            >
               <img
                 src={editIcon}
                 alt="edit icon"

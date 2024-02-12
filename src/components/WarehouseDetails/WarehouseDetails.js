@@ -9,13 +9,16 @@ import InventoryHeader from "../../components/InventoryHeader/InventoryHeader";
 import InventoryListItem from "../../components/InventoryListItem/InventoryListItem";
 import InventoryPageHeader from "../../components/InventoryPageHeader/InventoryPageHeader";
 
-
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 export default function WarehouseDetails() {
   const [warehouses, setWarehouses] = useState([]);
   const [selectedWarehouse, setSelectedWarehouse] = useState({});
   const { warehouseId = "" } = useParams();
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [displayForm, setDisplayForm] = useState(false);
+  const [warehouseData, setWarehouseData] = useState(null);
+
   console.log(warehouseId);
 
   // warehouseId to find selected warehouse
@@ -90,6 +93,13 @@ Chao Meng
       })
       .catch((error) => console.log(error));
   };
+
+  const handleEditWarehouseClick = (data) => {
+    setIsEditMode(true);
+    setDisplayForm(true);
+    setWarehouseData(data);
+  };
+
   return (
     <main className="warehouse-details">
       <div className="div-container1">
@@ -107,8 +117,16 @@ Chao Meng
                 {currentSelectedWarehouse.warehouse_name}
               </h2>
             </div>
-            <Link to="#" className="warehouse-details__top-edit-link">
+            <Link
+              // to="/warehouse/edit"
+              to={{
+                pathname: "/warehouse/edit",
+                state: { warehouseData: currentSelectedWarehouse },
+              }}
+              className="warehouse-details__top-edit-link"
+            >
               <img
+                onClick={() => handleEditWarehouseClick(warehouses)}
                 src={editIcon}
                 alt="edit icon"
                 className="warehouse-details__top-edit-icon"
@@ -160,7 +178,7 @@ Chao Meng
       {/* add the inventory list for warehouse details
       Chao Meng
       2024-02-10*/}
-      <InventoryPageHeader />
+      {/* <InventoryPageHeader /> */}
       <InventoryHeader />
       {inventories.map((inventory) => (
         <InventoryListItem
