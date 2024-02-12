@@ -16,7 +16,6 @@ function AddNewWarehouse(props) {
   const navigate = useNavigate();
   const cancelHandler = () => {
     props.onCancel();
-
     navigate("/warehouse");
   };
   return (
