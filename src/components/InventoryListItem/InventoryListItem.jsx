@@ -79,7 +79,7 @@ const InventoryListItem = (props) => {
         </button>
         {isDeleteModalOpen && (
           <Delete
-            style="inventory"
+            styleName="inventory"
             list="the inventory list"
             name={item_name}
             onDeleteConfirm={handleDeleteConfirm}
