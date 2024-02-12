@@ -1,266 +1,289 @@
-import "./add-inventory.scss";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import BackArrow from "../../assets/Icons/arrow-back.svg";
-import ErrorIcon from "../../assets/Icons/arrow-back.svg";
 
-export default function EditInventory() {
-  const navigate = useNavigate();
-  const [warehouses, setWarehouses] = useState([]);
+import React, { useState, useEffect } from "react";
+import "./add-inventory.scss";
+import backarrow from "../../assets/Icons/arrow_back-24px.svg";
+import dropdown from "../../assets/Icons/arrow_drop_down-24px.svg";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+function AddInventory() {
+  const [data, setData] = useState();
+  const [category, setCategory] = useState();
+  const queryString = useLocation().search;
+  const queryParams = new URLSearchParams(queryString);
+  const id = queryParams.get("id");
+  console.log(id);
+  useEffect(() => {
+    const getCat = async () => {
+      const response = await axios.get("http://localhost:8080/inventories");
+      setCategory(response.data);
+      console.log(response.data);
+    };
+    getCat();
+  }, []);
   const [formData, setFormData] = useState({
     item_name: "",
     description: "",
     category: "",
-    status: "In Stock",
-    quantity: 0,
+    status: "Out of Stock",
+    quantity: "",
     warehouse_id: "",
   });
-
-  const [errors, setErrors] = useState({});
-
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/warehouses")
-      .then((response) => {
-        setWarehouses(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching warehouses:", error);
+    const edit = async () => {
+      const response = await axios.get(
+        `http://localhost:8080/inventories/${id}`
+      );
+      console.log(response);
+      setFormData({
+        item_name: response.data.item_name,
+        description: response.data.description,
+        category: response.data.category,
+        quantity: response.data.quantity,
+        warehouse_id: response.data.warehouse_id,
+        status: response.data.status,
       });
+    };
+    edit();
   }, []);
-
-  const handleStatusChange = (event) => {
-    const { name, value } = event.target;
-    console.log(formData);
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+  
+  const [formErrors, setFormErrors] = useState({});
+  const handleInputChange = (field, value) => {
+    console.log(field, value);
+    setFormData({ ...formData, [field]: value });
+    setFormErrors({ ...formErrors, [field]: "" });
   };
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-    if (errors[name]) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        [name]: "",
-      }));
-    }
-  };
-
-  const handleCancel = () => {
-    navigate("/inventory");
-  };
-
-  const handleSave = async () => {
-    const newErrors = {};
-    Object.keys(formData).forEach((key) => {
-      if (!formData[key]) {
-        newErrors[key] = "This field is required";
-      }
+  const handleStatusChange = (status) => {
+    setFormData({
+      ...formData,
+      status,
+      quantity: status === "Out of Stock" ? 0 : formData.quantity,
     });
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length > 0) {
+  };
+  const validateForm = () => {
+    const validationErrors = {
+      item_name: !formData.item_name ? "Item Name is required" : "",
+      description: !formData.description ? "Description is required" : "",
+      category: !formData.category ? "Category is required" : "",
+      warehouse: !formData.warehouse ? "Warehouse is required" : "",
+      quantity:
+        formData.status === "In Stock" && formData.quantity <= 0
+          ? "Quantity must be greater than 0"
+          : "",
+    };
+    return validationErrors;
+  };
+  const handleAddItem = async (e) => {
+    e.preventDefault();
+    const validationErrors = validateForm();
+    if (Object.values(validationErrors).some((error) => !!error)) {
+      setFormErrors(validationErrors);
       return;
     }
+    console.log(formData);
     try {
-      const formattedDateTime = new Date()
-        .toISOString()
-        .slice(0, 19)
-        .replace("T", " ");
-
-      const newInventory = {
-        ...formData,
-        created_at: formattedDateTime,
-        updated_at: formattedDateTime,
-      };
-
-      if (formData.status === "Out of Stock") {
-        newInventory.quantity = 0;
+      const response = await axios.post(
+        `http://localhost:8080/inventories`,
+        formData
+      );
+      console.log("Item edited successfully:", response.data);
+      if (response.status === 200) {
+        navigate("/inventory");
       }
-
-      await axios.post("http://localhost:8080/api/inventories", newInventory);
-      navigate("/inventories");
+      setFormData({
+        item_name: "",
+        description: "",
+        category: "",
+        status: "In Stock",
+        quantity: "",
+        warehouse: "",
+      });
+      setFormErrors({});
     } catch (error) {
-      console.error("Error adding inventory:", error);
+      console.error("Error adding item:", error);
     }
   };
-
+  const navigate = useNavigate();
+  const onClose = () => {
+    navigate("/inventory");
+  };
   return (
-    <section className="add-inventory">
-      <div className="add-inventory__title-container">
-        <img
-          src={BackArrow}
-          className="back-arrow"
-          alt="Back Arrow"
-          onClick={handleCancel}
-        />
-        <h1 className="add-inventory__title">Add New Inventory Item</h1>
-      </div>
-      <form className="add-inventory__form">
-        <div className="add-inventory__item-details">
-          <h2 className="add-inventory__section-title">Item Details</h2>
-          <label className="add-inventory__label" htmlFor="itemName">
-            Item Name
-          </label>
-          <input
-            placeholder="Item Name"
-            className="add-inventory__input"
-            type="text"
-            id="item_name"
-            name="item_name"
-            value={formData.item_name}
-            onChange={handleInputChange}
-          />
-          {errors.item_name && (
-            <div className="add-inventory__error">
-              <img src={ErrorIcon} className="error-icon" alt="Error Icon" />
-              {errors.item_name}
-            </div>
-          )}
-          <label className="add-inventory__label" htmlFor="description">
-            Description
-          </label>
-          <textarea
-            placeholder="Please enter a brief item description..."
-            className="add-inventory__textarea"
-            rows={5}
-            type="text"
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-          ></textarea>
-          {errors.description && (
-            <div className="add-inventory__error">
-              <img src={ErrorIcon} className="error-icon" alt="Error Icon" />
-              {errors.description}
-            </div>
-          )}
-          <label className="add-inventory__label" htmlFor="category">
-            Category
-          </label>
-          <div className="dropdown-container">
-            <select
-              className="add-inventory__dropdown"
-              id="category"
-              name="category"
-              value={formData.category}
-              onChange={handleInputChange}
-            >
-              <option value="">Please select</option>
-              <option value="Electronics">Electronics</option>
-              <option value="Gear">Gear</option>
-              <option value="Apparel">Apparel</option>
-              <option value="Accessories">Accessories</option>
-              <option value="Health">Health</option>
-            </select>
+    <section className="addinventory">
+      <div className="addinventory__wrap">
+        <div className="addinventory__header-wrap">
+          <div className="addinventory__icon-wrap">
+            <img
+              src={backarrow}
+              alt="back arrow icon"
+              className="addinventory__header-icon"
+              onClick={onClose}
+            />
           </div>
-          {errors.category && (
-            <div className="add-inventory__error">
-              <img src={ErrorIcon} className="error-icon" alt="Error Icon" />
-              {errors.category}
-            </div>
-          )}
+          <div className="addinventory__title-wrap">
+            <h1 className="addinventory__title">Add Inventory Item</h1>
+          </div>
         </div>
-        <div className="add-inventory__item-availability">
-          <h2 className="add-inventory__section-title">Item Availability</h2>
-          <label className="add-inventory__label">Status</label>
-          <div className="add-inventory__status-options">
-            <label className="add-inventory__status-label">
-              <input
-                className="add-inventory__radio-btn"
-                type="radio"
-                name="status"
-                value="In Stock"
-                checked={formData.status === "In Stock"}
-                onChange={handleStatusChange}
-              />
-              In Stock
-            </label>
-            <label className="add-inventory__status-label">
-              <input
-                className="add-inventory__radio-btn"
-                type="radio"
-                name="status"
-                value="Out of Stock"
-                checked={formData.status === "Out of Stock"}
-                onChange={handleStatusChange}
-              />
-              Out of Stock
-            </label>
-          </div>
-          {formData.status === "In Stock" && (
-            <div className="add-inventory__quantity">
-              <label className="add-inventory__label" htmlFor="quantity">
-                Quantity
-              </label>
-              <input
-                className="add-inventory__input"
-                type="text"
-                id="quantity"
-                name="quantity"
-                value={formData.quantity}
-                onChange={handleInputChange}
-              />
+        <div>
+          <form action="" className="addinventory__detail-form">
+            <div className="addinventory__detail-form-container">
+              <div className="addinventory__detail addinventory__detailborder">
+                <div className="addinventory__form-header-wrap">
+                  <h2 className="addinventory__form-header">Item Details</h2>
+                </div>
+                <div className="addinventory__form-detail">
+                  <p className="addinventory__form-name">Item Name</p>
+                  <input
+                    type="text"
+                    className="addinventory__form-input"
+                    value={formData.item_name}
+                    onChange={(e) =>
+                      handleInputChange("item_name", e.target.value)
+                    }
+                  />
+                  {formErrors.item_name && (
+                    <span className="addinventory__error-message">
+                      {formErrors.item_name}
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <p className="addinventory__form-name">Description</p>
+                  <textarea
+                    type="text"
+                    className="addinventory__form-input-des"
+                    value={formData.description}
+                    onChange={(e) =>
+                      handleInputChange("description", e.target.value)
+                    }
+                  />
+                  {formErrors.description && (
+                    <span className="addinventory__error-message-description">
+                      {formErrors.description}
+                    </span>
+                  )}
+                </div>
+                <div>
+                  <p className="addinventory__form-name">Category</p>
+                  <select
+                    className="addinventory__form-category-name"
+                    value={formData.category}
+                    onChange={(e) =>
+                      handleInputChange("category", e.target.value)
+                    }
+                  >
+                    <option hidden value="">
+                      Please Select One
+                    </option>
+                    {category &&
+                      category.map((cat) => (
+                        <option value={cat.category}>{cat.category}</option>
+                      ))}
+                  </select>
+                  {formErrors.category && (
+                    <span className="addinventory__error-message-category">
+                      {formErrors.category}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="editWarehouse__divider"></div>
+              <div className="addinventory__detail">
+                <div className="addinventory__form-header-wrap">
+                  <h2 className="addinventory__form-header">
+                    Item Availability
+                  </h2>
+                </div>
+                <div>
+                  <p className="addinventory__form-name">Status</p>
+                  <div className="addinventory__form-radio-wrap">
+                    <div>
+                      <input
+                        className="addinventory__inputNew"
+                        type="radio"
+                        checked={formData.status === "In Stock"}
+                        onChange={() => handleStatusChange("In Stock")}
+                      />
+                      <span className="addinventory__form-radio">In stock</span>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        className="addinventory__inputNew"
+                        checked={formData.status === "Out of Stock"}
+                        onChange={() => handleStatusChange("Out of Stock")}
+                      />
+                      <span className="addinventory__form-radio">
+                        Out of stock
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                {formData.status === "In Stock" && (
+                     <div className="addinventory__quantityParent">
+                  <div className="addinventory__form-name-quantity">
+                    <p className="addinventory__form-name">Quantity</p>
+                    <input
+                      type="number"
+                      placeholder="0"
+                      className="addinventory__form-input"
+                      value={formData.quantity}
+                      onChange={(e) =>
+                        handleInputChange("quantity", e.target.value)
+                      }
+                    />
+                    {formErrors.quantity && (
+                      <span className="addinventory__error-message-quantity">
+                        {formErrors.quantity}
+                      </span>
+                    )}
+                  </div>
+                  </div>
+                )}
+                <div className="addinventory__wareHouseParent">
+                  <p className="addinventory__form-name">Warehouse</p>
+                  <select
+                    className="addinventory__form-category-name"
+                    value={formData.warehouse_name}
+                    onChange={(e) =>
+                      handleInputChange("warehouse", e.target.value)
+                    }
+                  >
+                    <option hidden value="">
+                      Manhattan
+                    </option>
+                    {category &&
+                      category.map((war) => (
+                        <option value={war.warehouse_name}>
+                          {war.warehouse_name}
+                        </option>
+                      ))}
+                  </select>
+                  {formErrors.warehouse && (
+                    <span className="addinventory__error-message-warehouse  addinventory__error-message-warehouse-new">
+                      {formErrors.warehouse}
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
-          )}
-          {errors.quantity && (
-            <div className="add-inventory__error">
-              <img src={ErrorIcon} className="error-icon" alt="Error Icon" />
-              {errors.quantity}
+            <div className="addinventory__btn-wrap">
+              <div className="addinventory__btn-cancel-wrap">
+                <button className="addinventory__btn-cancel" onClick={onClose}>
+                  Cancel
+                </button>
+              </div>
+              <div className="addinventory__btn-addItem-wrap">
+                <button
+                  className="addinventory__btn-addItem"
+                  onClick={handleAddItem}
+                >
+                  Save
+                </button>
+              </div>
             </div>
-          )}
-
-          <label className="add-inventory__label" htmlFor="category">
-            Warehouse
-          </label>
-          <div className="dropdown-container">
-            <select
-              className="add-inventory__dropdown"
-              id="warehouse"
-              name="warehouse_id"
-              value={formData.warehouse_id}
-              onChange={handleInputChange}
-            >
-              <option value="">Please select</option>
-              {warehouses.map((warehouse) => (
-                <option key={warehouse.id} value={warehouse.id}>
-                  {warehouse.warehouse_name}
-                </option>
-              ))}
-            </select>
-          </div>
-          {errors.warehouse_id && (
-            <div className="add-inventory__error">
-              <img src={ErrorIcon} className="error-icon" alt="Error Icon" />
-              {errors.warehouse_id}
-            </div>
-          )}
+          </form>
         </div>
-      </form>
-      <div className="add-inventory__btn-container">
-        <button
-          className="add-inventory__btn cancel-btn"
-          type="button"
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
-        <button
-          className="add-inventory__btn save-btn"
-          type="button"
-          onClick={handleSave}
-        >
-          + Add Item
-        </button>
       </div>
     </section>
   );
 }
+export default AddInventory;

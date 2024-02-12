@@ -15,12 +15,14 @@ $mobile-heading-font-size: 1.75rem;
 $mobile-heading-line-height: 2.25rem;
 $mobile-subheading-font-size: 1.25rem;
 $mobile-subheading-line-height: 1.75rem;
-
+$tabdesk-header-fontsize:2rem;
 $tablet-heading-font-size: 2rem;
 $tablet-subheading-font-size: 1.25rem;
-
+$mobile-header-fontsize:1.25rem;
+$text-demi:600;
 $tablet-body-font-size: 0.875rem;
-
+$mobile-p2-body-medium-fontsize:0.8125rem;
+$tabdesk-p2-body-medium-fontsize:0.875rem;
 //Typography variables
 $font-family: "Titillium Regular";
 
@@ -36,6 +38,7 @@ $font-mobile-labels: #{0.8125rem}/#{1.25rem} $font-family;
 $font-mobile-buttons: #{0.8125rem}/#{1.25rem} $font-family;
 
 //Tablet & Desktop Font Style
+$tabdesk-table-header-fontsize:1.125rem;
 $font-tablet-page-header: #{2rem}/#{2.5rem} $font-family;
 $font-tablet-subheader: #{1.5rem}/#{2rem} $font-family;
 $font-tablet-table-header: #{0.75rem}/#{1.125rem} $font-family;
@@ -45,7 +48,7 @@ $font-tablet-body-sm: #{0.75rem}/#{1.125rem} $font-family;
 $font-tablet-link: #{0.875rem}/#{1.375rem} $font-family;
 $font-tablet-labels: #{0.875rem}/#{1.375rem} $font-family;
 $font-tablet-buttons: #{0.875rem}/#{1.375rem} $font-family;
-
+$tabdesk-labels-links-buttons-fontsize:0.875rem;
 //Padding
 $padding-mobile-before-headline: 1.5rem;
 $padding-mobile-after-headline: 1rem;
