@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./InventoryForm.scss";
 import backarrow from "../../assets/Icons/arrow_back-24px.svg";
-import dropdown from "../../assets/Icons/arrow_drop_down-24px.svg";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -225,24 +224,24 @@ function EditInventory() {
                   </div>
                 </div>
                 {formData.status === "In Stock" && (
-                     <div className="addinventory__quantityParent">
-                  <div className="addinventory__form-name-quantity">
-                    <p className="addinventory__form-name">Quantity</p>
-                    <input
-                      type="number"
-                      placeholder="0"
-                      className="addinventory__form-input"
-                      value={formData.quantity}
-                      onChange={(e) =>
-                        handleInputChange("quantity", e.target.value)
-                      }
-                    />
-                    {formErrors.quantity && (
-                      <span className="addinventory__error-message-quantity">
-                        {formErrors.quantity}
-                      </span>
-                    )}
-                  </div>
+                  <div className="addinventory__quantityParent">
+                    <div className="addinventory__form-name-quantity">
+                      <p className="addinventory__form-name">Quantity</p>
+                      <input
+                        type="number"
+                        placeholder="0"
+                        className="addinventory__form-input"
+                        value={formData.quantity}
+                        onChange={(e) =>
+                          handleInputChange("quantity", e.target.value)
+                        }
+                      />
+                      {formErrors.quantity && (
+                        <span className="addinventory__error-message-quantity">
+                          {formErrors.quantity}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 )}
 

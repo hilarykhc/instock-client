@@ -1,17 +1,16 @@
-import React from 'react';
-// import searchImage from '../../assets/Icons/search-24px.svg';
-import './InventoryPageHeader.scss';
-import { useState } from 'react';
+import React from "react";
+import "./InventoryPageHeader.scss";
+import { useState } from "react";
 
 const InventoryPageHeader = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
     onSearch(event.target.value);
   };
 
   const handleFormSubmit = (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
   };
   return (
     <div className="inventory-header">
@@ -22,11 +21,6 @@ const InventoryPageHeader = ({ onSearch }) => {
             className="inventory-header__search"
             onSubmit={handleFormSubmit}
           >
-            {/* <img
-            className="inventory-header__search-img"
-            src={searchImage}
-            alt="Search icon"
-          /> */}
             <input
               className="inventory-header__search-input"
               type="text"

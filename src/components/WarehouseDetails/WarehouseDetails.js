@@ -7,7 +7,6 @@ import axios from "axios";
 
 import InventoryHeader from "../../components/InventoryHeader/InventoryHeader";
 import InventoryListItem from "../../components/InventoryListItem/InventoryListItem";
-import InventoryPageHeader from "../../components/InventoryPageHeader/InventoryPageHeader";
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -118,7 +117,6 @@ Chao Meng
               </h2>
             </div>
             <Link
-              // to="/warehouse/edit"
               to={{
                 pathname: "/warehouse/edit",
                 state: { warehouseData: currentSelectedWarehouse },
@@ -178,7 +176,7 @@ Chao Meng
       {/* add the inventory list for warehouse details
       Chao Meng
       2024-02-10*/}
-      {/* <InventoryPageHeader /> */}
+
       <InventoryHeader />
       {inventories.map((inventory) => (
         <InventoryListItem
