@@ -9,10 +9,8 @@ function AddNewWarehouse(props) {
     isEditMode = true;
   } else {
     isEditMode = false;
-    console.log("Add mode");
   }
 
-  console.log(isEditMode);
   const navigate = useNavigate();
   const cancelHandler = () => {
     props.onCancel();

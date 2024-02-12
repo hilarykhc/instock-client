@@ -16,7 +16,6 @@ export default function InventoryDetails() {
     const getInventories = async () => {
       try {
         const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`);
-        console.log(response.data);
         setInventories(response.data);
       } catch (error) {
         console.error(error);
@@ -27,13 +26,11 @@ export default function InventoryDetails() {
   }, []);
 
   useEffect(() => {
-    console.log("Inventory ID:", inventoryId);
     const getSingleInventory = async () => {
       try {
         const singleInventoryRes = await axios.get(
           `${REACT_APP_SERVER_URL}/inventories/${inventoryId}`
         );
-        console.log(singleInventoryRes.data);
         const {
           id,
           warehouse_name,
@@ -44,7 +41,6 @@ export default function InventoryDetails() {
           quantity,
         } = singleInventoryRes.data;
 
-        // setSelectedInventory(singleInventoryRes.data);
         setSelectedInventory({
           id,
           warehouse_name,
@@ -61,8 +57,6 @@ export default function InventoryDetails() {
 
     getSingleInventory();
   }, [inventoryId]);
-
-  console.log("Selected Inventory:", selectedInventory);
 
   return (
     <main className="inventory-details">

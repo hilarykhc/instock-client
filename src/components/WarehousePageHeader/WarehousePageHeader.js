@@ -8,7 +8,6 @@ const WarehousePageHeader = ({
 }) => {
   const handleFormSubmit = (event) => {
     event.preventDefault(); 
-    console.log('Form submitted!');
   };
 
   return (

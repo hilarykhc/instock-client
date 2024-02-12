@@ -52,7 +52,6 @@ function WarehouseList() {
     axios
       .delete(url)
       .then((response) => {
-        console.log("Deleted successfully", response.data);
         const updatedLists = lists.filter((list) => list.id !== selectedItemId);
         setLists(updatedLists);
       })
@@ -60,7 +59,6 @@ function WarehouseList() {
         console.error("There was an error!", error);
       });
 
-    // close modal and reset item id
     setIsDeleteModalOpen(false);
     setSelectedItemId(null);
   };
