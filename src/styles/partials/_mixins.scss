@@ -170,13 +170,12 @@
   }
 }
 
-@mixin tag($backgroundColor) {
+@mixin tag {
   text-transform: uppercase;
   border-radius: 1.25rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   height: 1.5rem;
-  background-color: rgba($backgroundColor, 0.7);
 
   @include tablet-and-desktop() {
     height: 1.625rem;
