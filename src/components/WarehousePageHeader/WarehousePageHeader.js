@@ -19,7 +19,7 @@ const WarehousePageHeader = ({ addWarehouseHandler }) => {
             onClick={addWarehouseHandler}
             className="warehouse-header__btn"
           >
-            + Add New Item
+            + Add New Warehouse
           </button>
         </div>
       </section>

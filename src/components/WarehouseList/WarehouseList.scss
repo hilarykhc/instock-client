@@ -259,8 +259,8 @@
     padding-left: 1rem;
     @include tablet-and-desktop {
       width: 13vw;
-
       font-size: $tablet-body-font-size;
+      padding-left: 0;
     }
     @include desktop {
       padding-left: 6rem;
@@ -375,7 +375,7 @@
   &__flexContainer {
     display: flex;
     justify-content: flex-start;
-    gap: 1.5rem;
+    gap: 4rem;
     @include tablet-and-desktop {
       display: flex;
     }
@@ -421,13 +421,13 @@
     @include tablet-and-desktop {
       display: flex;
 
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
       flex-direction: row;
       padding-top: 0.5rem;
       @include desktop {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
       }
     }
@@ -436,6 +436,7 @@
     display: none;
     @include tablet-and-desktop {
       display: flex;
+      width: 20%;
     }
   }
   &__titleContainerNew {
