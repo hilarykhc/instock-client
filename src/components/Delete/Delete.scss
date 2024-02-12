@@ -1,0 +1,106 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
+.delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $pure-white;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  @include tablet-and-desktop {
+    justify-content: flex-start;
+    width: 42rem;
+    height: 20vh;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  &__overlay {
+    @include tablet-and-desktop {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+  }
+
+  &__container {
+    background-color: $pure-white;
+    position: relative;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    padding-top: 3.5rem;
+    @include tablet-and-desktop {
+      width: 42rem;
+      height: 30vh;
+      margin: 0 3rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      position: relative;
+      padding-top: 2rem;
+      padding-bottom: 7em;
+    }
+  }
+  &__closeButton {
+    position: absolute;
+    padding-top: -2rem;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    z-index: 5;
+  }
+  &__img {
+    width: 100%;
+  }
+  &__title {
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: bold;
+    @include tablet-and-desktop {
+      margin: 0 4rem;
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+  &__content {
+    padding-top: 1rem;
+    margin: 0 1rem;
+    font-size: 0.8rem;
+    line-height: 1.375rem;
+    @include tablet-and-desktop {
+      margin: 0 4rem;
+      font-size: 1.1rem;
+      line-height: 1.875rem;
+    }
+  }
+  &__buttonDC {
+    width: 100vw;
+    @include tablet-and-desktop {
+      width: 48rem;
+      margin-top: -5rem;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      margin-right: 3rem;
+    }
+  }
+}

@@ -1,0 +1,163 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
+.inventory-details {
+  margin: -3rem 1rem 1rem;
+
+  @include tablet-and-desktop {
+    margin: -5rem 2rem 2rem;
+  }
+
+  @include desktop {
+    margin: -5rem 8rem 2rem;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid $cloud;
+
+    @include desktop {
+      padding: 1rem 2.5rem;
+    }
+  }
+
+  &__top-title {
+    font-size: 1.25rem;
+
+    @include tablet-and-desktop {
+      font-size: 1.875rem;
+      margin: 1rem;
+    }
+  }
+
+  &__top-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__top-back-link {
+    text-decoration: none;
+    margin-top: 0.5rem;
+  }
+
+  &__top-back-icon {
+    width: 75%;
+  }
+
+  &__top-edit-text {
+    display: none;
+    color: $pure-white;
+
+    @include tablet-and-desktop {
+      display: inline;
+      margin: 0.2rem 0;
+      font-size: 0.875rem;
+      padding-left: 0.2rem;
+    }
+  }
+
+  &__top-edit-icon {
+    filter: brightness(0) invert(1);
+    margin-top: 0.3rem;
+    width: 65%;
+
+    @include tablet-and-desktop {
+      width: 40%;
+      margin: 0;
+    }
+  }
+
+  &__top-edit-link {
+    background-color: $instock-indigo;
+    border-radius: 50%;
+    height: 1.75rem;
+    width: 1.75rem;
+    text-align: center;
+    text-decoration: none;
+
+    @include tablet-and-desktop {
+      display: flex;
+      padding: 0.25rem 1rem;
+      height: auto;
+      width: auto;
+      border-radius: 1.5rem;
+    }
+  }
+
+  &__bottom {
+    padding: 1rem;
+    font-size: 0.75rem;
+    // border-bottom: 1px solid $cloud;
+
+    @include tablet-and-desktop {
+      display: flex;
+      font-size: 0.875rem;
+    }
+
+    @include desktop {
+      padding: 1rem 2.5rem;
+    }
+  }
+
+  &__bottom-title {
+    margin: 0 0 0.25rem;
+    color: $slate;
+  }
+
+  &__bottom-text {
+    padding-bottom: 1rem;
+  }
+
+  &__bottom-1 {
+    @include tablet-and-desktop {
+      flex: 1 1;
+      padding-right: 2rem;
+    }
+  }
+
+  &__bottom-2 {
+    @include tablet-and-desktop {
+      border-left: 1px solid $cloud;
+      flex: 1 1;
+      padding-left: 2rem;
+    }
+  }
+
+  &__bottom-2-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+  }
+
+  &__quantity {
+    padding-right: 4rem;
+
+    @include desktop {
+      padding-right: 8rem;
+    }
+  }
+
+  &__last-text {
+    padding: 0;
+  }
+
+  &__status.outOfStock {
+    @include outOfStock;
+  }
+
+  &__status.inStock {
+    @include inStock;
+  }
+}
+
+.div-container1 {
+  background-color: $pure-white;
+  box-shadow: 0 2px 5px rgba(19, 24, 44, 0.1);
+  border-radius: 3px;
+}

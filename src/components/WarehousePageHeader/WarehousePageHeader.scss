@@ -1,0 +1,112 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/resets";
+
+.warehouse-header {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $cloud;
+
+  @include tablet-and-desktop {
+    border-bottom: none;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 1rem;
+
+    @include tablet-and-desktop {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+
+    @include desktop {
+      padding: 0 2.5rem;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    line-height: 1rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    @include tablet-and-desktop {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  &__search {
+    &-img {
+      display: flex;
+      position: relative;
+      left: 16.125rem;
+      top: 2rem;
+      @include tablet-and-desktop {
+        position: relative;
+        z-index: 1;
+      }
+    }
+    &-input {
+      border-radius: 1.25rem;
+      width: 100%;
+      height: 2.25rem;
+      padding-left: 1rem;
+      background-image: url("../../assets/Icons/search-24px.svg");
+      background-repeat: no-repeat;
+      background-position: 95% center;
+      border: 1px solid $cloud;
+
+      &::placeholder {
+        font-family: "Titillium Regular";
+      }
+
+      @include tablet-and-desktop {
+        width: 11.5625rem;
+        height: 2.375rem;
+
+        left: 6.25rem;
+        margin-right: 1rem;
+      }
+
+      @include desktop {
+        width: 16.5625rem;
+      }
+    }
+  }
+  &__btn {
+    @include btn($pure-white, $instock-indigo, $light-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.25rem;
+    width: 100%;
+    height: 2.25rem;
+    padding-left: 1rem;
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+
+    @include tablet-and-desktop {
+      height: 2.375rem;
+      margin-top: 0;
+      font-weight: 600;
+    }
+  }
+}
+
+.div-container-header {
+  @include tablet-and-desktop {
+    display: flex;
+  }
+}

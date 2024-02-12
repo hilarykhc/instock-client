@@ -1,0 +1,41 @@
+@use "../../styles/partials/resets" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+.buttonDC {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 2rem);
+    margin: 0 1rem;
+    padding-bottom: 1rem;
+    @include tablet-and-desktop {
+      justify-content: flex-end;
+      margin-right: 5.3rem;
+      gap: 1rem;
+    }
+    &--cancel,
+    &--delete {
+      width: 47%;
+      @include tablet-and-desktop {
+        width: 10%;
+      }
+    }
+  }
+  &__delete,
+  &__cancel {
+    border-radius: 1.25rem;
+    height: 2.25rem;
+    width: 100%;
+    border: $cloud solid 1px;
+    font-size: 0.8rem;
+    line-height: 1.375rem;
+  }
+  &__cancel {
+    background-color: $pure-white;
+  }
+  &__delete {
+    background-color: $red;
+    color: $pure-white;
+  }
+}

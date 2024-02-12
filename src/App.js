@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import WarehousePage from "./pages/WarehousePage/WarehousePage";
+import AddNewWarehouse from "./pages/AddNewWarehouse/AddNewWarehouse";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage";
+import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
+import InventoryPage from "./pages/InventoryPage/InventoryPage";
+import InventoryForm from "./components/InventoryForm/InventoryForm";
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<WarehousePage />} />
+        <Route path="/warehouse" element={<WarehousePage />} />
+        <Route path="/warehouse/add" element={<AddNewWarehouse />} />
+        <Route path="/warehouse/edit" element={<AddNewWarehouse />} />
+        <Route path="*" element={<NotFoundPage />} />
+        <Route
+          path="/warehouse/:warehouseId"
+          element={<WarehouseDetailsPage />}
+        />
+        <Route path="/inventory" element={<InventoryPage />} />
+        <Route
+          path="/inventory/:inventoryId"
+          element={<InventoryDetailsPage />}
+        />
+        <Route path="/inventory/edit" element={<InventoryForm />} />
+
+        <Route path="/warehouse/add" element={<AddNewWarehouse />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
-
-export default App;

@@ -1,0 +1,257 @@
+@use "./variables" as *;
+
+@mixin tablet-and-desktop {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin nav-item {
+  text-decoration: none;
+  list-style-type: none;
+  color: $cloud;
+  border-radius: 1.25rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: $pure-white;
+  }
+}
+
+@mixin pageheader_desktop {
+  font-size: 32px;
+  line-height: 40px;
+}
+@mixin subheader_desktop {
+  font-size: 24px;
+  line-height: 32px;
+}
+@mixin labels_links_buttons_desktop {
+  font-size: 14px;
+  line-height: 22px;
+}
+@mixin label_link_button_desktop {
+  font-size: 14px;
+  line-height: 22px;
+}
+@mixin table_header_desktop {
+  font-size: 12px;
+  line-height: 18px;
+}
+@mixin body_large_desktop {
+  font-size: 16px;
+  line-height: 20px;
+}
+@mixin body_medium_desktop {
+  font-size: 14px;
+  line-height: 22px;
+}
+@mixin body_small_desktop {
+  font-size: 12px;
+  line-height: 18px;
+}
+@mixin pageheader_mobile {
+  font-size: 28px;
+  line-height: 36px;
+}
+@mixin subheader_mobile {
+  font-size: 20px;
+  line-height: 28px;
+}
+@mixin labels_links_buttons_mobile {
+  font-size: 13px;
+  line-height: 20px;
+}
+@mixin label_link_button_mobile {
+  font-size: 13px;
+  line-height: 20px;
+}
+@mixin table_header_mobile {
+  font-size: 11px;
+  line-height: 16px;
+}
+@mixin body_large_mobile {
+  font-size: 15px;
+  line-height: 26px;
+}
+@mixin body_medium_mobile {
+  font-size: 13px;
+  line-height: 20px;
+}
+@mixin body_small_mobile {
+  font-size: 11px;
+  line-height: 16px;
+}
+@function pxToRem($px) {
+  @return $px / 16 + rem;
+}
+// Typography Mixins
+@mixin font-body-sm {
+  font: $font-mobile-body-sm;
+  @include tablet-and-desktop {
+    font: $font-tablet-body-sm;
+  }
+}
+
+@mixin font-body-md {
+  font: $font-mobile-body-md;
+  @include tablet-and-desktop {
+    font: $font-tablet-body-md;
+  }
+}
+
+@mixin font-body-lg {
+  font: $font-mobile-body-lg;
+  @include tablet-and-desktop {
+    font: $font-tablet-body-lg;
+  }
+}
+
+@mixin font-page-header {
+  font: $font-mobile-page-header;
+  @include tablet-and-desktop {
+    font: $font-tablet-page-header;
+  }
+}
+
+@mixin font-sub-header {
+  font: $font-mobile-subheader;
+  @include tablet-and-desktop {
+    font: $font-tablet-subheader;
+  }
+}
+
+@mixin font-table-header {
+  font: $font-mobile-table-header;
+  @include tablet-and-desktop {
+    font: $font-tablet-table-header;
+  }
+}
+
+@mixin font-label {
+  font: $font-mobile-labels;
+  @include tablet-and-desktop {
+    font: $font-tablet-labels;
+  }
+}
+
+@mixin font-button {
+  font: $font-mobile-buttons;
+  @include tablet-and-desktop {
+    font: $font-tablet-buttons;
+  }
+}
+
+@mixin font-link {
+  font: $font-mobile-link;
+  @include tablet-and-desktop {
+    font: $font-tablet-link;
+  }
+}
+
+@mixin tag {
+  text-transform: uppercase;
+  border-radius: 1.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  height: 1.5rem;
+
+  @include tablet-and-desktop() {
+    height: 1.625rem;
+  }
+}
+
+@mixin field-input-styles {
+  width: 100%;
+  height: 2.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 1.25rem;
+  outline: none;
+  border: 1px solid $cloud;
+  color: $instock-black;
+  background-color: $pure-white;
+  @include font-label;
+  @include tablet-and-desktop {
+    height: 2.375rem;
+  }
+
+  &:focus {
+    border: 1px solid $instock-indigo;
+  }
+}
+
+@mixin divider {
+  border-bottom: 1px solid $cloud;
+}
+
+@mixin btn($color, $background-color, $border-color) {
+  @include font-button;
+  height: 2.25rem;
+  width: 100%;
+  border-radius: 1.25rem;
+  text-transform: capitalize;
+  text-align: center;
+  cursor: pointer;
+  color: $color;
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  font-weight: 600;
+
+  @include tablet-and-desktop {
+    height: 2.375rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+
+@mixin inStock {
+  text-transform: uppercase;
+  background-color: rgba(21, 132, 99, 0.07);
+  color: $green;
+  width: 4rem;
+  text-align: center;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  height: 1.6rem;
+  padding: 0.2rem;
+  font-family: "Titillium Regular";
+}
+
+@mixin outOfStock {
+  text-transform: uppercase;
+  background-color: rgba(201, 69, 21, 0.07);
+  color: $red;
+  width: 6rem;
+  text-align: center;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  height: 1.6rem;
+  padding: 0.2rem;
+  font-family: "Titillium Regular";
+}
+
