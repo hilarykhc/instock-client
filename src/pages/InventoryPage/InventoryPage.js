@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
-import InventoryListHeader from "../../components/InventoryListHeader/InventoryListHeader";
-import axios from "axios";
-import InventoryListItem from "../../components/InventoryListItem/InventoryListItem";
-import InventoryPageHeader from "../../components/InventoryPageHeader/InventoryPageHeader";
-import "./InventoryPage.scss";
+import { useEffect, useState } from 'react';
+import InventoryListHeader from '../../components/InventoryListHeader/InventoryListHeader';
+import axios from 'axios';
+import InventoryListItem from '../../components/InventoryListItem/InventoryListItem';
+import InventoryPageHeader from '../../components/InventoryPageHeader/InventoryPageHeader';
+import './InventoryPage.scss';
 
 const InventoryPage = () => {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   const [inventories, setInventories] = useState([]);
-    const [sortBy, setSortBy] = useState(null);
-    const [sortingOrder, setSortingOrder] = useState('asc');
+  const [sortBy, setSortBy] = useState(null);
+  const [sortingOrder, setSortingOrder] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const fetchAllInventories = async () => {
     try {
@@ -18,6 +19,7 @@ const InventoryPage = () => {
         params: {
           sort_by: sortBy,
           order_by: sortingOrder,
+          s: searchTerm,
         },
       });
       setInventories(response.data);
@@ -28,17 +30,20 @@ const InventoryPage = () => {
 
   useEffect(() => {
     fetchAllInventories();
-  }, [sortBy, sortingOrder]);
+  }, [sortBy, sortingOrder,searchTerm]);
 
-   const handleSortClick = (value) => {
-     if (sortBy === value) {
-       setSortingOrder(sortingOrder === 'asc' ? 'desc' : 'asc');
-     } else {
-       setSortBy(value);
-       setSortingOrder('asc'); 
-     }
-   };
+  const handleSortClick = (value) => {
+    if (sortBy === value) {
+      setSortingOrder(sortingOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(value);
+      setSortingOrder('asc');
+    }
+  };
 
+    const handleSearch = (value) => {
+      setSearchTerm(value);
+    };
 
   const deleteInventoryItem = (itemId) => {
     axios
@@ -52,12 +57,10 @@ const InventoryPage = () => {
       .catch((error) => console.log(error));
   };
   return (
-
-
     <main className="div-container-main">
       <div className="div-container">
-        <InventoryPageHeader />
-              <InventoryListHeader onSort={handleSortClick} />
+        <InventoryPageHeader onSearch={handleSearch} />
+        <InventoryListHeader onSort={handleSortClick} />
         {inventories.map((inventory) => (
           <InventoryListItem
             key={inventory.id}

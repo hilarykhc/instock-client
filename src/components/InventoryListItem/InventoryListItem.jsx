@@ -5,6 +5,7 @@ import editIcon from "../../assets/Icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 import Delete from "../Delete/Delete";
 import "./InventoryListItem.scss";
+
 const InventoryListItem = (props) => {
   const { category, id, item_name, quantity, status, warehouse_name } =
     props.inventoryItem;
@@ -61,15 +62,12 @@ const InventoryListItem = (props) => {
         </div>
       </div>
 
-      <div className="warehouse__container">
         <div className="inventory-row__col inventory-row__col--warehouse">
           <h4 className="inventory-row__cell-header">WAREHOUSE</h4>
           <div className="inventory-row__contact-info">
             <p className="inventory-row__quantity">{warehouse_name}</p>
           </div>
         </div>
-      </div>
-      {/* Edit & Delete Button */}
       <div className=" inventory-row__col--actions">
         <button
           className="inventory-row__icon-button"
@@ -79,7 +77,7 @@ const InventoryListItem = (props) => {
         </button>
         {isDeleteModalOpen && (
           <Delete
-            style="inventory"
+            styleName="inventory"
             list="the inventory list"
             name={item_name}
             onDeleteConfirm={handleDeleteConfirm}
@@ -87,7 +85,7 @@ const InventoryListItem = (props) => {
           />
         )}
         <Link
-          to="#"
+          to={`/inventory/edit/?id=${id}`}
           className="inventory-row__icon-button inventory-row__icon-button--edit"
         >
           <img className="inventory-row__icon" src={editIcon} alt="edit" />
@@ -95,20 +93,6 @@ const InventoryListItem = (props) => {
       </div>
     </div>
   );
-  // (
-  //   <>
-  //     <p>{item_name}</p>
-  //     <img src={chevronImage} alt="Chevron Icon" />
-  //     <p>{category}</p>
-  //     <p>{status}</p>
-  //     <p>{quantity}</p>
-  //     <p>{warehouse_name}</p>
-  //     <div>
-  //       <img src={deleteIcon} alt="Delete Icon" />
-  //       <img src={editIcon} alt="Edit Icon" />
-  //     </div>
-  //   </>
-  // );
 };
 
 export default InventoryListItem;

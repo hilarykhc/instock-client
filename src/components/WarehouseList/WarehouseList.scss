@@ -26,8 +26,7 @@
   flex-direction: column;
   justify-self: center;
   align-items: center;
-  // margin-left: 1rem;
-  // margin-right: 1rem;
+
   padding-bottom: 1rem;
   border-bottom: 1px solid $cloud;
 
@@ -93,7 +92,7 @@
       @include tablet-and-desktop {
         width: 11.5625rem;
         height: 2.375rem;
-        // position: relative;
+
         left: 6.25rem;
         margin-right: 1rem;
       }
@@ -189,7 +188,6 @@
       width: 25vw;
       height: 4vh;
       padding-top: -0.4rem;
-
       border-radius: 2rem;
     }
   }
@@ -259,11 +257,11 @@
     padding-left: 1rem;
     @include tablet-and-desktop {
       width: 13vw;
-
       font-size: $tablet-body-font-size;
+      padding-left: 0;
     }
     @include desktop {
-      padding-left: 6rem;
+      padding-left: 5rem;
     }
   }
   &__addressTitle {
@@ -287,7 +285,7 @@
     }
     @include desktop {
       position: absolute;
-      left: 10rem;
+      left: 20rem;
     }
   }
 
@@ -297,13 +295,12 @@
     padding-top: 0.4rem;
     @include tablet-and-desktop {
       font-size: $tablet-body-font-size;
-      //  width: 18vw;
-      //  padding-left: 2rem
     }
   }
   &__addressBox {
     @include desktop {
       padding-left: 3.5rem;
+      width: 13vw;
     }
   }
   &__city {
@@ -363,6 +360,10 @@
     @include tablet-and-desktop {
       font-size: $tablet-body-font-size;
     }
+    @include desktop {
+      margin-left: -3rem;
+      padding-right: 0;
+    }
   }
   &__email {
     font-size: 0.688rem;
@@ -371,24 +372,29 @@
     @include tablet-and-desktop {
       font-size: $tablet-body-font-size;
     }
+    @include desktop {
+      margin-left: -3rem;
+    }
   }
   &__flexContainer {
     display: flex;
     justify-content: flex-start;
-    gap: 1.5rem;
+    gap: 4rem;
     @include tablet-and-desktop {
       display: flex;
+      justify-content: flex-start;
+      gap: 1.5rem;
     }
   }
   &__one {
     width: 40%;
+
     @include tablet-and-desktop {
       display: flex;
       align-items: center;
       margin-left: 1.8rem;
-      // gap: 2rem;
+
       flex-direction: row;
-      // width: 55%;
     }
   }
   &__two {
@@ -413,20 +419,20 @@
     }
     @include desktop {
       gap: 2rem;
-      margin-right: 4rem;
+      margin-left: -2rem;
     }
   }
   &__allContainer {
     border-bottom: 1.2px solid $cloud;
     @include tablet-and-desktop {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
       flex-direction: row;
       padding-top: 0.5rem;
       @include desktop {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
       }
     }
@@ -435,6 +441,7 @@
     display: none;
     @include tablet-and-desktop {
       display: flex;
+      width: 20%;
     }
   }
   &__titleContainerNew {

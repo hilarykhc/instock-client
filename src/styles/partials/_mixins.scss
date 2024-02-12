@@ -39,6 +39,73 @@
   }
 }
 
+@mixin pageheader_desktop {
+  font-size: 32px;
+  line-height: 40px;
+}
+@mixin subheader_desktop {
+  font-size: 24px;
+  line-height: 32px;
+}
+@mixin labels_links_buttons_desktop {
+  font-size: 14px;
+  line-height: 22px;
+}
+@mixin label_link_button_desktop {
+  font-size: 14px;
+  line-height: 22px;
+}
+@mixin table_header_desktop {
+  font-size: 12px;
+  line-height: 18px;
+}
+@mixin body_large_desktop {
+  font-size: 16px;
+  line-height: 20px;
+}
+@mixin body_medium_desktop {
+  font-size: 14px;
+  line-height: 22px;
+}
+@mixin body_small_desktop {
+  font-size: 12px;
+  line-height: 18px;
+}
+@mixin pageheader_mobile {
+  font-size: 28px;
+  line-height: 36px;
+}
+@mixin subheader_mobile {
+  font-size: 20px;
+  line-height: 28px;
+}
+@mixin labels_links_buttons_mobile {
+  font-size: 13px;
+  line-height: 20px;
+}
+@mixin label_link_button_mobile {
+  font-size: 13px;
+  line-height: 20px;
+}
+@mixin table_header_mobile {
+  font-size: 11px;
+  line-height: 16px;
+}
+@mixin body_large_mobile {
+  font-size: 15px;
+  line-height: 26px;
+}
+@mixin body_medium_mobile {
+  font-size: 13px;
+  line-height: 20px;
+}
+@mixin body_small_mobile {
+  font-size: 11px;
+  line-height: 16px;
+}
+@function pxToRem($px) {
+  @return $px / 16 + rem;
+}
 // Typography Mixins
 @mixin font-body-sm {
   font: $font-mobile-body-sm;
@@ -103,13 +170,12 @@
   }
 }
 
-@mixin tag($backgroundColor) {
+@mixin tag {
   text-transform: uppercase;
   border-radius: 1.25rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   height: 1.5rem;
-  background-color: rgba($backgroundColor, 0.7);
 
   @include tablet-and-desktop() {
     height: 1.625rem;

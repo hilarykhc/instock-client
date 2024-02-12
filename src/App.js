@@ -12,6 +12,8 @@ import EditInventory from './pages/Add-Inventory/add-inventory';
 import AddInventory from './pages/Add-Inventory/add-inventory';
 
 function App() {
+import InventoryForm from "./components/InventoryForm/InventoryForm";
+export default function App() {
   return (
     <BrowserRouter>
       <Header />
@@ -30,8 +32,10 @@ function App() {
           path="/inventory/:inventoryId"
           element={<InventoryDetailsPage />}
         />
+        <Route path="/inventory/edit" element={<InventoryForm />} />
 
         <Route path="/warehouse/add" element={<AddNewWarehouse />} />
+
         <Route path="/add-inventory" element={<AddInventory />} />
       </Routes>
       <Footer />
