@@ -64,18 +64,15 @@ function WarehouseList() {
     setIsDeleteModalOpen(false);
     setSelectedItemId(null);
   };
-
   const handleEditWarehouseClick = (data) => {
     setIsEditMode(true);
     setDisplayForm(true);
     setWarehouseData(data);
   };
-
   const addWarehouseHandler = () => {
     setIsEditMode(false);
     setDisplayForm(true);
   };
-
   const resetDisplayState = () => {
     setIsEditMode(false);
     setDisplayForm(false);

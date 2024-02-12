@@ -2,6 +2,7 @@ import React from "react";
 import "./InventoryPageHeader.scss";
 import { useState } from "react";
 
+
 const InventoryPageHeader = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const handleSearchChange = (event) => {
@@ -29,8 +30,7 @@ const InventoryPageHeader = ({ onSearch }) => {
               onChange={handleSearchChange}
             />
           </form>
-
-          <button className="inventory-header__btn">+ Add New Item</button>
+          <button className="inventory-header__btn"><Link to="/add-inventory">+ Add New Item</Link></button>
         </div>
       </section>
     </div>

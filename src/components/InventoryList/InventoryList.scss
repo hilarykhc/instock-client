@@ -1,3 +1,168 @@
+<<<<<<< HEAD
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/resets" ;
+@use "../../styles/partials/mixins" as *;
+@import "../../styles/partials/typography";
+
+.warehouse-details{
+    padding: 0 pxToRem(16);
+    background-color: $light-grey;
+    @include tablet-and-desktop {
+      padding: 0 pxToRem(32);
+    }
+    &__container {
+        position: relative;
+        top: pxToRem(-64);
+        border-radius: pxToRem(3);
+        box-shadow: 0 pxToRem(2) pxToRem(5) rgba($instock-black, 0.1);
+        background-color: $pure-white;
+        @include  tablet-and-desktop  {
+          top: pxToRem(-94);
+          max-width: pxToRem(1020);
+          margin: 0 auto;
+        }
+      }
+      &__header {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        @include tablet-and-desktop {
+          padding: 1rem;
+        }
+        @include desktop {
+          padding: 1rem 1.5rem;
+        }
+      }
+      &__name-container {
+        align-items: center;
+        padding: 1rem;
+        display: flex;
+        @include subheader_mobile;
+        @include tablet-and-desktop {
+          @include subheader_desktop;
+        }
+      }
+      
+  &__back-arrow {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &__warehouse-edit {
+    padding: 1rem;
+  }
+
+  &__details-container {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid $cloud;
+    border-bottom: 1px solid $cloud;
+    @include tablet-and-desktop {
+      display: flex;
+      flex-wrap: nowrap;
+      border-bottom: none;
+      padding: 1rem;
+    }
+    @include desktop {
+      padding: 1rem 1.5rem;
+    }
+  }
+  
+  &__warehouse-address {
+    padding: 1rem;
+    width: 100%;
+    @include tablet-and-desktop {
+      border-right: 1px solid $cloud;
+      padding: 0;
+      margin: 1rem;
+      width: 50%;
+    }
+    @include desktop {
+      width: 60%;
+    }
+  }
+  &__contact-name {
+    padding: 1rem;
+    width: 50%;
+    @include tablet-and-desktop {
+      padding: 1rem 2rem;
+      width: 35%;
+    }
+  }
+  &__contact-info {
+    padding: 1rem;
+    width: 50%;
+  }
+  &__tablet-header-container {
+    display: none;
+    @include tablet-and-desktop {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background-color: $light-grey;
+    }
+    @include tablet-and-desktop {
+      padding: 1rem 2.5rem;
+    }
+  }
+
+  &__tablet-header {
+    @include body_medium_desktop;
+    display: flex;
+    align-items: center;
+
+    &--inventory {
+      width: 15.5%;
+    }
+    &--category {
+      width: 14%;
+    }
+    &--status {
+      width: 20%;
+    }
+    &--quantity {
+      width: 20%;
+    }
+  }
+  &__li-item {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid $cloud;
+
+    &:hover {
+      background: #2e66e512;
+    }
+
+    @include tablet-and-desktop {
+      flex-wrap: nowrap;
+      padding: 0 1rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @include desktop {
+      padding: 0 1.5rem;
+    }
+  }
+
+  &__inventory-item {
+    padding: 1rem;
+    width: 50%;
+    @include tablet-and-desktop {
+      width: 17%;
+      order: 1;
+    }
+  }
+
+  &__more-details {
+    display: flex;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+=======
 @import "../../styles/partials/mixins";
 @import "../../styles/partials/typography";
 @import "../../styles/partials/variables";
@@ -25,10 +190,70 @@
 
     @include tablet-and-desktop {
       border-top: none;
+>>>>>>> develop
     }
   }
 
   &__category {
+<<<<<<< HEAD
+    padding: 0 1rem 0.5rem;
+    width: 50%;
+    @include tablet-and-desktop {
+      padding: 1rem 0;
+      width: 14%;
+      order: 2;
+    }
+  }
+  &__status {
+    padding: 1rem;
+    width: 50%;
+    @include tablet-and-desktop {
+      padding: 1rem 0;
+      width: 20%;
+      order: 3;
+    }
+  }
+
+  &__quantity {
+    padding: 0 1rem 0.5rem;
+    width: 50%;
+    @include tablet-and-desktop {
+      width: 17.5%;
+      padding: 1rem 0;
+      order: 4;
+    }
+  }
+
+  &__actions-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    @include tablet-and-desktop {
+      width: 5rem;
+      order: 5;
+    }
+  }
+
+  &__delete {
+    cursor: pointer;
+    padding: 0.5rem 1rem 1rem;
+    @include tablet-and-desktop {
+      padding: 1rem 0.5rem;
+      justify-self: flex-end;
+    }
+  }
+
+  &__edit {
+    padding: 0.5rem 1rem 1rem;
+    @include tablet-and-desktop {
+      padding: 1rem 1rem 1rem 0.5rem;
+    }
+  }
+  &__mobile-heading {
+    @include body_small_mobile;
+    margin-bottom: 0.5rem;
+    @include tablet-and-desktop{
+=======
     display: block;
   }
 
@@ -103,10 +328,22 @@
     @include font-table-header;
 
     @include tablet-and-desktop {
+>>>>>>> develop
       display: none;
     }
   }
 
+<<<<<<< HEAD
+  &__heading {
+    @include table_header_mobile;
+    margin-bottom: 0.5rem;
+    @include tablet-and-desktop {
+      @include body_small_desktop;
+    }
+  }
+
+}
+=======
   &__link {
     font-weight: 600;
     color: $instock-indigo;
@@ -137,3 +374,4 @@
     padding: 0;
   }
 }
+>>>>>>> develop

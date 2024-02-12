@@ -3,6 +3,7 @@ import Close from "../../assets/Icons/close-24px.svg";
 import "./Delete.scss";
 
 const Delete = ({ name, styleName, list, onDeleteConfirm, onClose }) => {
+
   const handleDelete = () => {
     onDeleteConfirm(name);
   };
@@ -17,6 +18,7 @@ const Delete = ({ name, styleName, list, onDeleteConfirm, onClose }) => {
           <button className="delete__closeButton" onClick={onClose}>
             <img className="delete__img" src={Close} alt="close"></img>
           </button>
+
           <p className="delete__title">
             Delete {name} {styleName}?
           </p>
@@ -24,6 +26,7 @@ const Delete = ({ name, styleName, list, onDeleteConfirm, onClose }) => {
             Please confirm that you'd like to delete{" "}
             {styleName === "warehouse" ? "the " + name : name} from {list}. You
             won't be able to undo this action.
+
           </p>
         </div>
         <div className="delete__buttonDC">
@@ -32,5 +35,5 @@ const Delete = ({ name, styleName, list, onDeleteConfirm, onClose }) => {
       </div>
     </>
   );
-};
+  }
 export default Delete;

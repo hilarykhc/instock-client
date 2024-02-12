@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -7,6 +8,10 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage";
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
+import EditInventory from './pages/Add-Inventory/add-inventory';
+import AddInventory from './pages/Add-Inventory/add-inventory';
+
+function App() {
 import InventoryForm from "./components/InventoryForm/InventoryForm";
 export default function App() {
   return (
@@ -30,8 +35,12 @@ export default function App() {
         <Route path="/inventory/edit" element={<InventoryForm />} />
 
         <Route path="/warehouse/add" element={<AddNewWarehouse />} />
+
+        <Route path="/add-inventory" element={<AddInventory />} />
       </Routes>
       <Footer />
     </BrowserRouter>
   );
 }
+
+export default App;

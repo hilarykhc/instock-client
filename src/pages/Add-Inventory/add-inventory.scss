@@ -1,0 +1,543 @@
+// @use "../../Style/Partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+.addinventory {
+  position: absolute;
+  top: 9rem;
+  margin-left: 1.2rem;
+  border-radius: 0.25rem;
+  background-color: $pure-white;
+  box-shadow: 0 2px 5px 0 rgba(19, 24, 44, 0.1);
+  @include tablet-and-desktop {
+    margin: 0 4.7rem;
+    top: 7.5rem;
+  }
+  @include desktop {
+    margin-left: 8rem;
+    margin-right: 8rem;
+    width: 80vw;
+    margin-bottom: 5rem;
+  }
+  &__header-wrap {
+    border-bottom: 1px solid $cloud;
+    display: flex;
+    width: 280px;
+    margin-left: 0.5rem;
+    padding: 1rem 0;
+    @include tablet-and-desktop {
+      border-bottom: none;
+    }
+    @include desktop {
+      width: 35vw;
+    }
+  }
+  &__header-icon {
+    margin-left: 1rem;
+    height: 18px;
+    margin-top: 0.4rem;
+    @include desktop {
+      height: 27px;
+      margin-top: 1.2rem;
+    }
+  }
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    margin-left: 0.5rem;
+    @include tablet-and-desktop {
+      font-size: 1.3rem;
+    }
+    @include desktop {
+      font-size: 2.5rem;
+    }
+  }
+  &__detail-form-container {
+    @include tablet-and-desktop {
+      display: flex;
+      justify-content: space-evenly;
+      border-top: 1px solid $cloud;
+    }
+    @include desktop {
+      height: 50vh;
+    }
+  }
+  &__detail {
+    padding: 0 1rem;
+  }
+  &__detailborder {
+    @include tablet-and-desktop {
+      border-right: 1px solid $cloud;
+    }
+  }
+  &__form-detail {
+    position: relative;
+  }
+  &__form-header {
+    font-size: 0.8rem;
+    padding-top: 0.7rem;
+    @include desktop {
+      font-size: 1.7rem;
+    }
+  }
+  &__form-name {
+    font-size: 0.6rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    @include desktop {
+      font-size: 1.2rem;
+      padding-top: 0.5rem;
+    }
+  }
+  &__form-radio {
+    font-size: 0.6rem;
+    padding-left: 3px;
+    @include desktop {
+      font-size: 1.2rem;
+    }
+  }
+  &__form-radio-wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5rem;
+    @include tablet-and-desktop {
+      justify-content: flex-start;
+      gap: 4rem;
+    }
+  }
+  &__form-input {
+    border-radius: 1.25rem;
+    border: 1px solid $cloud;
+    height: 1.5rem;
+    width: 16rem;
+    padding: 0 0.5rem;
+    font-size: $tabdesk-labels-links-buttons-fontsize;
+    @include tablet-and-desktop {
+      width: 18rem;
+    }
+    @include desktop {
+      width: 25rem;
+      height: 2.5rem;
+    }
+    &:focus {
+      border: 1px solid $instock-indigo !important;
+    }
+  }
+  &__form-input::placeholder {
+    font-size: 0.5rem;
+    @include desktop {
+      padding-top: 0.5rem;
+      padding-left: 0.8rem;
+    }
+  }
+  &__form-input-des {
+    border-radius: 1.25rem;
+    border: 1px solid $cloud;
+    height: 6rem;
+    width: 16rem;
+    padding: 0 1rem;
+    position: relative;
+    margin-top: 0.2rem;
+    &::placeholder {
+      text-align: left;
+      padding-top: 1rem;
+    }
+    @include tablet-and-desktop {
+      width: 18rem;
+    }
+    @include desktop {
+      width: 25rem;
+      height: 20vh;
+      padding-top: 1rem;
+    }
+  }
+  &__form-category-name {
+    position: relative;
+    border-radius: 1rem;
+    border: 1px solid $cloud;
+    height: 1.5rem;
+    width: 16rem;
+    padding: 0 1rem;
+    margin-top: 0.2rem;
+    @include tablet-and-desktop {
+      width: 18rem;
+    }
+    @include desktop {
+      width: 25rem;
+      height: 5vh;
+    }
+  }
+  &__form-category-name::placeholder {
+    font-size: 0.5rem;
+  }
+  &__form-categoryinput-icon {
+    position: absolute;
+    top: 56%;
+    right: 2rem;
+    pointer-events: none;
+    @include tablet-and-desktop {
+      top: 74%;
+      right: 54%;
+    }
+  }
+  &__form-input-icon-quality {
+    position: absolute;
+    top: 81%;
+    right: 2rem;
+    pointer-events: none;
+    @include tablet-and-desktop {
+      top: 42%;
+    }
+    @include desktop {
+      top: 42%;
+    }
+  }
+  &__error-message {
+    color: $red;
+    font-size: $tabdesk-labels-links-buttons-fontsize;
+    position: absolute;
+    bottom: -1.2rem;
+    left: 0.9rem;
+    margin: 0;
+  }
+  &__error-message-description {
+    color: $red;
+    font-size: $tabdesk-labels-links-buttons-fontsize;
+    position: absolute;
+    top: 17.5rem;
+    left: 1.5rem;
+    margin: 0;
+    @include tablet-and-desktop {
+      top: 17.5rem;
+      left: 1.5rem;
+      @include desktop {
+        top: 28rem;
+        left: 4rem;
+      }
+    }
+  }
+  &__error-message-category {
+    color: $red;
+    font-size: $tabdesk-labels-links-buttons-fontsize;
+    position: absolute;
+    top: 21.25rem;
+    left: 1.7rem;
+    margin: 0;
+    @include tablet-and-desktop {
+      top: 21.5rem;
+      left: 1.5rem;
+    }
+  }
+  &__quantityParent {
+    position: relative !important;
+  }
+  &__error-message-quantity {
+    color: $red;
+    font-size: $tabdesk-labels-links-buttons-fontsize;
+    position: absolute;
+    top: 2.4rem;
+    left: 0.5rem;
+    margin: 0;
+    @include desktop {
+      top: 5rem;
+    }
+  }
+  &__wareHouseParent {
+    position: relative !important;
+  }
+  &__error-message-warehouse {
+    color: $red;
+    font-size: $tabdesk-labels-links-buttons-fontsize;
+    position: absolute;
+    top: 2.4rem;
+    left: 0.5rem;
+    margin: 0;
+    @include tablet-and-desktop {
+      top: 2.8rem;
+      left: 1rem;
+    }
+    @include desktop {
+      top: 4.8rem;
+      left: 1rem;
+    }
+  }
+  &__divider {
+    border-bottom: 1px solid $cloud;
+    margin-top: 2rem;
+    @include tablet-and-desktop {
+      border-left: 1px solid $cloud;
+      border-bottom: none;
+      text-align: center;
+    }
+  }
+  &__btn-wrap {
+    background-color: $light-grey;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+    margin-top: 1.5rem;
+    @include tablet-and-desktop {
+      padding-right: 2rem;
+      justify-content: flex-end;
+    }
+    @include desktop {
+      margin-top: 7rem;
+      padding: 2rem 3rem;
+    }
+  }
+  &__btn-cancel {
+    background-color: $pure-white;
+    border-radius: 1.25rem;
+    border: 1px solid $cloud;
+    text-align: center;
+    height: 1.5rem;
+    width: 7rem;
+    font-size: 0.6rem;
+    @include tablet-and-desktop {
+      width: 4rem;
+      height: 2rem;
+    }
+    @include desktop {
+      width: 6rem;
+      height: 3rem;
+      font-size: 1rem;
+    }
+    &:hover {
+      border: 1px solid $instock-indigo;
+      color: $instock-indigo;
+    }
+  }
+  &__btn-addItem {
+    background-color: $instock-indigo;
+    text-align: center;
+    height: 1.5rem;
+    width: 7rem;
+    border-radius: 1.25rem;
+    border: none;
+    color: $pure-white;
+    font-size: 0.6rem;
+    @include tablet-and-desktop {
+      width: 4rem;
+      height: 2rem;
+      margin-left: 1rem;
+      @include desktop {
+        width: 6rem;
+        height: 3rem;
+        font-size: 1rem;
+      }
+    }
+    &:hover {
+      background-color: $instock-black;
+    }
+  }
+}
+// @use "../../styles/partials/variables" as *;
+// @use "../../styles/partials/mixins" as *;
+// @use "../../styles/partials/typography" as *;
+// // @use "../../styles/global.scss" as *;
+
+// .add-inventory {
+//   background-color: $pure-white;
+//   margin: -4rem 1rem 2.5rem;
+//   z-index: 99;
+//   border-radius: 5px;
+//   box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.1);
+
+//   @include tablet-and-desktop {
+//     margin: -5.75rem 2rem 2.5rem;
+//   }
+
+//   @include desktop {
+//     margin: -6rem 8.125rem 2.5rem;
+//   }
+
+//   &__title-container {
+//     padding: 2rem 1.5rem 1.5rem;
+//     display: flex;
+//     gap: 0.5rem;
+//     border-bottom: 1px solid $cloud;
+//   }
+
+//   &__title {
+//     @include subheader_desktop;
+//     margin: 0;
+   
+//   }
+
+//   &__section-title {
+//     font-size: 1.25rem;
+//     margin-bottom: 1.5rem;
+//   }
+
+//   &__item-details {
+//     padding: 0 1.5rem 1.5rem;
+//     border-bottom: 1px solid $cloud;
+
+//     @include tablet-and-desktop {
+//       border-bottom: none;
+//       border-right: 1px solid $cloud;
+//       flex: 1;
+//     }
+//   }
+
+//   &__item-availability {
+//     padding: 0 1.5rem;
+
+//     @include tablet-and-desktop {
+//       flex: 1;
+//     }
+//   }
+
+//   &__form {
+//     @include tablet-and-desktop {
+//       display: flex;
+//       width: 100%;
+//     }
+//   }
+
+//   &__label {
+//     display: block;
+//     margin-bottom: $form-label-spacing;
+//     font-size: $font-mobile-body-sm;
+//     font-weight: $semibold-txt;
+//   }
+
+//   &__input {
+//     display: block;
+//     width: 100%;
+//     height: $form-height-mobile;
+//     padding: $form-padding;
+//     border-radius: $form-border-radius;
+//     // border: $form-border-default;
+//     margin-bottom: 1rem;
+//     border-color: $cloud;
+//     outline-color: $instock-indigo;
+//   }
+
+//   &__dropdown {
+//     width: 100%;
+//     height: $form-height-mobile;
+//     padding-left: 1rem;
+//     border-radius: $form-border-radius;
+//     // border: $form-border-default;
+//     border-color:$cloud;
+//     outline-color: $instock-indigo;
+//   }
+
+//   &__textarea {
+//     display: block;
+//     width: 100%;
+//     padding: $form-padding;
+//     border-radius: $form-border-radius;
+//     // border: $form-border-default;
+//     border-color: $cloud;
+//     margin-bottom: 1rem;
+//     resize: none;
+//     outline-color: $instock-indigo;
+//     font-family: "TitilliumWeb-Regular", sans-serif;
+//   }
+
+//   &__status-options {
+//     display: flex;
+//     align-items: center;
+//     gap: 3rem;
+//     font-size: $font-mobile-body-md;
+//     margin-bottom: 1rem;
+//   }
+
+//   &__status-label {
+//     display: flex;
+//     align-items: center;
+//   }
+
+//   &__radio-btn {
+//     margin-left: 0;
+//     margin-right: 0.5rem;
+//     width: 1rem;
+//     height: 1rem;
+//   }
+
+//   &__btn-container {
+//     display: flex;
+//     gap: 1.0625rem;
+//     padding: 1rem 1.5rem;
+//     margin-top: 1.5rem;
+//     background-color:$light-grey;
+
+//     @include tablet-and-desktop {
+//       justify-content: flex-end;
+//     }
+//   }
+
+//   &__btn {
+//     border-radius: $form-border-radius;
+//     height: 2.25rem;
+//     font-weight: $semibold-txt;
+//     font-size: $font-body-sm;
+//     width: 100%;
+
+//     @include tablet-and-desktop {
+//       width: 15%;
+//     }
+
+//     @include desktop {
+//       width: 10%;
+//     }
+//   }
+
+//   &__error {
+//     color: $red;
+//     display: flex;
+//     align-items: center;
+//     gap: 0.25rem;
+//     font-size: 0.8rem;
+//     margin-top: -0.9rem;
+//   }
+// }
+
+// .save-btn {
+//   background-color: $instock-indigo;
+//   color: $pure-white;
+//   border: none;
+// }
+
+// .cancel-btn {
+//   background-color: $pure-white;
+//   color: $slate;
+//   border: 1px solid $cloud;
+// }
+
+// .error-outline {
+//   border: $red;
+// }
+
+// .error-icon {
+//   width: 1rem;
+//   height: 1rem;
+// }
+
+// .dropdown-container {
+//   .arrow-icon {
+//     position: absolute;
+//     right: 10px;
+//     top: 40%;
+//     transform: translateY(-50%);
+//     pointer-events: none;
+//   }
+
+//   select {
+//     appearance: none;
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     padding-right: 1rem;
+//     background-image: url("../../assets/Icons/arrow_drop_down-24px.svg");
+//     background-repeat: no-repeat;
+//     background-position: right 10px center;
+//     background-size: 20px;
+//     cursor: pointer;
+//     margin-bottom: 1rem;
+//   }
+// }
+

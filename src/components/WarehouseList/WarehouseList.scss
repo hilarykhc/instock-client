@@ -426,7 +426,6 @@
     border-bottom: 1.2px solid $cloud;
     @include tablet-and-desktop {
       display: flex;
-
       justify-content: space-around;
       align-items: center;
       flex-direction: row;

@@ -120,7 +120,7 @@ export default function InventoryDetails() {
                   <h4 className="inventory-details__bottom-title">STATUS:</h4>
                   <p
                     className={`inventory-details__status ${
-                      selectedInventory.status == "In Stock"
+                      selectedInventory.status === "In Stock"
                         ? "inStock"
                         : "outOfStock"
                     }`}
