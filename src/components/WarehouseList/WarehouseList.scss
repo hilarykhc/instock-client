@@ -372,7 +372,6 @@
   }
   &__flexContainer {
     display: flex;
-    
 
     @include tablet-and-desktop {
       display: flex;
@@ -382,7 +381,7 @@
   }
   &__one {
     width: 40%;
-border:2px solid red;
+
     @include tablet-and-desktop {
       display: flex;
       align-items: center;
@@ -393,8 +392,6 @@ border:2px solid red;
     }
   }
   &__two {
- 
-    border: 2px solid red;
     @include tablet-and-desktop {
       display: flex;
       align-items: center;
