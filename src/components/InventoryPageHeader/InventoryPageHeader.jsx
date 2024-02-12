@@ -1,5 +1,5 @@
 import React from 'react';
-import searchImage from '../../assets/Icons/search-24px.svg';
+// import searchImage from '../../assets/Icons/search-24px.svg';
 import './InventoryPageHeader.scss';
 import { useState } from 'react';
 

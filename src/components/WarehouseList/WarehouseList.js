@@ -1,20 +1,20 @@
-
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./WarehouseList.scss";
-import axios from "axios";
-import searchIcon from "../../assets/Icons/search-24px.svg";
-import arrowRight from "../../assets/Icons/chevron_right-24px.svg";
-import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
-import editIcon from "../../assets/Icons/edit-24px.svg";
-import sort from "../../assets/Icons/sort-24px.svg";
-import Delete from "../Delete/Delete";
-import AddNewWarehouse from "../../pages/AddNewWarehouse/AddNewWarehouse";
-import WarehousePageHeader from "../WarehousePageHeader/WarehousePageHeader";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './WarehouseList.scss';
+import axios from 'axios';
+import arrowRight from '../../assets/Icons/chevron_right-24px.svg';
+import deleteIcon from '../../assets/Icons/delete_outline-24px.svg';
+import editIcon from '../../assets/Icons/edit-24px.svg';
+import sort from '../../assets/Icons/sort-24px.svg';
+import Delete from '../Delete/Delete';
+import AddNewWarehouse from '../../pages/AddNewWarehouse/AddNewWarehouse';
+import WarehousePageHeader from '../WarehousePageHeader/WarehousePageHeader';
 
 function WarehouseList() {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const [lists, setLists] = useState([]);
+  const [sortBy, setSortBy] = useState(null);
+  const [sortOrder, setSortOrder] = useState('asc');
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -52,12 +52,12 @@ function WarehouseList() {
     axios
       .delete(url)
       .then((response) => {
-        console.log("Deleted successfully", response.data);
+        console.log('Deleted successfully', response.data);
         const updatedLists = lists.filter((list) => list.id !== selectedItemId);
         setLists(updatedLists);
       })
       .catch((error) => {
-        console.error("There was an error!", error);
+        console.error('There was an error!', error);
       });
 
     // close modal and reset item id
@@ -196,7 +196,7 @@ function WarehouseList() {
                   ></img>
                   {isDeleteModalOpen && (
                     <Delete
-                      style="warehouse"
+                      styleName="warehouse"
                       list="the list of warehouses"
                       name={
                         lists.find((list) => list.id === selectedItemId)
