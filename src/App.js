@@ -10,9 +10,8 @@ import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsP
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import EditInventory from './pages/Add-Inventory/add-inventory';
 import AddInventory from './pages/Add-Inventory/add-inventory';
-
-function App() {
 import InventoryForm from "./components/InventoryForm/InventoryForm";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -43,4 +42,3 @@ export default function App() {
   );
 }
 
-export default App;
