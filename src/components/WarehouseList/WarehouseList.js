@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./WarehouseList.scss";
@@ -19,10 +20,17 @@ function WarehouseList() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [displayForm, setDisplayForm] = useState(false);
   const [warehouseData, setWarehouseData] = useState(null);
+  const [warehouseSearchTerm, setWarehouseSearchTerm] = useState('');
 
   const getWarehouseList = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses`);
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/warehouses`, {
+        params: {
+          sort_by: sortBy,
+          order_by: sortOrder,
+          warehouseSearchTerm: warehouseSearchTerm,
+        },
+      });
       setLists(response.data);
     } catch (error) {
       console.log(error);
@@ -30,7 +38,7 @@ function WarehouseList() {
   };
   useEffect(() => {
     getWarehouseList();
-  }, []);
+  }, [sortBy, sortOrder, warehouseSearchTerm]);
 
   const handleDeleteClick = (itemId) => {
     setSelectedItemId(itemId);
@@ -74,6 +82,17 @@ function WarehouseList() {
     getWarehouseList();
   };
 
+  const handleSort = (value) => {
+    if (sortBy === value) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortBy(value);
+      setSortOrder('asc');
+    }
+  };
+  const handleSearchChange = (event) => {
+    setWarehouseSearchTerm(event.target.value);
+  };
   return (
     <>
       {displayForm && isEditMode && (
@@ -88,22 +107,38 @@ function WarehouseList() {
       {!displayForm && (
         <main className="div-container-main">
           <div className="div-container">
-            <WarehousePageHeader addWarehouseHandler={addWarehouseHandler} />
+            <WarehousePageHeader
+              addWarehouseHandler={addWarehouseHandler}
+              warehouseSearchTerm={warehouseSearchTerm}
+              onSearchChange={handleSearchChange}
+            />
 
             <div className="section__titleContainerNew">
-              <div className="section__namesortbox">
+              <div
+                className="section__namesortbox"
+                onClick={() => handleSort('warehouse_name')}
+              >
                 <div className="section__subtitleNew">WAREHOUSE</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
-              <div className="section__namesortbox">
+              <div
+                className="section__namesortbox"
+                onClick={() => handleSort('address')}
+              >
                 <div className="section__addressTitleNew">ADDRESS</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
-              <div className="section__namesortbox">
+              <div
+                className="section__namesortbox"
+                onClick={() => handleSort('contact_name')}
+              >
                 <div className="section__contactTitleNew">CONTACT NAME</div>
                 <img src={sort} alt="sort icon" className="section__sort"></img>
               </div>
-              <div className="section__namesortbox">
+              <div
+                className="section__namesortbox"
+                onClick={() => handleSort('contact_email')}
+              >
                 <div className="section__contactInfoTitleNew">
                   CONTACT INFORMATION
                 </div>
@@ -165,7 +200,7 @@ function WarehouseList() {
                       list="the list of warehouses"
                       name={
                         lists.find((list) => list.id === selectedItemId)
-                          ?.warehouse_name || "the selected item"
+                          ?.warehouse_name || 'the selected item'
                       }
                       onDeleteConfirm={handleDeleteConfirm}
                       onClose={() => setIsDeleteModalOpen(false)}
@@ -188,4 +223,3 @@ function WarehouseList() {
 }
 
 export default WarehouseList;
-
