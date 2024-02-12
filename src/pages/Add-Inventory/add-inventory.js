@@ -12,14 +12,14 @@ function AddInventory() {
   const queryParams = new URLSearchParams(queryString);
   const id = queryParams.get("id");
   console.log(id);
-  useEffect(() => {
-    const getCat = async () => {
-      const response = await axios.get("http://localhost:8080/inventories");
-      setCategory(response.data);
-      console.log(response.data);
-    };
-    getCat();
-  }, []);
+  // useEffect(() => {
+  //   const getCat = async () => {
+  //     const response = await axios.get("http://localhost:8080/inventories");
+  //     setCategory(response.data);
+  //     console.log(response.data);
+  //   };
+  //   getCat();
+  // }, []);
   const [formData, setFormData] = useState({
     item_name: "",
     description: "",
@@ -28,23 +28,23 @@ function AddInventory() {
     quantity: "",
     warehouse_id: "",
   });
-  useEffect(() => {
-    const edit = async () => {
-      const response = await axios.get(
-        `http://localhost:8080/inventories/${id}`
-      );
-      console.log(response);
-      setFormData({
-        item_name: response.data.item_name,
-        description: response.data.description,
-        category: response.data.category,
-        quantity: response.data.quantity,
-        warehouse_id: response.data.warehouse_id,
-        status: response.data.status,
-      });
-    };
-    edit();
-  }, []);
+  // useEffect(() => {
+  //   const edit = async () => {
+  //     const response = await axios.get(
+  //       `http://localhost:8080/inventories/${id}`
+  //     );
+  //     console.log(response);
+  //     setFormData({
+  //       item_name: response.data.item_name,
+  //       description: response.data.description,
+  //       category: response.data.category,
+  //       quantity: response.data.quantity,
+  //       warehouse_id: response.data.warehouse_id,
+  //       status: response.data.status,
+  //     });
+  //   };
+  //   edit();
+  // }, []);
   
   const [formErrors, setFormErrors] = useState({});
   const handleInputChange = (field, value) => {
@@ -72,40 +72,45 @@ function AddInventory() {
     };
     return validationErrors;
   };
-  const handleAddItem = async (e) => {
-    e.preventDefault();
-    const validationErrors = validateForm();
-    if (Object.values(validationErrors).some((error) => !!error)) {
-      setFormErrors(validationErrors);
-      return;
-    }
-    console.log(formData);
-    try {
-      const response = await axios.post(
-        `http://localhost:8080/inventories`,
-        formData
-      );
-      console.log("Item edited successfully:", response.data);
-      if (response.status === 200) {
-        navigate("/inventory");
-      }
-      setFormData({
-        item_name: "",
-        description: "",
-        category: "",
-        status: "In Stock",
-        quantity: "",
-        warehouse: "",
-      });
-      setFormErrors({});
-    } catch (error) {
-      console.error("Error adding item:", error);
-    }
-  };
+  // const handleAddItem = async (e) => {
+  //   e.preventDefault();
+  //   const validationErrors = validateForm();
+  //   if (Object.values(validationErrors).some((error) => !!error)) {
+  //     setFormErrors(validationErrors);
+  //     return;
+  //   }
+  //   console.log(formData);
+  //   try {
+  //     const response = await axios.post(
+  //       `http://localhost:8080/inventories`,
+  //       formData
+  //     );
+  //     console.log("Item edited successfully:", response.data);
+  //     if (response.status === 200) {
+  //       navigate("/inventory");
+  //     }
+  //     setFormData({
+  //       item_name: "",
+  //       description: "",
+  //       category: "",
+  //       status: "In Stock",
+  //       quantity: "",
+  //       warehouse: "",
+  //     });
+  //     setFormErrors({});
+  //   } catch (error) {
+  //     console.error("Error adding item:", error);
+  //   }
+  // };
   const navigate = useNavigate();
   const onClose = () => {
     navigate("/inventory");
   };
+  const formSubmitHandler=(event)=>{
+    event.preventDefault();
+    
+  }
+
   return (
     <section className="addinventory">
       <div className="addinventory__wrap">
@@ -123,7 +128,7 @@ function AddInventory() {
           </div>
         </div>
         <div>
-          <form action="" className="addinventory__detail-form">
+          <form onSubmit={formSubmitHandler} action="" className="addinventory__detail-form">
             <div className="addinventory__detail-form-container">
               <div className="addinventory__detail addinventory__detailborder">
                 <div className="addinventory__form-header-wrap">
@@ -274,7 +279,7 @@ function AddInventory() {
               <div className="addinventory__btn-addItem-wrap">
                 <button
                   className="addinventory__btn-addItem"
-                  onClick={handleAddItem}
+                  
                 >
                   Save
                 </button>
