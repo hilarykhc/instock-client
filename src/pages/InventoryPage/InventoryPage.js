@@ -3,15 +3,23 @@ import InventoryListHeader from "../../components/InventoryListHeader/InventoryL
 import axios from "axios";
 import InventoryListItem from "../../components/InventoryListItem/InventoryListItem";
 import InventoryPageHeader from "../../components/InventoryPageHeader/InventoryPageHeader";
+import "./InventoryPage.scss";
 
 const InventoryPage = () => {
   const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
   const [inventories, setInventories] = useState([]);
+    const [sortBy, setSortBy] = useState(null);
+    const [sortingOrder, setSortingOrder] = useState('asc');
 
   const fetchAllInventories = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`);
+      const response = await axios.get(`${REACT_APP_SERVER_URL}/inventories`, {
+        params: {
+          sort_by: sortBy,
+          order_by: sortingOrder,
+        },
+      });
       setInventories(response.data);
     } catch (error) {
       console.log(error);
@@ -20,7 +28,17 @@ const InventoryPage = () => {
 
   useEffect(() => {
     fetchAllInventories();
-  }, []);
+  }, [sortBy, sortingOrder]);
+
+   const handleSortClick = (value) => {
+     if (sortBy === value) {
+       setSortingOrder(sortingOrder === 'asc' ? 'desc' : 'asc');
+     } else {
+       setSortBy(value);
+       setSortingOrder('asc'); 
+     }
+   };
+
 
   const deleteInventoryItem = (itemId) => {
     axios
@@ -34,16 +52,20 @@ const InventoryPage = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <main>
-      <InventoryPageHeader />
-      <InventoryListHeader />
-      {inventories.map((inventory) => (
-        <InventoryListItem
-          key={inventory.id}
-          inventoryItem={inventory}
-          onDelete={deleteInventoryItem}
-        />
-      ))}
+
+
+    <main className="div-container-main">
+      <div className="div-container">
+        <InventoryPageHeader />
+              <InventoryListHeader onSort={handleSortClick} />
+        {inventories.map((inventory) => (
+          <InventoryListItem
+            key={inventory.id}
+            inventoryItem={inventory}
+            onDelete={deleteInventoryItem}
+          />
+        ))}
+      </div>
     </main>
   );
 };
